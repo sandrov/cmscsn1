@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<title>CMS CSN1</title>
+<meta http-equiv="expires" content="Sun, 01 Jan 2014 00:00:00 GMT"/>
+<meta http-equiv="pragma" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<head>
+
+<style>
+
+.chkdiv {
+	 display: inline-block;
+}
+
+label {
+	padding-right: 4px;
+       }
+fieldset {
+          border-color: green;
+          background-color: #ffffff;
+}
+.astab {
+       background-color: #aaffee;
+}
+
+html {
+  font-family:Montserrat,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  line-height:1.5
+}
+
+.allafooter {
+  position: fixed;
+  left: 75%;
+  bottom: 0;
+  width: 25%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+var mfilt="";
+
+function aggiorna(myid) {
+       $("#entra").load("edita.php?q="+myid);
+    document.getElementById('id04').style.display='block';
+
+};
+
+function aggiornaDB(myid) {
+       $("#entra").load("toggladb.php?q="+myid); 
+
+       
+       showSingleRichie(myid);
+       showSingleRichie(myid);
+       showSingleRichie(myid);
+       showSingleRichie(myid);
+       showSingleRichie(myid);
+       showSingleRichie(myid);
+       showSingleRichie(myid);
+       
+
+};
+
+
+function nuova() {
+
+
+ //   window.location="entra.html";
+//    document.getElementById("txtHint").innerHTML ="";
+//    fetch("entra.html").then(x => x.text()).then(y=>document.getElementById("txtHint").innerHTML =y);
+    $("#entra").load("entra.html");
+    document.getElementById('id04').style.display='block';
+//    console.log("you loaded the form"); 
+//    var theform=document.getElementById("myentr");
+//    theform.action="/cmscsn1/entra.php";
+
+
+//    theform.addEventListener("submit", function(event){
+//       event.preventDefault();
+//       fetch(theform.action, {
+//          method: "post",
+//          body: new URLSearchParams(new FormData(theform)) // for application/x-www-form-urlencoded
+//        // body: new FormData(form) // for multipart/form-data
+//    }) 
+ //      .then(x=>x.text())
+ //      .then(y => document.getElementById("demo").innerHTML = y);
+//        console.log("you submitted the form");
+//    });
+//    showRichie(richie.value);
+
+};
+
+function showRichie(str) {
+  if (str == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+        document.getElementById("totkeur").innerHTML = document.getElementById("phpkeur").innerHTML;
+        document.getElementById("totkeurSJ").innerHTML = document.getElementById("phpkeurSJ").innerHTML;
+      }
+      else {
+	 if (this.readyState == 4 && this.status != 200)   document.getElementById('id03').style.display='block';
+      };
+    };
+    mfilt="";
+   if (tk.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'TRAC')>0 ";
+   }
+   if (ecal.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'ECAL')>0 ";
+   }
+   if (mtd.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'MTD')>0 ";
+   }
+   if (mu.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "(INSTR(tag,'DT')>0 OR INSTR(tag,'RPC')>0 OR INSTR(tag,'ME0')>0 OR INSTR(tag,'GEM')>0)";
+   }
+   if (trig.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'TRIG')>0 ";
+   }
+   if (pps.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'PPS')>0 ";
+   }
+   if (tetra.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'TETRA')>0 ";
+   }
+   if (calcolo.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'CALCOLO')>0 ";
+   }
+   if (mfilt!="") {
+     mfilt="("+mfilt+") ";
+    };
+   mfilts="";
+   if (BA.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'BA')>0  ";
+   }
+   if (BO.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'BO')>0  ";
+   }
+   if (CT.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'CT')>0  ";
+   }
+   if (FI.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'FI')>0  ";
+   }
+   if (GE.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'GE')>0  ";
+   }
+   if (LNF.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'LNF')>0  ";
+   }
+   if (LNL.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'LNL')>0  ";
+   }
+   if (MIB.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'MIB')>0  ";
+   }
+   if (NA.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'NA')>0  ";
+   }
+   if (PD.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'PD')>0  ";
+   }
+   if (PG.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'PG')>0  ";
+   }
+   if (PI.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'PI')>0  ";
+   }
+   if (PV.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'PV')>0  ";
+   }
+   if (RM1.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'RM1')>0  ";
+   }
+   if (TO.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'TO')>0  ";
+   }
+   if (TS.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'TS')>0  ";
+   }
+   if (mfilts!="") {
+      if (mfilt!=""){ mfilt+=" AND ";}; 	   
+     mfilt+="("+mfilts+") ";
+   }
+   mfilts="";	  
+   if (cms.checked == true) {
+     if (mfilts!="") mfilts+= "AND ";
+     mfilts+= "sigla='cms' ";
+   }
+   if (fase2.checked == true) {
+     if (mfilts!="") mfilts+= "AND ";
+     mfilts+= "sigla='fase2' ";
+   }
+   if ((cms.checked != true) && (fase2.checked != true)) mfilts="sigla=''";
+   if (mfilts!="") {
+      if (mfilt!=""){ mfilt+=" AND ";}; 	   
+     mfilt+="("+mfilts+") ";
+   }
+   if (missioni.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " capitolo='missioni' ";
+   }
+   if (consumo.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " capitolo='consumo' ";
+   }
+   if (apparati.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " capitolo='apparati' ";
+   }
+   if (spservizi.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " capitolo='spservizi' ";
+   }
+   if (RN.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " rn is not null ";
+   }
+   mtoke="";
+   if (asse.checked == true) {
+      mtoke="1";
+   }
+ 
+    xmlhttp.open("GET","alla.php?q="+str+"&f="+mfilt+"&t="+mtoke,true);
+    xmlhttp.send();
+  }
+}
+function showSingleRichie(str) {
+  if (str == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+        document.getElementById("totkeur").innerHTML = document.getElementById("phpkeur").innerHTML;
+        document.getElementById("totkeurSJ").innerHTML = document.getElementById("phpkeurSJ").innerHTML;
+      }
+      else {
+	 if (this.readyState == 4 && this.status != 200)    document.getElementById('id03').style.display='block';
+      };
+    };
+    xmlhttp.open("GET","unna.php?q="+str,true);
+    xmlhttp.send();
+  }
+}
+
+function insertRichie() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+      else {
+	if (this.readyState == 4 && this.status != 200)    document.getElementById('id03').style.display='block';
+      };
+    };
+    xmlhttp.open("GET","entra.html",true);
+    xmlhttp.send();
+}
+
+
+</script>
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://webanalytics.web.cern.ch/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '639']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body onload="showRichie(richie.value);">
+ <div class="w3-container w3-teal">
+  <h1>Richieste CMS</h1>
+</div> 
+<form>
+<!--
+<select id="richie" onchange="showRichie(this.value);" onblur="this.selectedIndex = 0;">
+-->
+
+<div>  <br> </div>
+<select class="w3-select, w3-quarter" id="richie" onchange="showRichie(this.value);" >
+  <option value="0">Anno:</option>
+  <option value="2025">2025</option>
+  <option value="2024">2024</option>
+    <option value="2023">2023</option>
+    <option value="2022">2022</option>
+    <option value="2021">2021</option>
+    <option value="2020">2020</option>
+    <option value="2019">2019</option>
+    <option value="2018">2018</option>
+    </select>
+</form>
+<br>
+<table class="w3-table">
+<tr>
+<td>
+<fieldset >
+<legend> Sigla </legend>
+<input type="radio" id="cms" name="sigla" value="cms"  onclick="showRichie(richie.value);">
+<label for="cms">CMS</label>
+<input type="radio" id="fase2" name="sigla" value="fase2"  onclick="showRichie(richie.value);">
+<label for="fase2">Fase2</label>
+</fieldset>
+</td>
+<td>
+<fieldset>
+<legend> Capitolo </legend>
+<div class="chkdiv">
+<input type="radio" id="missioni" name="capitolo" value="missioni" onclick="showRichie(richie.value);">
+<label for="missioni">Missioni</label>
+</div>
+<div class="chkdiv">
+<input type="radio" id="consumo" name="capitolo" value="consumo" onclick="showRichie(richie.value);">
+<label for="consumo">Consumo</label>
+</div>
+<div class="chkdiv">
+<input type="radio" id="apparati" name="capitolo" value="apparati" onclick="showRichie(richie.value);">
+<label for="apparati">Apparati</label>
+</div>
+<div class="chkdiv">
+<input type="radio" id="spservizi" name="capitolo" value="spservizi" onclick="showRichie(richie.value);">
+<label for="spservizi">spservizi</label>
+</div>
+<div class="chkdiv">
+<input type="radio" id="Tutti" name="capitolo" value="spservizi" checked onclick="showRichie(richie.value);">
+<label for="Tutti">Tutti</label>
+</div>
+</fieldset>
+</td>
+</tr>
+<tr>
+<td>
+<fieldset>
+<legend> Subsystem </legend>
+<div class="chkdiv">
+<input type="checkbox" id="tk" name="TK" value="TK" onclick="showRichie(richie.value);">
+<label for="tk">TK</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="ecal" name="ECAL" value="ECAL" onclick="showRichie(richie.value);">
+<label for="ecal">ECAL</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="mtd" name="MTD" value="MTD" onclick="showRichie(richie.value);">
+<label for="mtd">MTD</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="trig" name="TRIG" value="TRIG" onclick="showRichie(richie.value);">
+<label for="trig">TRIG</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="mu" name="MU" value="MU" onclick="showRichie(richie.value);">
+<label for="MU">MU</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="pps" name="PPS" value="PPS" onclick="showRichie(richie.value);">
+<label for="PPS">PPS</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="tetra" name="TETRA" value="TETRA" onclick="showRichie(richie.value);">
+<label for="TETRA">Tetraball</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="calcolo" name="CALCOLO" value="CALCOLO" onclick="showRichie(richie.value);">
+<label for="calcolo">Calcolo</label>
+</div>
+</fieldset>
+</td>
+<td>
+<fieldset>
+<legend> Sezione </legend>
+<div class="chkdiv">
+<input type="checkbox" id="BA" name="BA" value="BA" onclick="showRichie(richie.value);">
+<label for="BA">BA</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="BO" name="BO" value="BO" onclick="showRichie(richie.value);">
+<label for="BOl">BO</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="CT" name="CT" value="CT" onclick="showRichie(richie.value);">
+<label for="CT">CT</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="FI" name="FI" value="FI" onclick="showRichie(richie.value);">
+<label for="FI">FI</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="GE" name="GE" value="GE" onclick="showRichie(richie.value);">
+</div>
+<div class="chkdiv">
+<label for="GE">GE</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="LNF" name="LNF" value="LNF" onclick="showRichie(richie.value);">
+<label for="LNF">LNF</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="LNL" name="LNL" value="LNL" onclick="showRichie(richie.value);">
+<label for="LNL">LNL</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="MIB" name="MIB" value="MIB" onclick="showRichie(richie.value);">
+</div>
+<div class="chkdiv">
+<label for="MIB">MIB</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="NA" name="NA" value="NA" onclick="showRichie(richie.value);">
+<label for="NA">NA</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="PD" name="PD" value="PD" onclick="showRichie(richie.value);">
+<label for="PD">PD</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="PG" name="PG" value="PG" onclick="showRichie(richie.value);">
+</div>
+<div class="chkdiv">
+<label for="PG">PG</label>
+<input type="checkbox" id="PI" name="PI" value="PI" onclick="showRichie(richie.value);">
+<label for="PI">PI</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="PV" name="PV" value="PV" onclick="showRichie(richie.value);">
+<label for="PV">PV</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="RM1" name="RM1" value="RM1" onclick="showRichie(richie.value);">
+<label for="RM1">RM1</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="TO" name="TO" value="TO" onclick="showRichie(richie.value);">
+<label for="TO">TO</labeb>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="TS" name="TS" value="TS" onclick="showRichie(richie.value);">
+<label for="TO">TS</label>
+</div>
+</fieldset>
+</td>
+<td>
+<fieldset>
+<legend> Views </legend>
+<div class="chkdiv">
+<input type="checkbox" id="RN" name="RN" value="RN" onclick="showRichie(richie.value);">
+<label for="RN">RN </label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="asse" name="asse" value="Ass." onclick="showRichie(richie.value);">
+<label for="asse">StringheDB </label>
+</div>
+</td>
+<td>
+<fieldset>
+<legend> Azioni </legend>
+<input type="button" id="Nuova"" name="Edita" value="Nuova" onclick="nuova();">
+</td>
+</tr>
+</table>
+
+<!-- The Modal -->
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id01').style.display='none'"
+      class="w3-button w3-display-topright">&times;</span>
+      <p>Richiesta inserita..</p>
+    </div>
+  </div>
+</div> 
+
+<!-- The Modal -->
+<div id="id02" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <p>Richiesta aggiornata..</p>
+    </div>
+  </div>
+</div> 
+
+<div id="id03" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id03').style.display='none'"
+      class="w3-button w3-display-topright">&times;</span>
+      <p>Connection issues...</p>
+      <p>Reload page and try to re-authenticate</p>
+    </div>
+  </div>
+</div> 
+
+<div id="id04" class="w3-modal w3-animate-zoom" >
+  <div class="w3-modal-content" style="width:1250px;">
+    <div class="w3-container" >
+       <div id="entra"> </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<div id="txtHint"><b>Richieste...</b></div>
+<div id="allafooter" class="allafooter">Tot Richieste:<span id="totkeur"></span><span> Tot SJ:</span><span id="totkeurSJ"></span></div>
+</body>
+</html>
