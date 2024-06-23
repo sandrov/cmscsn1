@@ -41,7 +41,7 @@ $con = mysqli_connect($server,$login,$pass,$db,$port);
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
-echo "quering DB tot<br>";
+//echo "quering DB tot<br>";
 
 mysqli_select_db($con,"cmsph2");
 $sql="select sum(Assegnazioni.keur) as tot  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id ) and Assegnazioni.anno<2025;";
@@ -91,56 +91,61 @@ while($row3= mysqli_fetch_array($result)) {
 
 
 ?>
-
+</div>
+<div class="w3-container w3-xlarge">
 <br>
 Subsystems
+</div>
 <br>
 
 <?php
 $sql="select distinct tag from Richieste where instr(tag,'CORE')>0;";
 $result4 = mysqli_query($con,$sql);
-while($row4 = mysqli_fetch_array($result4)) {
-$mysubs=$row4("tag");
-echo $mysubs;
-$sql="select sum(Assegnazioni.keur) as tot  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id and Richieste.tag='".$mysubs."') and Assegnazioni.anno<2025 ;";
+   while($row4 = mysqli_fetch_array($result4)) {
+     $mysubs=$row4["tag"];
+     //echo $mysubs;
+     $sql="select sum(Assegnazioni.keur) as tot  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id and Richieste.tag='".$mysubs."') and Assegnazioni.anno<2025 ;";
 
-print $sql;
-$result = mysqli_query($con,$sql);
-while($row = mysqli_fetch_array($result)) {
-   $totcsn1=$row["tot"];
-   print $totcsn1;
-};
+//     print $sql;
+     $result = mysqli_query($con,$sql);
+     while($row = mysqli_fetch_array($result)) {
+        $totcsn1=$row["tot"];
+      //  print $totcsn1;
+     };
 
-};
-echo "<div class=\"w3-container w3-half\">";
-echo "<h3>CORE".$mysubs." </h3>";
-?>
-echo  "<span class=\"w3-tag w3-jumbo w3-green w3-right\">
-   <span class=\"w3-xlarge\">Totale Assegnazioni</span>";
-echo $totcsn1;
-echo  "</span> </div>";
-echo "<div class=\"w3-container w3-half size50\" >";
+
+     echo "<div class=\"w3-container\"></div>";
+     echo "<br><div class=\"w3-container w3-half\">";
+     echo "<p><h3>CORE ".$mysubs." </h3>";
+     echo  "<span class=\"w3-tag w3-xlarge w3-green w3-right\">
+        <span class=\"w3-large\">Totale Assegnazioni   </span>";
+     echo $totcsn1;
+     echo  "</span> </div>";
+     echo "<div class=\"w3-container w3-half size50\" >";
 //<?php
 ////echo "quering DB years<br>";
 //
 
-//$sql="select distinct anno from Assegnazioni order by anno;";
-//$result = mysqli_query($con,$sql);
-//while($row3= mysqli_fetch_array($result)) {
-//   $myanno=$row3["anno"];
-//   $sql="select sum(Assegnazioni.keur) as totanno  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id and nstr(Richieste.tag,".$mysubs.")>0 ) and Assegnazioni.anno='".$myanno."'";
-//echo "anno ".$myanno."<br>";
-//   $result2 = mysqli_query($con,$sql);
-//   $totcum=0;
-//   while($row2 = mysqli_fetch_array($result2)) {
-//           $totcum+=$row2["totanno"];
-//           echo "<div class=\"w3-container w3-yellow\" width=100px >". $myanno."<br>";
-//           echo "<div class=\"w3-xlarge\">".$row2["totanno"]."</div>";
-////         echo "<div class=\"w3-xlarge\">".$totcum."</div><br>";  
-//           echo "</div> ";
-//          }
-//   };
-//};
+echo "<br><br>";
+     $sql="select distinct anno from Assegnazioni order by anno;";
+     $result = mysqli_query($con,$sql);
+     while($row3= mysqli_fetch_array($result)) {
+        $myanno=$row3["anno"];
+        $sql="select sum(Assegnazioni.keur) as totanno  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id and instr(Richieste.tag,'".$mysubs."')>0 ) and Assegnazioni.anno='".$myanno."'";
+//        echo "anno ".$myanno."<br>";
+        $result2 = mysqli_query($con,$sql);
+        $totcum=0;
+        while($row2 = mysqli_fetch_array($result2)) {
+           $totcum+=$row2["totanno"];
+           echo "<div class=\"w3-container w3-yellow\" width=100px >". $myanno."<br>";
+           echo "<div class=\"w3-xlarge\">".$row2["totanno"]."</div>";
+//           echo "<div class=\"w3-xlarge\">".$totcum."</div><br>";  
+           echo "</div> ";
+          }
+   };
+   echo "<br>";
+   echo "</div>";
+};
 
 ?>
 

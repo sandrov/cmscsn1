@@ -28,15 +28,11 @@ echo "<table class=\"w3-table w3-striped\">
 <tr>
 <th>Anno</th>
 <th>Sigla</th>
-<th>Tag</th>
 <th>Sezione</th>
 <th>Capitolo</th>
 <th>keur</th>
 <th>SJ</th>
-<th>wbs</th>
 <th>Richiesta</th>
-<th>Note</th>
-<th>ID</th>
 </tr>";
 $bkg="";
 $totkeur=0;
@@ -52,26 +48,23 @@ while($row = mysqli_fetch_array($result)) {
   };
   echo "<td>" . $row['anno'] . "</td>";
   echo "<td>" . $row['sigla'] . "</td>";
-  echo "<td>" . $row['tag'] . "</td>";
   echo "<td>" . $row['sez'] . "</td>";
   echo "<td>" . $row['capitolo'] . "</td>";
   echo "<td>" . number_format($row['keur'],1) . "</td>";
   $totkeur+= $row['keur'];
   echo "<td>" . number_format($row['keurSJ'],1). "</td>";
   $totkeurSJ+= $row['keurSJ'];
-  echo "<td>" . $row['WBS'] . "</td>";
   echo "<td>";
-  echo $row['richiesta'] . "</td>";
-  echo "<td>" . $row['note'] . "</td>";
-  echo "<td>" . $row['id'] . "</td>";
-  echo "<td>";
-  if ($t!="") {
 	  $dbstr=$row['tag']."/";
 	  if ($row['WBS']) $dbstr.= $row['WBS']."/";
 	  $dbstr.=$row['richiesta']."      ".$row['note']." / CMS-". $row['id'];
-	  echo "<b>".$dbstr."</b>";}
+  if ($t!="") {
+	  echo "<b>".$dbstr."</b>";
+  }
   else
   {
+	  echo $dbstr;
+	  echo "</td><td>";
 	  if ($row['todb']==1) {echo "<button class=\"w3-btn w3-orange\">DB</button>";};
 	  if ($row2) {echo "<button class=\"w3-btn w3-green\"> ass</button>";};
   }

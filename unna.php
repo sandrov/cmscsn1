@@ -53,7 +53,7 @@ while($row = mysqli_fetch_array($result)) {
   echo "<td>" . $row['capitolo'] . "</td>";
   echo "<td>" . number_format($row['keur'],1) . "</td>";
   echo "<td>" . number_format($row['keurSJ'],1) . "</td>";
-  echo "<td>" . $row['wbs'] . "</td>";
+  echo "<td>" . $row['WBS'] . "</td>";
   echo "<td>" . $row['richiesta'] . "</td>";
   echo "<td>" . $row['note'] . "</td>";
   echo "<td>" . $row['id'] . "</td>";
