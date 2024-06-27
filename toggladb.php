@@ -10,7 +10,9 @@ echo "<pre>"; print_r($_GET) ;  echo "</pre>";
 
 
 $id = isset($_GET['q']) ? $_GET['q'] : '';
+$fla = isset($_GET['f']) ? $_GET['f'] : '';
 
+echo "<pre>"; "f=".$fla ;  echo "</pre>";
 
 if ($id>0) {
  $tbcon = mysqli_connect($server,$login,$pass,$db,$port);
@@ -20,11 +22,17 @@ if ($id>0) {
  }
 
  mysqli_select_db($tbcon,"cmsph2");
- $sql="UPDATE Richieste set todb=case when todb=1 then 0 else 1 end WHERE id=".$id;
+ $mfla="";
+ if ($fla==1) {$mfla="todb";};
+ if ($fla==2) {$mfla="ra";};
+ if ($fla==3) {$mfla="rn";};
+ if ($mfla!="") {
+ $sql="UPDATE Richieste set ".$mfla."=case when ".$mfla."=1 then 0 else 1 end WHERE id=".$id;
  print $sql;
  $result = mysqli_query($tbcon,$sql);
- $sql="select todb from Richieste WHERE id=".$id;
- $result = mysqli_query($tbcon,$sql);
+ }
+// $sql="select ".$mfla." from Richieste WHERE id=".$id;
+// $result = mysqli_query($tbcon,$sql);
  mysqli_close($tbcon);
 }
 ?>

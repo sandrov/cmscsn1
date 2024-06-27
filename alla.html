@@ -53,8 +53,8 @@ function aggiorna(myid) {
 
 };
 
-function aggiornaDB(myid) {
-       $("#entra").load("toggladb.php?q="+myid); 
+function aggiornaDB(myid,myfla) {
+       $("#entra").load("toggladb.php?q="+myid+"&f="+myfla); 
 
        
        showSingleRichie(myid);
@@ -520,7 +520,7 @@ function insertRichie() {
 <div id="id02" class="w3-modal">
   <div class="w3-modal-content">
     <div class="w3-container">
-      <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <span onclick="document.getElementById('id02').style.display='none';showRichie(richie.value);" class="w3-button w3-display-topright">&times;</span>
       <p>Richiesta aggiornata..</p>
     </div>
   </div>

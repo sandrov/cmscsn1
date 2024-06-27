@@ -74,13 +74,21 @@ while($row = mysqli_fetch_array($result)) {
   }
   echo "</table></td>";
   echo "<td>";
-  if ($row['todb']==1) {echo "<button class=\"w3-btn w3-orange\">DB</button>";};
+  if ($row['todb']==1) {echo "<button class=\"w3-btn w3-lime\">DB</button>";};
+  echo "</td>";
+  echo "<td>";
+  if ($row['ra']==1) {echo "<button class=\"w3-btn w3-light-blue\">RA</button>";};
+  echo "</td>";
+  echo "<td>";
+  if ($row['rn']==1) {echo "<button class=\"w3-btn w3-cyan\">RN</button>";};
   echo "</td>";
   echo "<td>";
   if ($edib==0) {
 //     echo "<a href=\"edita.php?q=".$q."\">";
      echo "<button id=\"edita\" onclick=\"aggiorna(".$q.");\"> Edita</button>"; 
-  echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.");\"> DB</button>"; }
+  echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.",1);\"> DB</button>"; 
+  echo "<button id=\"ra\" onclick=\"aggiornaDB(".$q.",2);\"> RA</button>"; 
+  echo "<button id=\"rn\" onclick=\"aggiornaDB(".$q.",3);\"> RN</button>"; }
   echo "</td>";
 }
 echo "</tr></table>";

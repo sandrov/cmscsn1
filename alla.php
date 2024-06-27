@@ -65,8 +65,11 @@ while($row = mysqli_fetch_array($result)) {
   {
 	  echo $dbstr;
 	  echo "</td><td>";
-	  if ($row['todb']==1) {echo "<button class=\"w3-btn w3-orange\">DB</button>";};
+	  if ($row['todb']==1) {echo "<button class=\"w3-btn w3-lime\">DB</button>";};
 	  if ($row2) {echo "<button class=\"w3-btn w3-green\"> ass</button>";};
+	  echo "</td><td>";
+	  if ($row['rn']==1) {echo "<button class=\"w3-btn w3-cyan\">RN</button>";};
+	  if ($row['ra']==1) {echo "<button class=\"w3-btn w3-light-blue\">RA</button>";};
   }
   echo "</td>";
   echo "</tr>";
