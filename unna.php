@@ -77,6 +77,9 @@ while($row = mysqli_fetch_array($result)) {
   if ($row['todb']==1) {echo "<button class=\"w3-btn w3-lime\">DB</button>";};
   echo "</td>";
   echo "<td>";
+  if ($row['rl']==1) {echo "<button class=\"w3-btn w3-light-green\">RL</button>";};
+  echo "</td>";
+  echo "<td>";
   if ($row['ra']==1) {echo "<button class=\"w3-btn w3-light-blue\">RA</button>";};
   echo "</td>";
   echo "<td>";
@@ -87,8 +90,9 @@ while($row = mysqli_fetch_array($result)) {
 //     echo "<a href=\"edita.php?q=".$q."\">";
      echo "<button id=\"edita\" onclick=\"aggiorna(".$q.");\"> Edita</button>"; 
   echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.",1);\"> DB</button>"; 
-  echo "<button id=\"ra\" onclick=\"aggiornaDB(".$q.",2);\"> RA</button>"; 
-  echo "<button id=\"rn\" onclick=\"aggiornaDB(".$q.",3);\"> RN</button>"; }
+  echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.",2);\"> RL</button>"; 
+  echo "<button id=\"ra\" onclick=\"aggiornaDB(".$q.",3);\"> RA</button>"; 
+  echo "<button id=\"rn\" onclick=\"aggiornaDB(".$q.",4);\"> RN</button>"; }
   echo "</td>";
 }
 echo "</tr></table>";

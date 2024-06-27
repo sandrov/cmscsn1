@@ -24,8 +24,9 @@ if ($id>0) {
  mysqli_select_db($tbcon,"cmsph2");
  $mfla="";
  if ($fla==1) {$mfla="todb";};
- if ($fla==2) {$mfla="ra";};
- if ($fla==3) {$mfla="rn";};
+ if ($fla==2) {$mfla="rl";};
+ if ($fla==3) {$mfla="ra";};
+ if ($fla==4) {$mfla="rn";};
  if ($mfla!="") {
  $sql="UPDATE Richieste set ".$mfla."=case when ".$mfla."=1 then 0 else 1 end WHERE id=".$id;
  print $sql;
