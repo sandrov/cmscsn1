@@ -135,12 +135,13 @@ html {
    <option value="MTD" <?=$tag1== 'MTD' ? ' selected="selected"' : '';?>>MTD</option>
    <option value="PPS" <?=$tag1== 'PPS' ? ' selected="selected"' : '';?>>PPS</option>
    <option value="RPC" <?=$tag1== 'RPC' ? ' selected="selected"' : '';?>>RPC</option>
-   <option value="TETRABALL" <?=$tag1== 'TETRABALL' ? ' selected="selected"' : '';?>>TETRABALL</option>
+   <option value="BRIL" <?=$tag1== 'BRIL' ? ' selected="selected"' : '';?>>BRIL</option>
    <option value="TRACKER" <?=$tag1== 'TRACKER' ? ' selected="selected"' : '';?>>TRACKER</option>
 </select>
 <select id="tag2" name="tag2" class="entrasel">
    <option value="">TAG-CAT</option>
    <option value="CORE" <?=$tag2== 'CORE' ? ' selected="selected"' : '';?>>CORE</option>
+   <option value="CORE-EXTRACOSTO" <?=$tag2== 'CORE-EXTRACOSTO' ? ' selected="selected"' : '';?>>CORE-EXTRACOSTO</option>
    <option value="PREPROTO" <?=$tag2== 'PREPROTO' ? ' selected="selected"' : '';?>>PREPROTO</option>
    <option value="INFRA" <?=$tag2== 'INFRA' ? ' selected="selected"' : '';?>>INFRA</option>
    <option value="MOF-A" <?=$tag2== 'MOF-A' ? ' selected="selected"' : '';?>>MOF-A</option>

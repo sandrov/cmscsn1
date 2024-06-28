@@ -138,9 +138,9 @@ function showRichie(str) {
      if (mfilt!="") mfilt+= "OR ";
      mfilt+= "INSTR(tag,'PPS')>0 ";
    }
-   if (tetra.checked == true) {
+   if (bril.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'TETRA')>0 ";
+     mfilt+= "INSTR(tag,'BRIL')>0 ";
    }
    if (calcolo.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
@@ -403,8 +403,8 @@ function insertRichie() {
 <label for="PPS">PPS</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="tetra" name="TETRA" value="TETRA" onclick="showRichie(richie.value);">
-<label for="TETRA">Tetraball</label>
+<input type="checkbox" id="bril" name="BRIL" value="BRIL" onclick="showRichie(richie.value);">
+<label for="BRIL">BRIL</label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="calcolo" name="CALCOLO" value="CALCOLO" onclick="showRichie(richie.value);">
