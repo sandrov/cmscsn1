@@ -25,6 +25,20 @@ $sj = isset($_POST['keurSJ']) ? $_POST['keurSJ'] : '';
 $documentazione = isset($_POST['descrizione']) ? $_POST['descrizione'] : '';
 $folder = isset($_POST['folder']) ? $_POST['folder'] : '';
 
+$mkeur=$keur+0.25;
+$a=(int)$mkeur;
+if (($mkeur-$a)<0.5) {$mkeur=$a;}
+else $mkeur=$a+0.5;
+
+$keur=$mkeur;
+
+$mkeur=$sj+0.25;
+$a=(int)$mkeur;
+if (($mkeur-$a)<0.5) {$mkeur=$a;}
+else $mkeur=$a+0.5;
+
+$sj=$mkeur;
+
 $wbs=addslashes($wbs);
 $rich=addslashes($rich);
 $note=addslashes($note);
