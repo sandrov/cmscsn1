@@ -32,7 +32,10 @@ $keur=addslashes($keur);
 $sj=addslashes($sj);
 $documentazione=addslashes($documentazione);
 $folder=addslashes($folder);
-$tag=addslashes($tag1."-".$tag2."   ".$tag3);
+
+//$tag=addslashes($tag1."-".$tag2." ".$tag3);
+
+
 
 $tag=$tag1."-".$tag2." ".$tag3;
 

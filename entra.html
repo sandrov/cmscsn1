@@ -58,7 +58,7 @@ var mfilts="";
 					 document.getElementById('divlbl').style.display='inline';
 				         document.getElementById('lblriclbl').innerHTML='fte:';
 				}
-			else if (mylbl=="FASE2" || mylbl=="M&C") {
+			else if (mylbl=="FASE2" || mylbl=="FASE2_P2024" || mylbl=="M&C") {
 					document.getElementById('divlbl').style.display='inline';
 				         document.getElementById('lblriclbl').innerHTML='m.p.:';
 				}
@@ -68,7 +68,7 @@ var mfilts="";
 	function metacalc() {
 			var msez= document.getElementById('ricsez').value;
 			var mylbl= document.getElementById('rictag2').value;
-			if (mylbl=="META" || mylbl=="ESP" || mylbl=="FASE2" || mylbl=="M&C") {
+			if (mylbl=="META" || mylbl=="ESP" || mylbl=="FASE2" || mylbl=="FASE2_P2024" || mylbl=="M&C") {
 			   myfte=document.getElementById('riclbl').value;
 			   mycap=document.getElementById('riccapitolo').value;
 			   if (mycap=="missioni") {
@@ -182,15 +182,16 @@ var mfilts="";
 <select id="rictag2" name="tag2" class="entrasel" onchange="metalbl();">
    <option value="">TAG-CAT</option>
    <option value="CORE">CORE</option>
-   <option value="CORE">CORE-EXTRACOSTO</option>
+   <option value="CORE">CORE_EXTRACOSTO</option>
    <option value="PREPROTO">PREPROTO</option>
    <option value="INFRA">INFRA</option>
-   <option value="MOF-A">MOF-A</option>
-   <option value="MOF-B">MOF-B</option>
+   <option value="MOF-A">MOF_A</option>
+   <option value="MOF-B">MOF_B</option>
    <option value="META">META</option>
    <option value="RESP">RESP</option>
    <option value="ESP">ESP</option>
    <option value="FASE2">FASE2</option>
+   <option value="FASE2_P2024">FASE2_P2024</option>
    <option value="M&C">M&C</option>
 </select>   
 <select id="rictag3" name="tag3" class="entrasel" onchange="respcalc();">

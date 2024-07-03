@@ -28,8 +28,9 @@ $row3 = mysqli_fetch_array($result3);
 while($row = mysqli_fetch_array($result)) {
 //print_r($row);
 	$tag=$row['tag'];
+	$tag= preg_replace('/\s+/', ' ',$tag);
         list($tag1, $tag2)=explode("-",$tag);
-//	print $tag;
+//	print "tag2=".$tag2;
 	list($tag2, $tag3)=explode(" ",$tag2);
 //	print "list ".$tag1."+".$tag2."+".$tag3;
 
@@ -141,15 +142,16 @@ html {
 <select id="tag2" name="tag2" class="entrasel">
    <option value="">TAG-CAT</option>
    <option value="CORE" <?=$tag2== 'CORE' ? ' selected="selected"' : '';?>>CORE</option>
-   <option value="CORE-EXTRACOSTO" <?=$tag2== 'CORE-EXTRACOSTO' ? ' selected="selected"' : '';?>>CORE-EXTRACOSTO</option>
+   <option value="CORE_EXTRACOSTO" <?=$tag2== 'CORE_EXTRACOSTO' ? ' selected="selected"' : '';?>>CORE_EXTRACOSTO</option>
    <option value="PREPROTO" <?=$tag2== 'PREPROTO' ? ' selected="selected"' : '';?>>PREPROTO</option>
    <option value="INFRA" <?=$tag2== 'INFRA' ? ' selected="selected"' : '';?>>INFRA</option>
-   <option value="MOF-A" <?=$tag2== 'MOF-A' ? ' selected="selected"' : '';?>>MOF-A</option>
-   <option value="MOF-B" <?=$tag2== 'MOF-B' ? ' selected="selected"' : '';?>>MOF-B</option>
+   <option value="MOF_A" <?=$tag2== 'MOF_A' ? ' selected="selected"' : '';?>>MOF_A</option>
+   <option value="MOF_B" <?=$tag2== 'MOF_B' ? ' selected="selected"' : '';?>>MOF_B</option>
    <option value="META" <?=$tag2== 'META' ? ' selected="selected"' : '';?>>META</option>
    <option value="RESP" <?=$tag2== 'RESP' ? ' selected="selected"' : '';?>>RESP</option>
    <option value="ESP" <?=$tag2== 'ESP' ? ' selected="selected"' : '';?>>ESP</option>
    <option value="FASE2" <?=$tag2== 'FASE2' ? ' selected="selected"' : '';?>>FASE2</option>
+   <option value="FASE2_P2024" <?=$tag2== 'FASE2_P2024' ? ' selected="selected"' : '';?>>FASE2_P2024</option>
    <option value="M&C" <?=$tag2== 'M&C' ? ' selected="selected"' : '';?>>M&C</option>
 </select>
 <select id="tag3" name="tag3" class="entrasel" onchange="respcalc()">
@@ -168,7 +170,7 @@ html {
 </div>
 <div class="w3-panel w3-border w3-khaki  w3-round-xlarge">
   <label for="rich">Richiesta:</label>
-  <input type="text" id="rich" name="rich" size="150" height="150" value="<?=$row['richiesta'];?>"><br>
+  <input type="text" id="rich" name="rich" size="80" height="100" value="<?=$row['richiesta'];?>"><br>
 </div>
 <div class="w3-panel w3-amber w3-round-xlarge">
    <label for="descrizione">Descrizione:</label>
