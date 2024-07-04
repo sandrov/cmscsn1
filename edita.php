@@ -18,7 +18,7 @@ $sql="SELECT * FROM Richieste WHERE id = '".$q."'";
 $result = mysqli_query($con,$sql);
 $sql2="SELECT Assegnazioni.anno,Assegnazioni.keur,riunione,commenti FROM Richieste,Assegnazioni WHERE Richieste.id=Assegnazioni.id_richiesta and Richieste.id='".$q."'";
 $result2= mysqli_query($con,$sql2);
-$sql3="SELECT documentazione,folder FROM Richieste,docs WHERE Richieste.id=docs.id_richiesta and Richieste.id='".$q."'";
+$sql3="SELECT docs.id as id,documentazione,folder FROM Richieste,docs WHERE Richieste.id=docs.id_richiesta and Richieste.id='".$q."'";
 $result3= mysqli_query($con,$sql3);
 
 $row3 = mysqli_fetch_array($result3);
@@ -63,7 +63,9 @@ html {
 <form id="myedit"  method="post">
 <div class="w3-panel w3-border w3-sand  w3-round-xlarge">
 <input id="ricid" type="hidden" name="ricid" value="<?=$row['id']?>"> 
+<input id="docid" type="hidden" name="docid" value="<?=$row3['id']?>"> 
 <div> <b>ID: <?=$row['id']?> </b></div>
+<div> <b>Doc ID: <?=$row3['id']?> </b></div>
 <select id="anno" name="anno" >
   <option value="0">Anno:</option>
   <option value="2024" <?=$row['anno'] == '2024' ? ' selected="selected"' : '';?>>2024</option>

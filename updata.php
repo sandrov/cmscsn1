@@ -20,6 +20,7 @@ $tag3= isset($_POST['tag3']) ? $_POST['tag3'] : '';
 $wbs = isset($_POST['wbs']) ? $_POST['wbs'] : '';
 $rich = isset($_POST['rich']) ? $_POST['rich'] : '';
 $note = isset($_POST['note']) ? $_POST['note'] : '';
+$docid = isset($_POST['docid']) ? $_POST['docid'] : '';
 $keur = isset($_POST['keur']) ? $_POST['keur'] : '';
 $sj = isset($_POST['keurSJ']) ? $_POST['keurSJ'] : '';
 $documentazione = isset($_POST['descrizione']) ? $_POST['descrizione'] : '';
@@ -64,7 +65,12 @@ $sql="UPDATE Richieste set anno='".$anno."',tag='".$tag."',WBS='".$wbs."',sez='"
 print $sql;
 $result = mysqli_query($con,$sql);
 echo "<BR>".$sql;
-$sql="UPDATE docs set documentazione='".trim($documentazione)."', folder='".$folder."'  WHERE id_richiesta=".$id;
+
+if ($docid=='') {
+$sql="INSERT INTO docs (id_richiesta,documentazione,folder) values (".$id.",'".$documentazione."','".$folder."')"; 
+}
+else $sql="UPDATE docs set documentazione='".trim($documentazione)."', folder='".$folder."'  WHERE id_richiesta=".$id;
+
 echo "<BR>".$sql;
 $result = mysqli_query($con,$sql);
 echo "<BR>";
