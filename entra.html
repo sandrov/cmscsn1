@@ -80,7 +80,7 @@ var mfilts="";
 				   document.getElementById('keur').value=mykeur;
 					   if (mylbl=="META" || mylbl=="ESP" ) {
 							   document.getElementById('rich').value=myfte+"fte*1mp/fte*"+myrates[msez]+"KEuro/mp";}
-				      else document.getElementById('rich').value=myfte+"mp/fte*"+myrates[msez]+"KEuro/mp";
+				      else document.getElementById('rich').value=myfte+"mp*"+myrates[msez]+"KEuro/mp";
 		                }
 				else {
 				   var mykeur=myfte*1.5+0.25;
@@ -175,6 +175,7 @@ var mfilts="";
    <option value="L1TRIGGER">L1TRIGGER</option>
    <option value="ME0">ME0</option>
    <option value="MTD">MTD</option>
+   <option value="MUON">MUON</option>
    <option value="PPS">PPS</option>
    <option value="RPC">RPC</option>
    <option value="BRIL">BRIL</option>

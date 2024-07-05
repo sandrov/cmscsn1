@@ -117,7 +117,7 @@ function showRichie(str) {
     mfilt="";
    if (tk.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'TRAC')>0 ";
+     mfilt+= "INSTR(tag,'TRACK')>0 ";
    }
    if (ecal.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
@@ -129,7 +129,7 @@ function showRichie(str) {
    }
    if (mu.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "(INSTR(tag,'DT')>0 OR INSTR(tag,'RPC')>0 OR INSTR(tag,'ME0')>0 OR INSTR(tag,'GEM')>0)";
+		   mfilt+= "(INSTR(tag,'MUON')>0 OR INSTR(tag,'DT')>0 OR INSTR(tag,'RPC')>0 OR INSTR(tag,'ME0')>0 OR INSTR(tag,'GEM')>0)";
    }
    if (trig.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
@@ -146,6 +146,10 @@ function showRichie(str) {
    if (calcolo.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
      mfilt+= "INSTR(tag,'CALCOLO')>0 ";
+   }
+   if (p2024.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+      mfilt+= "  INSTR(tag,'P2024')>0";
    }
    if (mfilt!="") {
      mfilt="("+mfilt+") ";
@@ -252,6 +256,10 @@ function showRichie(str) {
    if (RN.checked == true) {
      if (mfilt!="") mfilt+= "AND ";
       mfilt+= " rn is not null ";
+   }
+   if (p2024.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+     mfilt+= " INSTR(tag,'P2024')>0 ";
    }
    mtoke="";
    if (asse.checked == true) {
@@ -492,6 +500,10 @@ function insertRichie() {
 <div class="chkdiv">
 <input type="checkbox" id="RN" name="RN" value="RN" onclick="showRichie(richie.value);">
 <label for="RN">RN </label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="p2024" name="p2024" value="P2024" onclick="showRichie(richie.value);">
+<label for="RN">P2024 </label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="asse" name="asse" value="Ass." onclick="showRichie(richie.value);">

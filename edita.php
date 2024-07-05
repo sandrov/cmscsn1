@@ -136,6 +136,7 @@ html {
    <option value="L1TRIGGER" <?=$tag1== 'L1TRIGGER' ? ' selected="selected"' : '';?>>L1TRIGGER</option>
    <option value="ME0" <?=$tag1== 'ME0' ? ' selected="selected"' : '';?>>ME0</option>
    <option value="MTD" <?=$tag1== 'MTD' ? ' selected="selected"' : '';?>>MTD</option>
+   <option value="MUON" <?=$tag1== 'MUON' ? ' selected="selected"' : '';?>>MUON</option>
    <option value="PPS" <?=$tag1== 'PPS' ? ' selected="selected"' : '';?>>PPS</option>
    <option value="RPC" <?=$tag1== 'RPC' ? ' selected="selected"' : '';?>>RPC</option>
    <option value="BRIL" <?=$tag1== 'BRIL' ? ' selected="selected"' : '';?>>BRIL</option>
