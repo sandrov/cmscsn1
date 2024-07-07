@@ -147,10 +147,6 @@ function showRichie(str) {
      if (mfilt!="") mfilt+= "OR ";
      mfilt+= "INSTR(tag,'CALCOLO')>0 ";
    }
-   if (p2024.checked == true) {
-     if (mfilt!="") mfilt+= "OR ";
-      mfilt+= "  INSTR(tag,'P2024')>0";
-   }
    if (mfilt!="") {
      mfilt="("+mfilt+") ";
     };
@@ -345,6 +341,12 @@ function insertRichie() {
     <option value="2018">2018</option>
     </select>
 </form>
+<div class="w3-right">
+<label for="vai">Vai a CMS-ID:</label>
+<input type="text" id="vai" onchange="showSingleRichie(this.value);">
+<span> &nbsp   </span>
+</div>
+
 <br>
 <table class="w3-table">
 <tr>
