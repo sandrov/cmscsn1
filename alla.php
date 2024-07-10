@@ -37,11 +37,14 @@ echo "<table class=\"w3-table w3-striped\">
 $bkg="";
 $totkeur=0;
 $totkeurSJ=0;
+$totrichieste=0;
+$totassegna=0;
 while($row = mysqli_fetch_array($result)) {
       $sql2="SELECT Assegnazioni.anno,Assegnazioni.keur,riunione,commenti FROM Richieste,Assegnazioni WHERE Richieste.id=Assegnazioni.id_richiesta and Richieste.id='".$row['id']."'";
       $result2= mysqli_query($con,$sql2);
       $row2=mysqli_fetch_array($result2);
-  if ($t!="") {
+  if ((($t>=10) && $row2) || ($t<10)) {   
+  if (($t&1)==1) {
     echo "<tr class=\"".$bkg."\" >";  
   } else {
     echo "<tr class=\"".$bkg."\" onClick=showSingleRichie(".$row['id'].");>";
@@ -51,14 +54,16 @@ while($row = mysqli_fetch_array($result)) {
   echo "<td>" . $row['sez'] . "</td>";
   echo "<td>" . $row['capitolo'] . "</td>";
   echo "<td>" . number_format($row['keur'],1) . "</td>";
+  $totrichieste+=1;
   $totkeur+= $row['keur'];
   echo "<td>" . number_format($row['keurSJ'],1). "</td>";
   $totkeurSJ+= $row['keurSJ'];
+  
   echo "<td>";
 	  $dbstr=$row['tag']."/";
 	  if ($row['WBS']) $dbstr.= $row['WBS']."/";
 	  $dbstr.=$row['richiesta']."      ".$row['note']." / CMS-". $row['id'];
-  if ($t!="") {
+  if (($t&1)==1) {
 	  echo "<b>".$dbstr."</b>";
   }
   else
@@ -72,8 +77,13 @@ while($row = mysqli_fetch_array($result)) {
 	  if ($row['ra']==1) {echo "<button class=\"w3-btn  w3-light-blue\">RA</button>";};
 	  if ($row['rl']==1) {echo "<button class=\"w3-btn  w3-light-green\">RL</button>";};
   }
+	  if ($row2){
+	  $totassegna+=$row2['keur'];
+	  while ($row2=mysqli_fetch_array($result2)){ $totassegna+=$row2['keur'];};
+  }
   echo "</td>";
   echo "</tr>";
+ }
 }
 echo "</table>";
 echo "<span id=\"phpkeur\" hidden>";
@@ -81,6 +91,12 @@ echo $totkeur;
 echo "</span>";
 echo "<span id=\"phpkeurSJ\" hidden>";
 echo $totkeurSJ;
+echo "</span>";
+echo "<span id=\"phprich\" hidden>";
+echo $totrichieste;
+echo "</span>";
+echo "<span id=\"phpasse\" hidden>";
+echo $totassegna;
 echo "</span>";
 mysqli_close($con);
 ?>

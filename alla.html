@@ -32,9 +32,9 @@ html {
 
 .allafooter {
   position: fixed;
-  left: 75%;
+  left: 66%;
   bottom: 0;
-  width: 25%;
+  width: 33%;
   background-color: red;
   color: white;
   text-align: center;
@@ -107,8 +107,10 @@ function showRichie(str) {
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("txtHint").innerHTML = this.responseText;
+        document.getElementById("totrichieste").innerHTML = document.getElementById("phprich").innerHTML;
         document.getElementById("totkeur").innerHTML = document.getElementById("phpkeur").innerHTML;
         document.getElementById("totkeurSJ").innerHTML = document.getElementById("phpkeurSJ").innerHTML;
+        document.getElementById("totassegna").innerHTML = document.getElementById("phpasse").innerHTML;
       }
       else {
 	 if (this.readyState == 4 && this.status != 200)   document.getElementById('id03').style.display='block';
@@ -245,6 +247,35 @@ function showRichie(str) {
      if (mfilt!="") mfilt+= "AND ";
       mfilt+= " capitolo='apparati' ";
    }
+//   if (inventario.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='inventario' ";
+//  }
+//   if (trasporti.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='trasporti' ";
+//   }
+//   if (pubblicazioni.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='pubblicazioni' ";
+//   }
+// if (licenze-sw.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='licenze-sw' ";
+//   }
+// if (manutenzione.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='manutenzione' ";
+//   }
+// if (seminari.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='seminari' ";
+//   }
+// if (altroconsumo.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='altroconsumo' ";
+//   }
+
    if (spservizi.checked == true) {
      if (mfilt!="") mfilt+= "AND ";
       mfilt+= " capitolo='spservizi' ";
@@ -257,9 +288,13 @@ function showRichie(str) {
      if (mfilt!="") mfilt+= "AND ";
      mfilt+= " INSTR(tag,'P2024')>0 ";
    }
-   mtoke="";
+   mtoke=0;
    if (asse.checked == true) {
-      mtoke="1";
+      mtoke=1;
+   }
+   if (assgn.checked == true) {
+      mtoke=10+mtoke;
+
    }
  
     xmlhttp.open("GET","alla.php?q="+str+"&f="+mfilt+"&t="+mtoke,true);
@@ -275,8 +310,10 @@ function showSingleRichie(str) {
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("txtHint").innerHTML = this.responseText;
+        document.getElementById("totrichieste").innerHTML = document.getElementById("phprich").innerHTML;
         document.getElementById("totkeur").innerHTML = document.getElementById("phpkeur").innerHTML;
         document.getElementById("totkeurSJ").innerHTML = document.getElementById("phpkeurSJ").innerHTML;
+        document.getElementById("totassegna").innerHTML = document.getElementById("phpasse").innerHTML;
       }
       else {
 	 if (this.readyState == 4 && this.status != 200)    document.getElementById('id03').style.display='block';
@@ -511,6 +548,10 @@ function insertRichie() {
 <input type="checkbox" id="asse" name="asse" value="Ass." onclick="showRichie(richie.value);">
 <label for="asse">StringheDB </label>
 </div>
+<div class="chkdiv">
+<input type="checkbox" id="assgn" name="assgn" value="assegnati" onclick="showRichie(richie.value);">
+<label for="asse">Assegnazioni </label>
+</div>
 </td>
 <td>
 <fieldset>
@@ -562,6 +603,6 @@ function insertRichie() {
 
 <br>
 <div id="txtHint"><b>Richieste...</b></div>
-<div id="allafooter" class="allafooter">Tot Richieste:<span id="totkeur"></span><span> Tot SJ:</span><span id="totkeurSJ"></span></div>
+<div id="allafooter" class="allafooter">Num Richieste:<span id="totrichieste"></span> Tot Richieste:<span id="totkeur"></span><span> Tot SJ:</span><span id="totkeurSJ"></span> Ass.: <span id="totassegna"></span></div>
 </body>
 </html>

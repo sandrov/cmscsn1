@@ -109,6 +109,10 @@ html {
   <option value="trasporti" <?=$row['capitolo'] == 'trasporti' ? ' selected="selected"' : '';?>>trasporti</option>
   <option value="licenze-sw" <?=$row['capitolo'] == 'licenze-sw' ? ' selected="selected"' : '';?>>licenze-sw</option>
   <option value="spservizi" <?=$row['capitolo'] == 'spservizi' ? ' selected="selected"' : '';?>>spservizi</option>
+  <option value="seminari" <?=$row['capitolo'] == 'seminari' ? ' selected="selected"' : '';?>>seminari</option>
+  <option value="pubblicazioni" <?=$row['capitolo'] == 'pubblicazioni' ? ' selected="selected"' : '';?>>pubblicazioni</option>
+  <option value="altroconsumo" <?=$row['capitolo'] == 'altroconsumo' ? ' selected="selected"' : '';?>>altroconsumo</option>
+
 </select>
 
 <!--
