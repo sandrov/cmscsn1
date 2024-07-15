@@ -112,9 +112,9 @@ echo "<br>";
 echo "<br>";
 echo "<button onclick=\"showRichie(richie.value);\">Back</button>";
 echo "<div>";
-if($row3) {if ($row3['folder']!="") { 
-echo "<iframe src=".$row3['folder']." width=100% height=800 title='docs folder'></iframe>";
-};};
+//if($row3) {if ($row3['folder']!="") { 
+echo "<iframe src=\"https://cernbox.cern.ch/files/spaces/eos/user/v/venturas/cmscsn1/documentazione/CMS-ID".$q."\" width=75% height=600 title='docs folder'></iframe>";
+//};};
 echo "</div>";
 
 echo "<span id=\"phpkeur\" hidden>";
