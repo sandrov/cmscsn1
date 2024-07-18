@@ -93,13 +93,13 @@ while($row3= mysqli_fetch_array($result)) {
 ?>
 </div>
 <div class="w3-container w3-xlarge">
-<br>
+<br><h2>
 Subsystems
-</div>
+</h2></div>
 <br>
 
 <?php
-$sql="select distinct tag from Richieste where instr(tag,'CORE')>0;";
+$sql="select distinct tag from Richieste where instr(tag,'CORE')>0 order by tag";
 $result4 = mysqli_query($con,$sql);
    while($row4 = mysqli_fetch_array($result4)) {
      $mysubs=$row4["tag"];
