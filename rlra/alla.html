@@ -243,6 +243,11 @@ function showRichie(str) {
      if (mfilt!="") mfilt+= "AND ";
       mfilt+= " capitolo='consumo' ";
    }
+    if (inventario.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+       mfilt+= " capitolo='inventario' ";
+    }
+
    if (apparati.checked == true) {
      if (mfilt!="") mfilt+= "AND ";
       mfilt+= " capitolo='apparati' ";
@@ -288,6 +293,37 @@ function showRichie(str) {
      if (mfilt!="") mfilt+= "AND ";
      mfilt+= " INSTR(tag,'P2024')>0 ";
    }
+    lfilt="";
+    if (core.checked == true) {
+      if (lfilt!="") lfilt+= "OR ";
+      lfilt+= " INSTR(TAG,'CORE')>0 ";
+    }
+    if (cata.checked == true) {
+      if (lfilt!="") lfilt+= "OR ";
+      lfilt+= " INSTR(note,'CAT A')>0 ";
+    }
+    if (catb.checked == true) {
+      if (lfilt!="") lfilt+= "OR ";
+      lfilt+= " INSTR(note,'CAT B')>0 ";
+    }
+    if (catc.checked == true) {
+      if (lfilt!="") lfilt+= "OR ";
+      lfilt+= " INSTR(note,'CAT C')>0 ";
+    }
+    if (preproto.checked == true) {
+      if (lfilt!="") lfilt+= "OR ";
+      lfilt+= " INSTR(tag,'PREPROTO')>0 ";
+    }
+    if (infra.checked == true) {
+      if (lfilt!="") lfilt+= "OR ";
+      lfilt+= " INSTR(tag,'INFRA')>0 ";
+    }
+    if (fasedue.checked == true) {
+      if (lfilt!="") lfilt+= "OR ";
+      lfilt+= " INSTR(tag,'FASE2')>0 ";
+    }
+    if (lfilt!="") mfilt+="AND ("+lfilt+") ";
+
    mtoke=0;
    if (asse.checked == true) {
       mtoke=1;
@@ -408,6 +444,10 @@ function insertRichie() {
 <label for="consumo">Consumo</label>
 </div>
 <div class="chkdiv">
+<input type="radio" id="inventario" name="capitolo" value="inventario" onclick="showRichie(richie.value);">
+<label for="inventario">Inventario</label>
+</div>
+<div class="chkdiv">
 <input type="radio" id="apparati" name="capitolo" value="apparati" onclick="showRichie(richie.value);">
 <label for="apparati">Apparati</label>
 </div>
@@ -421,6 +461,40 @@ function insertRichie() {
 </div>
 </fieldset>
 </td>
+<td>
+ <fieldset>
+ <legend>Tags</legend>
+ <div class="chkdiv">
+   <input type="checkbox" id="core" name="core" value="core" onclick="showRichie(richie.value);">
+   <label for="core">Core</label>
+ </div>
+ <div class="chkdiv">
+   <input type="checkbox" id="cata" name="cata" value="cata" onclick="showRichie(richie.value);">
+   <label for="cata">CAT A</label>
+ </div>
+ <div class="chkdiv">
+   <input type="checkbox" id="catb" name="catb" value="catb" onclick="showRichie(richie.value);">
+   <label for="catb">CAT B</label>
+ </div>
+ <div class="chkdiv">
+  <input type="checkbox" id="catc" name="catc" value="catc" onclick="showRichie(richie.value);">
+  <label for="catc">CAT C</label>
+ </div>
+ <div class="chkdiv">
+   <input type="checkbox" id="preproto" name="preproto" value="preproto" onclick="showRichie(richie.value);">
+   <label for="preproto">PreProto</label>
+ </div>
+ <div class="chkdiv">
+   <input type="checkbox" id="infra" name="infra" value="infra" onclick="showRichie(richie.value);">
+   <label for="infra">Infra</label>
+ </div>
+ <div class="chkdiv">
+   <input type="checkbox" id="fasedue" name="fasedue" value="fasedue" onclick="showRichie(richie.value);">
+   <label for="fasedue">Fase 2</label>
+ </div>
+ </fieldset>
+</td>
+
 </tr>
 <tr>
 <td>
