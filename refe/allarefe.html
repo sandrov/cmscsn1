@@ -369,6 +369,227 @@ function insertRichie() {
     xmlhttp.send();
 }
 
+function exportRichie(str) {
+
+   mfilt="";
+   if (tk.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'TRACK')>0 ";
+   }
+   if (ecal.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'ECAL')>0 ";
+   }
+   if (mtd.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'MTD')>0 ";
+   }
+   if (mu.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+                   mfilt+= "(INSTR(tag,'MUON')>0 OR INSTR(tag,'DT')>0 OR INSTR(tag,'RPC')>0 OR INSTR(tag,'ME0')>0 OR INSTR(tag,'GEM')>0)";
+   }
+   if (trig.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'TRIG')>0 ";
+   }
+   if (pps.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'PPS')>0 ";
+   }
+   if (bril.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'BRIL')>0 ";
+   }
+  if (calcolo.checked == true) {
+     if (mfilt!="") mfilt+= "OR ";
+     mfilt+= "INSTR(tag,'CALCOLO')>0 ";
+   }
+   if (mfilt!="") {
+     mfilt="("+mfilt+") ";
+    };
+   mfilts="";
+   if (BA.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'BA')>0  ";
+   }
+   if (BO.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'BO')>0  ";
+   }
+   if (CT.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'CT')>0  ";
+   }
+   if (FI.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'FI')>0  ";
+   }
+   if (GE.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'GE')>0  ";
+   }
+   if (LNF.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'LNF')>0  ";
+   }
+   if (LNL.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'LNL')>0  ";
+   }
+   if (MIB.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'MIB')>0  ";
+   }
+   if (NA.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'NA')>0  ";
+   }
+   if (PD.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'PD')>0  ";
+   }
+   if (PG.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'PG')>0  ";
+   }
+  if (PI.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'PI')>0  ";
+   }
+   if (PV.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'PV')>0  ";
+   }
+   if (RM1.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'RM1')>0  ";
+   }
+   if (TO.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'TO')>0  ";
+   }
+   if (TS.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'TS')>0  ";
+   }
+   if (mfilts!="") {
+      if (mfilt!=""){ mfilt+=" AND ";};            
+     mfilt+="("+mfilts+") ";
+   }
+   mfilts="";     
+   if (cms.checked == true) {
+     if (mfilts!="") mfilts+= "AND ";
+     mfilts+= "sigla='cms' ";
+   }
+   if (fase2.checked == true) {
+     if (mfilts!="") mfilts+= "AND ";
+     mfilts+= "sigla='fase2' ";
+   }
+   if ((cms.checked != true) && (fase2.checked != true)) mfilts="sigla=''";
+   if (mfilts!="") {
+      if (mfilt!=""){ mfilt+=" AND ";};            
+     mfilt+="("+mfilts+") ";
+   }
+   if (missioni.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " capitolo='missioni' ";
+   }
+   if (consumo.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " capitolo='consumo' ";
+   }
+   if (inventario.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " capitolo='inventario' ";
+   }
+  if (apparati.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " capitolo='apparati' ";
+   }
+//   if (inventario.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='inventario' ";
+//  }
+//   if (trasporti.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='trasporti' ";
+//   }
+//   if (pubblicazioni.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='pubblicazioni' ";
+//   }
+// if (licenze-sw.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='licenze-sw' ";
+//   }
+// if (manutenzione.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='manutenzione' ";
+//   }
+// if (seminari.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='seminari' ";
+//   }
+// if (altroconsumo.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " capitolo='altroconsumo' ";
+//   }
+
+   if (spservizi.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " capitolo='spservizi' ";
+   }
+   if (RN.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " rn is not null ";
+   }
+   if (p2024.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+     mfilt+= " INSTR(tag,'P2024')>0 ";
+   }
+  lfilt="";
+   if (core.checked == true) {
+     if (lfilt!="") lfilt+= "OR ";
+     lfilt+= " INSTR(TAG,'CORE')>0 ";
+   }
+   if (cata.checked == true) {
+     if (lfilt!="") lfilt+= "OR ";
+     lfilt+= " INSTR(note,'CAT A')>0 ";
+   }
+   if (catb.checked == true) {
+     if (lfilt!="") lfilt+= "OR ";
+     lfilt+= " INSTR(note,'CAT B')>0 ";
+   }
+   if (catc.checked == true) {
+     if (lfilt!="") lfilt+= "OR ";
+     lfilt+= " INSTR(note,'CAT C')>0 ";
+   }
+   if (preproto.checked == true) {
+     if (lfilt!="") lfilt+= "OR ";
+     lfilt+= " INSTR(tag,'PREPROTO')>0 ";
+   }
+   if (infra.checked == true) {
+     if (lfilt!="") lfilt+= "OR ";
+     lfilt+= " INSTR(tag,'INFRA')>0 ";
+   }
+   if (fasedue.checked == true) {
+     if (lfilt!="") lfilt+= "OR ";
+     lfilt+= " INSTR(tag,'FASE2')>0 ";
+   }
+   if (lfilt!="") mfilt+="AND ("+lfilt+") ";
+   
+
+   mtoke=0;
+   if (asse.checked == true) {
+      mtoke=1;
+   }
+   if (assgn.checked == true) {
+      mtoke=10+mtoke;
+
+   }
+ 
+    window.location.href ="allacsvrefe.php?q="+str+"&f="+mfilt+"&t="+mtoke;
+}
 
 </script>
 <!-- Matomo -->
@@ -612,8 +833,11 @@ function insertRichie() {
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="assgn" name="assgn" value="assegnati" onclick="showRichie(richie.value);">
-<label for="asse">Assegnazioni </label>
+<label for="assgn">Assegnazioni </label>
 </div>
+<div onclick="exportRichie(richie.value)"
+      class="w3-button w3-border w3-right">
+	Export to CVS</div>
 </fieldset>
 </td>
 <td>
