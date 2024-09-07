@@ -86,13 +86,17 @@ while($row = mysqli_fetch_array($result)) {
   if ($row['rn']==1) {echo "<button class=\"w3-btn w3-cyan\">RN</button>";};
   echo "</td>";
   echo "<td>";
+  if ($row['aggio']==1) {echo "<button class=\"w3-btn w3-amber\">Agg</button>";};
+  echo "</td>";
+  echo "<td>";
   if ($edib==0) {
 //     echo "<a href=\"edita.php?q=".$q."\">";
      echo "<button id=\"edita\" onclick=\"aggiorna(".$q.");\"> Edita</button>"; 
   echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.",1);\"> DB</button>"; 
   echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.",2);\"> RL</button>"; 
   echo "<button id=\"ra\" onclick=\"aggiornaDB(".$q.",3);\"> RA</button>"; 
-  echo "<button id=\"rn\" onclick=\"aggiornaDB(".$q.",4);\"> RN</button>"; }
+  echo "<button id=\"rn\" onclick=\"aggiornaDB(".$q.",4);\"> RN</button>"; 
+  echo "<button id=\"agg\" onclick=\"aggiornaDB(".$q.",5);\"> Agg</button>"; }
   echo "</td>";
 }
 echo "</tr></table>";

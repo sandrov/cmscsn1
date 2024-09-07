@@ -27,6 +27,7 @@ if ($id>0) {
  if ($fla==2) {$mfla="rl";};
  if ($fla==3) {$mfla="ra";};
  if ($fla==4) {$mfla="rn";};
+ if ($fla==5) {$mfla="aggio";};
  if ($mfla!="") {
  $sql="UPDATE Richieste set ".$mfla."=case when ".$mfla."=1 then 0 else 1 end WHERE id=".$id;
  print $sql;

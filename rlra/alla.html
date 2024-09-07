@@ -289,6 +289,10 @@ function showRichie(str) {
      if (mfilt!="") mfilt+= "AND ";
       mfilt+= " rn is not null ";
    }
+   if (agg.checked == true) {
+     if (mfilt!="") mfilt+= "AND ";
+      mfilt+= " aggio='1' ";
+   }
    if (p2024.checked == true) {
      if (mfilt!="") mfilt+= "AND ";
      mfilt+= " INSTR(tag,'P2024')>0 ";
@@ -625,6 +629,10 @@ function insertRichie() {
 <div class="chkdiv">
 <input type="checkbox" id="assgn" name="assgn" value="assegnati" onclick="showRichie(richie.value);">
 <label for="assgn">Assegnazioni </label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="agg" name="agg" value="agg" onclick="showRichie(richie.value);">
+<label for="agg">aggiorn </label>
 </div>
 </td>
 <td>

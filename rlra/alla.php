@@ -76,6 +76,7 @@ while($row = mysqli_fetch_array($result)) {
 	  if ($row['rn']==1) {echo "<button class=\"w3-btn  w3-cyan\">RN</button>";};
 	  if ($row['ra']==1) {echo "<button class=\"w3-btn  w3-light-blue\">RA</button>";};
 	  if ($row['rl']==1) {echo "<button class=\"w3-btn  w3-light-green\">RL</button>";};
+	  if ($row['aggio']==1) {echo "<button class=\"w3-btn  w3-amber\">Agg</button>";};
   }
 	  if ($row2){
 	  $totassegna+=$row2['keur'];
