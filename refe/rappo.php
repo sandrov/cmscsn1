@@ -44,7 +44,7 @@ if (!$con) {
 //echo "quering DB tot<br>";
 
 mysqli_select_db($con,"cmsph2");
-$sql="select sum(Assegnazioni.keur) as tot  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id ) and Assegnazioni.anno<2025;";
+$sql="select sum(Assegnazioni.keur) as tot  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id ) and Assegnazioni.anno<2027;";
 //print $sql;
 $result = mysqli_query($con,$sql);
 while($row = mysqli_fetch_array($result)) {
@@ -104,7 +104,7 @@ $result4 = mysqli_query($con,$sql);
    while($row4 = mysqli_fetch_array($result4)) {
      $mysubs=$row4["tag"];
      //echo $mysubs;
-     $sql="select sum(Assegnazioni.keur) as tot  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id and Richieste.tag='".$mysubs."') and Assegnazioni.anno<2025 ;";
+     $sql="select sum(Assegnazioni.keur) as tot  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id and Richieste.tag='".$mysubs."') and Assegnazioni.anno<2027 ;";
 
 //     print $sql;
      $result = mysqli_query($con,$sql);
@@ -131,7 +131,8 @@ echo "<br><br>";
      $result = mysqli_query($con,$sql);
      while($row3= mysqli_fetch_array($result)) {
         $myanno=$row3["anno"];
-        $sql="select sum(Assegnazioni.keur) as totanno  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id and instr(Richieste.tag,'".$mysubs."')>0 ) and Assegnazioni.anno='".$myanno."'";
+        $sql="select sum(Assegnazioni.keur) as totanno  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id and Richieste.tag='".$mysubs."') and Assegnazioni.anno='".$myanno."'";
+        //$sql="select sum(Assegnazioni.keur) as totanno  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id and instr(Richieste.tag,'".$mysubs."')>0 ) and Assegnazioni.anno='".$myanno."'";
 //        echo "anno ".$myanno."<br>";
         $result2 = mysqli_query($con,$sql);
         $totcum=0;
