@@ -1,0 +1,9 @@
+<?php
+
+ $server = 'localhost';
+ $login='';
+ $pass='';
+ $db='cmsph2';
+ $port='';
+
+?>
