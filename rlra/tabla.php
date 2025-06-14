@@ -44,8 +44,8 @@ $sql="select distinct sez from Richieste where anno='".$y."' and sigla='".$q."' 
 $ressez=mysqli_query($con, $sql);
 
 if ($q=="cms") {
-echo "<h1> CMS Richieste 2025 </h1><br>";
-} else echo "<h1> CMS Fase2 Richieste 2025 </h1><br>";
+echo "<h1> CMS Richieste ".$y." </h1><br>";
+} else echo "<h1> CMS Fase2 Richieste ".$y." </h1><br>";
 //showing property
 echo '<table class="w3-table-all">
         <tr class="w3-red">';  //initialize table tag
