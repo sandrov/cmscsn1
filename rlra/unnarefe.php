@@ -21,7 +21,7 @@ echo "<script>
 ";
 
 echo ' <div class="w3-container w3-amber">
-  <h1>Richieste CMS</h1>
+  <h1>Richieste ATLAS</h1>
 </div>
 ';
 
@@ -34,7 +34,7 @@ if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 $sql="SELECT * FROM Richieste WHERE id = '".$q."'";
 $result = mysqli_query($con,$sql);
 $sql2="SELECT Assegnazioni.anno,Assegnazioni.keur,riunione,commenti FROM Richieste,Assegnazioni WHERE Richieste.id=Assegnazioni.id_richiesta and Richieste.id='".$q."'";
@@ -134,10 +134,10 @@ echo "<br>";
 echo "<button onclick=\"history.back();\">Back</button>";
 echo "<div>";
 //if($row3) {if ($row3['folder']!="") { 
-$dirPath = 'documentazione/CMS-ID'.$q;
+$dirPath = 'documentazione/ATLAS-ID'.$q;
 $files = scandir($dirPath);
 if (count($files)>2) {
-echo "<iframe src=\"https://cernbox.cern.ch/files/spaces/eos/user/v/venturas/cmscsn1/documentazione/CMS-ID".$q."\" width=75% height=600 title='docs folder'></iframe>";
+echo "<iframe src=\"https://cernbox.cern.ch/files/spaces/eos/user/v/venturas/cmscsn1/documentazione/ATLAS-ID".$q."\" width=75% height=600 title='docs folder'></iframe>";
 };
 //};};
 echo "</div>";

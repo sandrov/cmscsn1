@@ -54,7 +54,7 @@ if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 $sql="INSERT INTO Richieste (anno,tag,WBS,sez,capitolo,keur,keurSJ,richiesta,note,sigla) values('".$anno."','".$tag."','".$wbs."','".$sez."','".$capitolo."','".$keur."','".$sj."','".$rich."','".$note."','".$sigla."')";
 $result = mysqli_query($con,$sql);
 $reqid=mysqli_insert_id($con);
@@ -64,7 +64,7 @@ echo "<BR>".$sql;
 $result = mysqli_query($con,$sql);
 echo "<BR>";
 
-mkdir("documentazione/CMS-ID".$reqid);
+mkdir("documentazione/ATLAS-ID".$reqid);
 echo "Richiesta inserita <BR>";
 
 echo $anno."<BR>";
