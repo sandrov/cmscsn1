@@ -44,15 +44,9 @@ $rescap=mysqli_query($con, $sql);
 $sql="select distinct sez from Richieste where anno='".$y."' and sigla='".$q."' order by sez";
 $ressez=mysqli_query($con, $sql);
 
-<<<<<<< HEAD
 if ($q=="atlas") {
 echo "<h1> ATLAS Richieste 2025 </h1><br>";
 } else echo "<h1> ATLAS Fase2 Richieste 2025 </h1><br>";
-=======
-if ($q=="cms") {
-echo "<h1> ATLAS Richieste ".$y." </h1><br>";
-} else echo "<h1> ATLAS Fase2 Richieste ".$y." </h1><br>";
->>>>>>> 87e8773 (updated years in refe)
 //showing property
 echo '<table class="w3-table-all">
         <tr class="w3-red">';  //initialize table tag
