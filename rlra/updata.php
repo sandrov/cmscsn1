@@ -60,7 +60,7 @@ if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 $sql="UPDATE Richieste set anno='".$anno."',tag='".$tag."',WBS='".$wbs."',sez='".$sez."',capitolo='".$capitolo."',keur='".$keur."',keurSJ='".$sj."',richiesta='".$rich."',note='".$note."',sigla='".$sigla."' WHERE id=".$id;
 print $sql;
 $result = mysqli_query($con,$sql);

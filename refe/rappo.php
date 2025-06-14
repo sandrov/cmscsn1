@@ -5,7 +5,7 @@ header("Pragma: no-cache");
 ?>
 
 <html>
-<title>CMS REPORT CSN1</title>
+<title>ATLAS REPORT CSN1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -43,7 +43,7 @@ if (!$con) {
 }
 //echo "quering DB tot<br>";
 
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 $sql="select sum(Assegnazioni.keur) as tot  from Assegnazioni where id in (select distinct Assegnazioni.id from Richieste,Assegnazioni where Assegnazioni.id_richiesta=Richieste.id ) and Assegnazioni.anno<2027;";
 //print $sql;
 $result = mysqli_query($con,$sql);
@@ -55,11 +55,11 @@ while($row = mysqli_fetch_array($result)) {
 
 
 <div class="w3-container w3-teal">
-  <h1>Report CORE CMS</h1>
+  <h1>Report CORE ATLAS</h1>
 </div>
 
 <div class="w3-container w3-half">
-  <h2>CORE CMS CSN1</h2>
+  <h2>CORE ATLAS CSN1</h2>
   <span class="w3-tag w3-jumbo w3-green w3-right">
    <span class="w3-xlarge">Totale Assegnazioni</span> 
      <?php 

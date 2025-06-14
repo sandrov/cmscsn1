@@ -21,7 +21,7 @@ if ($id>0) {
  die('Could not connect: ' . mysqli_error($tbcon));
  }
 
- mysqli_select_db($tbcon,"cmsph2");
+ mysqli_select_db($tbcon,"atlasph2");
  $mfla="";
  if ($fla==1) {$mfla="todb";};
  if ($fla==2) {$mfla="rl";};
