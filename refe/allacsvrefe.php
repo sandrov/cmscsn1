@@ -18,9 +18,9 @@ $con = mysqli_connect($server,$login,$pass,$db,$port);
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
-if ($q>2025) {$q=2025;};
+if ($q>2026) {$q=2026;};
 mysqli_select_db($con,"cmsph2");
-if ($q==0) { $sql="SELECT * FROM Richieste WHERE anno > 0 and anno<2026";}
+if ($q==0) { $sql="SELECT * FROM Richieste WHERE anno > 0 and anno<2027";}
 else $sql="SELECT * FROM Richieste WHERE anno= '".$q."' ";
 if ($f) $sql=$sql." AND (".$f.")";
 $sql=$sql." ORDER BY anno DESC,capitolo,id DESC";
@@ -51,7 +51,7 @@ while($row = mysqli_fetch_array($result)) {
   
 	  $dbstr=$row['tag']."/";
 	  if ($row['WBS']) $dbstr.= $row['WBS']."/";
-	  $dbstr.=$row['richiesta']." ".$row['note']."/CMS-".$row['id'];
+	  $dbstr.=$row['richiesta']." ".$row['note']."/ATLAS-".$row['id'];
 
 
 	  $linecsv= $row['anno'] ."\t".$row['sigla']."\t".$row['sez']."\t".$row['capitolo']."\t".number_format($row['keur'],1)."\t".number_format($row['keurSJ'],1)."\t".$dbstr;
