@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>CMS CSN1</title>
+<title>ATLAS CSN1</title>
 <meta http-equiv="expires" content="Sun, 01 Jan 2014 00:00:00 GMT"/>
 <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="pragma" content="no-cache" />
@@ -114,31 +114,23 @@ function showRichie(str) {
     mfilt="";
    if (tk.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'TRACK')>0 ";
+     mfilt+= "INSTR(tag,'ITK')>0 ";
    }
-   if (ecal.checked == true) {
+   if (lucid.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'ECAL')>0 ";
+     mfilt+= "INSTR(tag,'LUCID')>0 ";
    }
-   if (mtd.checked == true) {
+   if (lar.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'MTD')>0 ";
+     mfilt+= "INSTR(tag,'LAR')>0 ";
    }
    if (mu.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
 		   mfilt+= "(INSTR(tag,'MUON')>0 OR INSTR(tag,'DT')>0 OR INSTR(tag,'RPC')>0 OR INSTR(tag,'ME0')>0 OR INSTR(tag,'GEM')>0)";
    }
-   if (trig.checked == true) {
+   if (tdaq.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'TRIG')>0 ";
-   }
-   if (pps.checked == true) {
-     if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'PPS')>0 ";
-   }
-   if (bril.checked == true) {
-     if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'BRIL')>0 ";
+     mfilt+= "INSTR(tag,'TDAQ')>0 ";
    }
    if (calcolo.checked == true) {
      if (mfilt!="") mfilt+= "OR ";
@@ -148,21 +140,17 @@ function showRichie(str) {
      mfilt="("+mfilt+") ";
     };
    mfilts="";
-   if (BA.checked == true) {
-     if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'BA')>0  ";
-   }
    if (BO.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'BO')>0  ";
    }
-   if (CT.checked == true) {
+   if (CNAF.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'CT')>0  ";
+     mfilts+= "INSTR(sez,'CNAF')>0  ";
    }
-   if (FI.checked == true) {
+   if (CS.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'FI')>0  ";
+     mfilts+= "INSTR(sez,'CS')>0  ";
    }
    if (GE.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
@@ -172,25 +160,17 @@ function showRichie(str) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'LNF')>0  ";
    }
-   if (LNL.checked == true) {
+   if (LE.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'LNL')>0  ";
+     mfilts+= "INSTR(sez,'LE')>0  ";
    }
-   if (MIB.checked == true) {
+   if (MI.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'MIB')>0  ";
+     mfilts+= "INSTR(sez,'MI')>0  ";
    }
    if (NA.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'NA')>0  ";
-   }
-   if (PD.checked == true) {
-     if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'PD')>0  ";
-   }
-   if (PG.checked == true) {
-     if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'PG')>0  ";
    }
    if (PI.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
@@ -204,13 +184,25 @@ function showRichie(str) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'RM1')>0  ";
    }
+   if (RM2.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'RM2')>0  ";
+   }
+   if (RM3.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'RM3')>0  ";
+   }
+   if (TIFP.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'TIFP')>0  ";
+   }
    if (TO.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'TO')>0  ";
    }
-   if (TS.checked == true) {
+   if (UD.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'TS')>0  ";
+     mfilts+= "INSTR(sez,'UD')>0  ";
    }
    if (mfilts!="") {
       if (mfilt!=""){ mfilt+=" AND ";}; 	   
@@ -219,7 +211,7 @@ function showRichie(str) {
    mfilts="";	  
    if (cms.checked == true) {
      if (mfilts!="") mfilts+= "AND ";
-     mfilts+= "sigla='cms' ";
+     mfilts+= "sigla='atlas' ";
    }
    if (fase2.checked == true) {
      if (mfilts!="") mfilts+= "AND ";
@@ -408,21 +400,17 @@ function exportRichie(str) {
      mfilt="("+mfilt+") ";
     };
    mfilts="";
-   if (BA.checked == true) {
-     if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'BA')>0  ";
-   }
    if (BO.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'BO')>0  ";
    }
-   if (CT.checked == true) {
+    if (CNAF.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'CT')>0  ";
+     mfilts+= "INSTR(sez,'CNAF')>0  ";
    }
-   if (FI.checked == true) {
+   if (CS.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'FI')>0  ";
+     mfilts+= "INSTR(sez,'CS')>0  ";
    }
    if (GE.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
@@ -432,27 +420,19 @@ function exportRichie(str) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'LNF')>0  ";
    }
-   if (LNL.checked == true) {
+   if (LE.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'LNL')>0  ";
+     mfilts+= "INSTR(sez,'LE')>0  ";
    }
-   if (MIB.checked == true) {
+   if (MI.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'MIB')>0  ";
+     mfilts+= "INSTR(sez,'MI')>0  ";
    }
    if (NA.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'NA')>0  ";
    }
-   if (PD.checked == true) {
-     if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'PD')>0  ";
-   }
-   if (PG.checked == true) {
-     if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'PG')>0  ";
-   }
-  if (PI.checked == true) {
+   if (PI.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'PI')>0  ";
    }
@@ -464,13 +444,21 @@ function exportRichie(str) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'RM1')>0  ";
    }
+   if (RM2.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'RM2')>0  ";
+   }
+   if (RM3.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'RM3')>0  ";
+   }
+   if (TIFP.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'TIFP')>0  ";
+   }
    if (TO.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'TO')>0  ";
-   }
-   if (TS.checked == true) {
-     if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'TS')>0  ";
    }
    if (mfilts!="") {
       if (mfilt!=""){ mfilt+=" AND ";};            
@@ -479,7 +467,7 @@ function exportRichie(str) {
    mfilts="";     
    if (cms.checked == true) {
      if (mfilts!="") mfilts+= "AND ";
-     mfilts+= "sigla='cms' ";
+     mfilts+= "sigla='atlas' ";
    }
    if (fase2.checked == true) {
      if (mfilts!="") mfilts+= "AND ";
@@ -610,12 +598,11 @@ function exportRichie(str) {
 </head>
 <body onload="showRichie(richie.value);">
  <div class="w3-container w3-amber">
-  <h1>Richieste CMS</h1>
+  <h1>Richieste ATLAS</h1>
    <div class="w3-display-topright">
   <a href="#" class="w3-btn w3-sand">Richieste</a>
   <a href="annarefe.html" class="w3-btn w3-sand">Anagrafica</a>
   </div>
-
 </div> 
 <form>
 <!--
@@ -637,7 +624,7 @@ function exportRichie(str) {
     </select>
 </form>
 <div class="w3-right">
-<label for="vai">Vai a CMS-ID:</label>
+<label for="vai">Vai a ATLAS-ID:</label>
 <input type="text" id="vai" onchange="showSingleRichie(this.value);">
 <span> &nbsp   </span>
 </div>
@@ -649,7 +636,7 @@ function exportRichie(str) {
 <fieldset >
 <legend> Sigla </legend>
 <input type="radio" id="cms" name="sigla" value="cms"  onclick="showRichie(richie.value);">
-<label for="cms">CMS</label>
+<label for="cms">ATLAS</label>
 <input type="radio" id="fase2" name="sigla" value="fase2"  onclick="showRichie(richie.value);">
 <label for="fase2">Fase2</label>
 </fieldset>
@@ -722,32 +709,24 @@ function exportRichie(str) {
 <fieldset>
 <legend> Subsystem </legend>
 <div class="chkdiv">
-<input type="checkbox" id="tk" name="TK" value="TK" onclick="showRichie(richie.value);">
-<label for="tk">TK</label>
+<input type="checkbox" id="tk" name="ITK" value="ITK" onclick="showRichie(richie.value);">
+<label for="tk">ITK</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="ecal" name="ECAL" value="ECAL" onclick="showRichie(richie.value);">
-<label for="ecal">ECAL</label>
+<input type="checkbox" id="lar" name="LAR" value="LAR" onclick="showRichie(richie.value);">
+<label for="lar">LAR</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="mtd" name="MTD" value="MTD" onclick="showRichie(richie.value);">
-<label for="mtd">MTD</label>
+<input type="checkbox" id="lucid" name="LUCID" value="LUCID" onclick="showRichie(richie.value);">
+<label for="LUCID">LUCID</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="trig" name="TRIG" value="TRIG" onclick="showRichie(richie.value);">
-<label for="trig">TRIG</label>
+<input type="checkbox" id="tdaq" name="TDAQ" value="TDAQ" onclick="showRichie(richie.value);">
+<label for="tdaq">TDAQ</label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="mu" name="MU" value="MU" onclick="showRichie(richie.value);">
 <label for="MU">MU</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="pps" name="PPS" value="PPS" onclick="showRichie(richie.value);">
-<label for="PPS">PPS</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="bril" name="BRIL" value="BRIL" onclick="showRichie(richie.value);">
-<label for="BRIL">BRIL</label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="calcolo" name="CALCOLO" value="CALCOLO" onclick="showRichie(richie.value);">
@@ -759,20 +738,16 @@ function exportRichie(str) {
 <fieldset>
 <legend> Sezione </legend>
 <div class="chkdiv">
-<input type="checkbox" id="BA" name="BA" value="BA" onclick="showRichie(richie.value);">
-<label for="BA">BA</label>
-</div>
-<div class="chkdiv">
 <input type="checkbox" id="BO" name="BO" value="BO" onclick="showRichie(richie.value);">
 <label for="BOl">BO</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="CT" name="CT" value="CT" onclick="showRichie(richie.value);">
-<label for="CT">CT</label>
+<input type="checkbox" id="CNAF" name="CNAF" value="CNAF" onclick="showRichie(richie.value);">
+<label for="CNAF">CNAF</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="FI" name="FI" value="FI" onclick="showRichie(richie.value);">
-<label for="FI">FI</label>
+<input type="checkbox" id="CS" name="CS" value="CS" onclick="showRichie(richie.value);">
+<label for="CS">CS</label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="GE" name="GE" value="GE" onclick="showRichie(richie.value);">
@@ -785,28 +760,20 @@ function exportRichie(str) {
 <label for="LNF">LNF</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="LNL" name="LNL" value="LNL" onclick="showRichie(richie.value);">
-<label for="LNL">LNL</label>
+<input type="checkbox" id="LE" name="LE" value="LE" onclick="showRichie(richie.value);">
+<label for="LE">LE</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="MIB" name="MIB" value="MIB" onclick="showRichie(richie.value);">
+<input type="checkbox" id="MI" name="MI" value="MI" onclick="showRichie(richie.value);">
 </div>
 <div class="chkdiv">
-<label for="MIB">MIB</label>
+<label for="MI">MI</label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="NA" name="NA" value="NA" onclick="showRichie(richie.value);">
 <label for="NA">NA</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="PD" name="PD" value="PD" onclick="showRichie(richie.value);">
-<label for="PD">PD</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="PG" name="PG" value="PG" onclick="showRichie(richie.value);">
-</div>
-<div class="chkdiv">
-<label for="PG">PG</label>
 <input type="checkbox" id="PI" name="PI" value="PI" onclick="showRichie(richie.value);">
 <label for="PI">PI</label>
 </div>
@@ -819,12 +786,24 @@ function exportRichie(str) {
 <label for="RM1">RM1</label>
 </div>
 <div class="chkdiv">
+<input type="checkbox" id="RM2" name="RM2" value="RM2" onclick="showRichie(richie.value);">
+<label for="RM2">RM2</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="RM3" name="RM3" value="RM3" onclick="showRichie(richie.value);">
+<label for="RM3">RM3</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="TIFP" name="TIFP" value="TIFP" onclick="showRichie(richie.value);">
+<label for="TIFP">TIFP</labeb>
+</div>
+<div class="chkdiv">
 <input type="checkbox" id="TO" name="TO" value="TO" onclick="showRichie(richie.value);">
 <label for="TO">TO</labeb>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="TS" name="TS" value="TS" onclick="showRichie(richie.value);">
-<label for="TO">TS</label>
+<input type="checkbox" id="UD" name="UD" value="UD" onclick="showRichie(richie.value);">
+<label for="UD">UD</label>
 </div>
 </fieldset>
 </td>

@@ -13,7 +13,7 @@ if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 $sql="SELECT * FROM Richieste WHERE id = '".$q."'";
 $result = mysqli_query($con,$sql);
 $sql2="SELECT Assegnazioni.anno,Assegnazioni.keur,riunione,commenti FROM Richieste,Assegnazioni WHERE Richieste.id=Assegnazioni.id_richiesta and Richieste.id='".$q."'";
@@ -68,6 +68,7 @@ html {
 <div> <b>Doc ID: <?=$row3['id']?> </b></div>
 <select id="anno" name="anno" >
   <option value="0">Anno:</option>
+  <option value="1999" <?=$row['anno'] == '1999' ? ' selected="selected"' : '';?>>1999</option>
   <option value="2024" <?=$row['anno'] == '2024' ? ' selected="selected"' : '';?>>2024</option>
   <option value="2025" <?=$row['anno'] == '2025' ? ' selected="selected"' : '';?>>2025</option>
   <option value="2026" <?=$row['anno'] == '2026' ? ' selected="selected"' : '';?>>2026</option>
@@ -76,27 +77,26 @@ html {
 </select>
 <select id="sigla" name="sigla" >
   <option value="0">Sigla:</option>
-  <option value="cms" <?=$row['sigla'] == 'cms' ? ' selected="selected"' : '';?>>cms</option>
+  <option value="atlas" <?=$row['sigla'] == 'atlas' ? ' selected="selected"' : '';?>>atlas</option>
   <option value="fase2" <?=$row['sigla'] == 'fase2' ? ' selected="selected"' : '';?>>fase2</option>
 </select>
 <select id="sez" name="sez" >
   <option value="0">Sezione:</option>
-  <option value="BA" <?=$row['sez'] == 'BA' ? ' selected="selected"' : '';?>>BA</option>
   <option value="BO" <?=$row['sez'] == 'BO' ? ' selected="selected"' : '';?>>BO</option>
-  <option value="CT" <?=$row['sez'] == 'CT' ? ' selected="selected"' : '';?>>CT</option>
-  <option value="FI" <?=$row['sez'] == 'FI' ? ' selected="selected"' : '';?>>FI</option>
+  <option value="CNAF" <?=$row['sez'] == 'CNAF' ? ' selected="selected"' : '';?>>CNAF</option>
+  <option value="CS" <?=$row['sez'] == 'CS' ? ' selected="selected"' : '';?>>CS</option>
   <option value="GE" <?=$row['sez'] == 'GE' ? ' selected="selected"' : '';?>>GE</option>
+  <option value="LE" <?=$row['sez'] == 'LE' ? ' selected="selected"' : '';?>>LE</option>
   <option value="LNF" <?=$row['sez'] == 'LNF' ? ' selected="selected"' : '';?>>LNF</option>
-  <option value="LNL" <?=$row['sez'] == 'LNL' ? ' selected="selected"' : '';?>>LNL</option>
-  <option value="MIB" <?=$row['sez'] == 'MIB' ? ' selected="selected"' : '';?>>MIB</option>
+  <option value="MI" <?=$row['sez'] == 'MI' ? ' selected="selected"' : '';?>>MI</option>
   <option value="NA" <?=$row['sez'] == 'NA' ? ' selected="selected"' : '';?>>NA</option>
-  <option value="PD" <?=$row['sez'] == 'PD' ? ' selected="selected"' : '';?>>PD</option>
-  <option value="PG" <?=$row['sez'] == 'PG' ? ' selected="selected"' : '';?>>PG</option>
   <option value="PI" <?=$row['sez'] == 'PI' ? ' selected="selected"' : '';?>>PI</option>
   <option value="PV" <?=$row['sez'] == 'PV' ? ' selected="selected"' : '';?>>PV</option>
   <option value="RM1" <?=$row['sez'] == 'RM1' ? ' selected="selected"' : '';?>>RM1</option>
+  <option value="RM2" <?=$row['sez'] == 'RM2' ? ' selected="selected"' : '';?>>RM2</option>
+  <option value="RM3" <?=$row['sez'] == 'RM3' ? ' selected="selected"' : '';?>>RM3</option>
+  <option value="TIFP" <?=$row['sez'] == 'TIFP' ? ' selected="selected"' : '';?>>TIFP</option>
   <option value="TO" <?=$row['sez'] == 'TO' ? ' selected="selected"' : '';?>>TO</option>
-  <option value="TS" <?=$row['sez'] == 'TS' ? ' selected="selected"' : '';?>>TS</option>
 </select>
 
 <select id="capitolo" name="capitolo" >
@@ -131,20 +131,14 @@ html {
 
 <select id="tag1" name="tag1" class="entrasel">
    <option value="">TAG-PRJ</option>
-   <option value="CMS" <?=$tag1== 'CMS' ? ' selected="selected"' : '';?>>CMS</option>
+   <option value="ATLAS" <?=$tag1== 'ATLAS' ? ' selected="selected"' : '';?>>ATLAS</option>
    <option value="CALCOLO" <?=$tag1== 'CALCOLO' ? ' selected="selected"' : '';?>>CALCOLO</option>
-   <option value="DT" <?=$tag1== 'DT' ? ' selected="selected"' : '';?>>DT</option>
+   <option value="ITK" <?=$tag1== 'ITK' ? ' selected="selected"' : '';?>>ITK</option>
    <option value="FISICA" <?=$tag1== 'FISICA' ? ' selected="selected"' : '';?>>FISICA</option>
-   <option value="ECAL" <?=$tag1== 'ECAL' ? ' selected="selected"' : '';?>>ECAL</option>
-   <option value="GEM" <?=$tag1== 'GEM' ? ' selected="selected"' : '';?>>GEM</option>
-   <option value="L1TRIGGER" <?=$tag1== 'L1TRIGGER' ? ' selected="selected"' : '';?>>L1TRIGGER</option>
-   <option value="ME0" <?=$tag1== 'ME0' ? ' selected="selected"' : '';?>>ME0</option>
-   <option value="MTD" <?=$tag1== 'MTD' ? ' selected="selected"' : '';?>>MTD</option>
+   <option value="LAR" <?=$tag1== 'LAR' ? ' selected="selected"' : '';?>>LAR</option>
+   <option value="LUCID" <?=$tag1== 'LUCID' ? ' selected="selected"' : '';?>>LUCID</option>
    <option value="MUON" <?=$tag1== 'MUON' ? ' selected="selected"' : '';?>>MUON</option>
-   <option value="PPS" <?=$tag1== 'PPS' ? ' selected="selected"' : '';?>>PPS</option>
-   <option value="RPC" <?=$tag1== 'RPC' ? ' selected="selected"' : '';?>>RPC</option>
-   <option value="BRIL" <?=$tag1== 'BRIL' ? ' selected="selected"' : '';?>>BRIL</option>
-   <option value="TRACKER" <?=$tag1== 'TRACKER' ? ' selected="selected"' : '';?>>TRACKER</option>
+   <option value="TILE" <?=$tag1== 'TILE' ? ' selected="selected"' : '';?>>TILE</option>
 </select>
 <select id="tag2" name="tag2" class="entrasel">
    <option value="">TAG-CAT</option>

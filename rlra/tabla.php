@@ -44,9 +44,9 @@ $rescap=mysqli_query($con, $sql);
 $sql="select distinct sez from Richieste where anno='".$y."' and sigla='".$q."' order by sez";
 $ressez=mysqli_query($con, $sql);
 
-if ($q=="cms") {
-echo "<h1> CMS Richieste ".$y." </h1><br>";
-} else echo "<h1> CMS Fase2 Richieste ".$y." </h1><br>";
+if ($q=="atlas") {
+echo "<h1> ATLAS Richieste 2025 </h1><br>";
+} else echo "<h1> ATLAS Fase2 Richieste 2025 </h1><br>";
 //showing property
 echo '<table class="w3-table-all">
         <tr class="w3-red">';  //initialize table tag
@@ -116,7 +116,7 @@ foreach ($thesezs as $asez) {
 		 echo '<h3 class="w3-text-amber">'.$ocap.'</h3>';
 	         do {
                   echo "<div>";
-                  echo "<div><span class=\"w3-light-gray\"><a href=\"unnarefe.php?q=".$rowrich['id']."\"><strong> CMS-ID".$rowrich['id']."</strong></a></div>";
+                  echo "<div><span class=\"w3-light-gray\"><a href=\"unnarefe.php?q=".$rowrich['id']."\"><strong> ATLAS-ID".$rowrich['id']."</strong></a></div>";
    
                   echo "<div><span>".$rowrich['tag']."</span>&nbsp<span>".$rowrich['wbs']."</span>&nbsp<span>".$rowrich['richiesta']."</span></div>";
                   echo "<div>".$rowrich['keur']."kEur (".$rowrich['keurSJ']."SJ)</div>";
@@ -125,12 +125,12 @@ foreach ($thesezs as $asez) {
                     }
                   echo '</div>';
 		  
-		  $dirPath = 'documentazione/CMS-ID'.$rowrich['id'];
+		  $dirPath = 'documentazione/ATLAS-ID'.$rowrich['id'];
 		  //echo 'files (in '.$dirPath.'):';
                   $files = scandir($dirPath);
 		  if (count($files)>2) {
 		    echo '<div class="w3-container">';
-		      echo '<a href="https://cernbox.cern.ch/files/spaces/eos/user/v/venturas/cmscsn1/documentazione/CMS-ID'.$rowrich['id'].'">Allegati: </a><br>';
+		      echo '<a href="https://cernbox.cern.ch/files/spaces/eos/user/v/venturas/cmscsn1/documentazione/ATLAS-ID'.$rowrich['id'].'">Allegati: </a><br>';
                       foreach ($files as $file) {
                         $filePath = $dirPath . '/' . $file;
                         if (is_file($filePath)) {

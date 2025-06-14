@@ -3,7 +3,7 @@
  $server = 'localhost';
  $login='';
  $pass='';
- $db='cmsph2';
+ $db='atlasph2';
  $port='';
 
 ?>
