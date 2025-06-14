@@ -16,7 +16,7 @@ if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 if ($q==0) { $sql="SELECT * FROM Richieste WHERE anno > 0 ";}
 else $sql="SELECT * FROM Richieste WHERE anno= '".$q."' ";
 if ($f) $sql=$sql." AND (".$f.")";
@@ -62,7 +62,7 @@ while($row = mysqli_fetch_array($result)) {
   echo "<td>";
 	  $dbstr=$row['tag']."/";
 	  if ($row['WBS']) $dbstr.= $row['WBS']."/";
-	  $dbstr.=$row['richiesta']."      ".$row['note']." / CMS-". $row['id'];
+	  $dbstr.=$row['richiesta']."      ".$row['note']." / ATLAS-". $row['id'];
   if (($t&1)==1) {
 	  echo "<b>".$dbstr."</b>";
   }
