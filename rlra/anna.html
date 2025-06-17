@@ -49,7 +49,7 @@ html {
 var mfilt="";
 
 function aggiorna(myid) {
-       $("#entra").load("edita.php?q="+myid);
+       $("#entra").load("anedita.php?q="+myid);
     document.getElementById('id04').style.display='block';
 
 };
@@ -69,6 +69,22 @@ function aggiornaDB(myid,myfla) {
 
 };
 
+function (idp,anno,lvl,prj,ruo,ini,fin,note){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+      }
+      else {
+         if (this.readyState == 4 && this.status != 200)    document.getElementById('id03').style.display='block';
+      };
+    }
+//    xmlhttp.open('GET',"annaunna.php?idp="+idp+"&anno="+anno+"&lvl="+lvl+"&prj="+prj+"&ruo="+ruo+"&ini="+ini+"&fin="+fin+"$note="+note",true);
+//    xmlhttp.send();
+
+//       $("#entra").load(annaunna.php?idp="+idp+"&anno="+anno+"&lvl="+lvl+"&prj="+prj+"&ruo="+ruo+"&ini="+ini+"&fin="+fin+"$note="+note",true);
+//       document.getElementById('id04').style.display='block';
+
+};
 
 function nuova() {
 
@@ -76,8 +92,8 @@ function nuova() {
  //   window.location="entra.html";
 //    document.getElementById("txtHint").innerHTML ="";
 //    fetch("entra.html").then(x => x.text()).then(y=>document.getElementById("txtHint").innerHTML =y);
-    $("#entra").load("entra.html");
-    document.getElementById('id04').style.display='block';
+////an   $("#entra").load("entra.html");
+////an    document.getElementById('id04').style.display='block';
 //    console.log("you loaded the form"); 
 //    var theform=document.getElementById("myentr");
 //    theform.action="/cmscsn1/entra.php";
@@ -90,8 +106,8 @@ function nuova() {
 //          body: new URLSearchParams(new FormData(theform)) // for application/x-www-form-urlencoded
 //        // body: new FormData(form) // for multipart/form-data
 //    }) 
- //      .then(x=>x.text())
- //      .then(y => document.getElementById("demo").innerHTML = y);
+//      .then(x=>x.text())
+//      .then(y => document.getElementById("demo").innerHTML = y);
 //        console.log("you submitted the form");
 //    });
 //    showRichie(richie.value);
@@ -108,50 +124,14 @@ function showRichie(str) {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("txtHint").innerHTML = this.responseText;
         document.getElementById("totrichieste").innerHTML = document.getElementById("phprich").innerHTML;
-        document.getElementById("totkeur").innerHTML = document.getElementById("phpkeur").innerHTML;
-        document.getElementById("totkeurSJ").innerHTML = document.getElementById("phpkeurSJ").innerHTML;
-        document.getElementById("totassegna").innerHTML = document.getElementById("phpasse").innerHTML;
+        document.getElementById("totcms").innerHTML = document.getElementById("phpkeur").innerHTML;
+        document.getElementById("totsin").innerHTML = document.getElementById("phpkeurSJ").innerHTML;
       }
       else {
 	 if (this.readyState == 4 && this.status != 200)   document.getElementById('id03').style.display='block';
       };
     };
     mfilt="";
-   if (tk.checked == true) {
-     if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'TRACK')>0 ";
-   }
-   if (ecal.checked == true) {
-     if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'ECAL')>0 ";
-   }
-   if (mtd.checked == true) {
-     if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'MTD')>0 ";
-   }
-   if (mu.checked == true) {
-     if (mfilt!="") mfilt+= "OR ";
-		   mfilt+= "(INSTR(tag,'MUON')>0 OR INSTR(tag,'DT')>0 OR INSTR(tag,'RPC')>0 OR INSTR(tag,'ME0')>0 OR INSTR(tag,'GEM')>0)";
-   }
-   if (trig.checked == true) {
-     if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'TRIG')>0 ";
-   }
-   if (pps.checked == true) {
-     if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'PPS')>0 ";
-   }
-   if (bril.checked == true) {
-     if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'BRIL')>0 ";
-   }
-   if (calcolo.checked == true) {
-     if (mfilt!="") mfilt+= "OR ";
-     mfilt+= "INSTR(tag,'CALCOLO')>0 ";
-   }
-   if (mfilt!="") {
-     mfilt="("+mfilt+") ";
-    };
    mfilts="";
    if (BA.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
@@ -207,7 +187,7 @@ function showRichie(str) {
    }
    if (RM1.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'RM1')>0  ";
+     mfilts+= "INSTR(sez,'ROMA1')>0  ";
    }
    if (TO.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
@@ -230,29 +210,11 @@ function showRichie(str) {
      if (mfilts!="") mfilts+= "AND ";
      mfilts+= "sigla='fase2' ";
    }
-   if ((cms.checked != true) && (fase2.checked != true)) mfilts="sigla=''";
+   if ((cms.checked != true) && (fase2.checked != true)) mfilts=" 1 ";
    if (mfilts!="") {
       if (mfilt!=""){ mfilt+=" AND ";}; 	   
      mfilt+="("+mfilts+") ";
    }
-   if (missioni.checked == true) {
-     if (mfilt!="") mfilt+= "AND ";
-      mfilt+= " capitolo='missioni' ";
-   }
-   if (consumo.checked == true) {
-     if (mfilt!="") mfilt+= "AND ";
-      mfilt+= " capitolo='consumo' ";
-   }
-    if (inventario.checked == true) {
-     if (mfilt!="") mfilt+= "AND ";
-       mfilt+= " capitolo='inventario' ";
-    }
-
-   if (apparati.checked == true) {
-     if (mfilt!="") mfilt+= "AND ";
-      mfilt+= " capitolo='apparati' ";
-   }
-//   if (inventario.checked == true) {
 //     if (mfilt!="") mfilt+= "AND ";
 //      mfilt+= " capitolo='inventario' ";
 //  }
@@ -281,10 +243,6 @@ function showRichie(str) {
 //      mfilt+= " capitolo='altroconsumo' ";
 //   }
 
-   if (spservizi.checked == true) {
-     if (mfilt!="") mfilt+= "AND ";
-      mfilt+= " capitolo='spservizi' ";
-   }
    if (RN.checked == true) {
      if (mfilt!="") mfilt+= "AND ";
       mfilt+= " rn is not null ";
@@ -298,34 +256,6 @@ function showRichie(str) {
      mfilt+= " INSTR(tag,'P2024')>0 ";
    }
     lfilt="";
-    if (core.checked == true) {
-      if (lfilt!="") lfilt+= "OR ";
-      lfilt+= " INSTR(TAG,'CORE')>0 ";
-    }
-    if (cata.checked == true) {
-      if (lfilt!="") lfilt+= "OR ";
-      lfilt+= " INSTR(note,'CAT A')>0 ";
-    }
-    if (catb.checked == true) {
-      if (lfilt!="") lfilt+= "OR ";
-      lfilt+= " INSTR(note,'CAT B')>0 ";
-    }
-    if (catc.checked == true) {
-      if (lfilt!="") lfilt+= "OR ";
-      lfilt+= " INSTR(note,'CAT C')>0 ";
-    }
-    if (preproto.checked == true) {
-      if (lfilt!="") lfilt+= "OR ";
-      lfilt+= " INSTR(tag,'PREPROTO')>0 ";
-    }
-    if (infra.checked == true) {
-      if (lfilt!="") lfilt+= "OR ";
-      lfilt+= " INSTR(tag,'INFRA')>0 ";
-    }
-    if (fasedue.checked == true) {
-      if (lfilt!="") lfilt+= "OR ";
-      lfilt+= " INSTR(tag,'FASE2')>0 ";
-    }
     if (lfilt!="") mfilt+="AND ("+lfilt+") ";
 
    mtoke=0;
@@ -337,7 +267,7 @@ function showRichie(str) {
 
    }
  
-    xmlhttp.open("GET","alla.php?q="+str+"&f="+mfilt+"&t="+mtoke,true);
+    xmlhttp.open("GET","anna.php?q="+str+"&f="+mfilt+"&t="+mtoke,true);
     xmlhttp.send();
   }
 }
@@ -351,15 +281,25 @@ function showSingleRichie(str) {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("txtHint").innerHTML = this.responseText;
         document.getElementById("totrichieste").innerHTML = document.getElementById("phprich").innerHTML;
-        document.getElementById("totkeur").innerHTML = document.getElementById("phpkeur").innerHTML;
-        document.getElementById("totkeurSJ").innerHTML = document.getElementById("phpkeurSJ").innerHTML;
-        document.getElementById("totassegna").innerHTML = document.getElementById("phpasse").innerHTML;
+        document.getElementById("totcms").innerHTML = document.getElementById("phpkeur").innerHTML;
+        document.getElementById("totsin").innerHTML = document.getElementById("phpkeurSJ").innerHTML;
       }
       else {
 	 if (this.readyState == 4 && this.status != 200)    document.getElementById('id03').style.display='block';
       };
     };
-    xmlhttp.open("GET","unna.php?q="+str,true);
+
+   mfilts="";
+   if (cms.checked == true) {
+     if (mfilts!="") mfilts+= "AND ";
+     mfilts+= "sigla='cms' ";
+   }
+   if (fase2.checked == true) {
+     if (mfilts!="") mfilts+= "AND ";
+     mfilts+= "sigla='fase2' ";
+   }
+//    if ((cms.checked != true) && (fase2.checked != true)) mfilts="";
+    xmlhttp.open("GET","anaunna.php?q="+str+"&f="+mfilts+"&t="+richie.value,true);
     xmlhttp.send();
   }
 }
@@ -397,13 +337,13 @@ function insertRichie() {
 <!-- End Matomo Code -->
 </head>
 <body onload="showRichie(richie.value);">
- <div class="w3-container w3-teal">
-  <h1>Richieste CMS</h1>
-  <div class="w3-display-topright">
-  <a href="#" class="w3-btn w3-green">Richieste</a>
-  <a href="anna.html" class="w3-btn w3-green">Anagrafica</a>
-  </div>
-</div> 
+ <div class="w3-container w3-teal ">
+  <h1>Anagrafica CMS</h1>
+<div class="w3-display-topright">
+  <a href="alla.html" class="w3-btn w3-green">Richieste</a>
+  <a href="#" class="w3-btn w3-green">Anagrafica</a>
+</div>
+ </div>
 <form>
 <!--
 <select id="richie" onchange="showRichie(this.value);" onblur="this.selectedIndex = 0;">
@@ -442,107 +382,10 @@ function insertRichie() {
 </fieldset>
 </td>
 <td>
-<fieldset>
-<legend> Capitolo </legend>
-<div class="chkdiv">
-<input type="radio" id="missioni" name="capitolo" value="missioni" onclick="showRichie(richie.value);">
-<label for="missioni">Missioni</label>
-</div>
-<div class="chkdiv">
-<input type="radio" id="consumo" name="capitolo" value="consumo" onclick="showRichie(richie.value);">
-<label for="consumo">Consumo</label>
-</div>
-<div class="chkdiv">
-<input type="radio" id="inventario" name="capitolo" value="inventario" onclick="showRichie(richie.value);">
-<label for="inventario">Inventario</label>
-</div>
-<div class="chkdiv">
-<input type="radio" id="apparati" name="capitolo" value="apparati" onclick="showRichie(richie.value);">
-<label for="apparati">Apparati</label>
-</div>
-<div class="chkdiv">
-<input type="radio" id="spservizi" name="capitolo" value="spservizi" onclick="showRichie(richie.value);">
-<label for="spservizi">spservizi</label>
-</div>
-<div class="chkdiv">
-<input type="radio" id="Tutti" name="capitolo" value="spservizi" checked onclick="showRichie(richie.value);">
-<label for="Tutti">Tutti</label>
-</div>
-</fieldset>
 </td>
 <td>
- <fieldset>
- <legend>Tags</legend>
- <div class="chkdiv">
-   <input type="checkbox" id="core" name="core" value="core" onclick="showRichie(richie.value);">
-   <label for="core">Core</label>
- </div>
- <div class="chkdiv">
-   <input type="checkbox" id="cata" name="cata" value="cata" onclick="showRichie(richie.value);">
-   <label for="cata">CAT A</label>
- </div>
- <div class="chkdiv">
-   <input type="checkbox" id="catb" name="catb" value="catb" onclick="showRichie(richie.value);">
-   <label for="catb">CAT B</label>
- </div>
- <div class="chkdiv">
-  <input type="checkbox" id="catc" name="catc" value="catc" onclick="showRichie(richie.value);">
-  <label for="catc">CAT C</label>
- </div>
- <div class="chkdiv">
-   <input type="checkbox" id="preproto" name="preproto" value="preproto" onclick="showRichie(richie.value);">
-   <label for="preproto">PreProto</label>
- </div>
- <div class="chkdiv">
-   <input type="checkbox" id="infra" name="infra" value="infra" onclick="showRichie(richie.value);">
-   <label for="infra">Infra</label>
- </div>
- <div class="chkdiv">
-   <input type="checkbox" id="fasedue" name="fasedue" value="fasedue" onclick="showRichie(richie.value);">
-   <label for="fasedue">Fase 2</label>
- </div>
- </fieldset>
 </td>
 
-</tr>
-<tr>
-<td>
-<fieldset>
-<legend> Subsystem </legend>
-<div class="chkdiv">
-<input type="checkbox" id="tk" name="TK" value="TK" onclick="showRichie(richie.value);">
-<label for="tk">TK</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="ecal" name="ECAL" value="ECAL" onclick="showRichie(richie.value);">
-<label for="ecal">ECAL</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="mtd" name="MTD" value="MTD" onclick="showRichie(richie.value);">
-<label for="mtd">MTD</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="trig" name="TRIG" value="TRIG" onclick="showRichie(richie.value);">
-<label for="trig">TRIG</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="mu" name="MU" value="MU" onclick="showRichie(richie.value);">
-<label for="MU">MU</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="pps" name="PPS" value="PPS" onclick="showRichie(richie.value);">
-<label for="PPS">PPS</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="bril" name="BRIL" value="BRIL" onclick="showRichie(richie.value);">
-<label for="BRIL">BRIL</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="calcolo" name="CALCOLO" value="CALCOLO" onclick="showRichie(richie.value);">
-<label for="calcolo">Calcolo</label>
-</div>
-</fieldset>
-</td>
 <td>
 <fieldset>
 <legend> Sezione </legend>
@@ -690,6 +533,6 @@ function insertRichie() {
 
 <br>
 <div id="txtHint"><b>Richieste...</b></div>
-<div id="allafooter" class="allafooter">Num Richieste:<span id="totrichieste"></span> Tot Richieste:<span id="totkeur"></span><span> Tot SJ:</span><span id="totkeurSJ"></span> Ass.: <span id="totassegna"></span></div>
+<div id="allafooter" class="allafooter">Persone:<span id="totrichieste"></span> Tot FTE:<span id="totcms"></span><span> Tot FTE Sin:</span><span id="totsin"></span> </div>
 </body>
 </html>
