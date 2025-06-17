@@ -18,9 +18,9 @@ $con = mysqli_connect($server,$login,$pass,$db,$port);
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
-if ($q>2025) {$q=2025;};
+if ($q>2026) {$q=2026;};
 mysqli_select_db($con,"cmsph2");
-if ($q==0) { $sql="SELECT * FROM Richieste WHERE anno > 0 and anno<2026";}
+if ($q==0) { $sql="SELECT * FROM Richieste WHERE anno > 0 and anno<2027";}
 else $sql="SELECT * FROM Richieste WHERE anno= '".$q."' ";
 if ($f) $sql=$sql." AND (".$f.")";
 $sql=$sql." ORDER BY anno DESC,capitolo,id DESC";

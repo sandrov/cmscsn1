@@ -18,7 +18,11 @@ if (!$con) {
 mysqli_select_db($con,"cmsph2");
 if ($q==0) { $sql="SELECT * FROM Persone WHERE 1 ";}
 else {
+if	(($t&1)==0) {
 	$sql="SELECT *,Persone.id as idp FROM Persone,Anagrafica WHERE anno=".$q." AND Persone.id=Anagrafica.id_person ";
+} else {
+         $sql="SELECT  *,Persone.id as idp FROM Persone,Anagrafica,Responsabilities  WHERE Responsabilities.anno= Anagrafica.anno AND Responsabilities.anno=".$q." AND Persone.id=Anagrafica.id_person and Persone.id=Responsabilities.id_person ";
+}
         if ($f) $sql=$sql." AND (".$f.")";
         if ($t) $sql=$sql." AND (".$t.")";
 }
@@ -46,15 +50,11 @@ $totsin=0;
 $totrichieste=0;
 $totfte=0;
 while($row = mysqli_fetch_array($result)) {
-      $sql2="SELECT * from Anagrafica";
+      $sql2="SELECT * from Responsabilities where id_person=".$row['idp']." and anno=".$q;
       $result2= mysqli_query($con,$sql2);
-      $row2=mysqli_fetch_array($result2);
+//      $row2=mysqli_fetch_array($result2);
   if ((($t>=10) && $row2) || ($t<10)) {   
-  if (($t&1)==1) {
-    echo "<tr class=\"".$bkg."\" >";  
-  } else {
     echo "<tr class=\"".$bkg."\" onClick=showSingleRichie(".$row['idp'].");>";
-  };
   echo "<td>" . $row['Cognome'] . "</td>";
   echo "<td>" . $row['Nome'] . "</td>";
   echo "<td>" . $row['sez'] . "</td>";
@@ -72,6 +72,11 @@ while($row = mysqli_fetch_array($result)) {
   $totsin+= $row['Percentuale_Sin1']/100;
   $totsin+= $row['Percentuale_Sin2']/100;
   $totsin+= $row['Percentuale_Sin3']/100;
+
+  $row2=mysqli_fetch_array($result2);
+  if ($row2['id']) { echo "<td><button class=\"w3-btn w3-small w3-amber\">Resp</button></td>";};
+//	  echo "<button class=\"w3-btn w3-small  w3-amber\">Resp<</button>";};
+//       }
   } 
 //  if (($t&1)==1) {
 //	  echo "<b>".$dbstr."</b>";
@@ -88,11 +93,9 @@ while($row = mysqli_fetch_array($result)) {
 //	  if ($row['rl']==1) {echo "<button class=\"w3-btn  w3-light-green\">RL</button>";};
 //	  if ($row['aggio']==1) {echo "<button class=\"w3-btn  w3-amber\">Agg</button>";};
   }
-//	  if ($row2){
 //	  $totassegna+=$row2['keur'];
 //	  while ($row2=mysqli_fetch_array($result2)){ $totassegna+=$row2['keur'];};
 //  }
-  echo "</td>";
   echo "</tr>";
 // }
 }
@@ -100,6 +103,7 @@ echo "</table>";
 echo "</div>";
 echo "<span id=\"phpkeur\" hidden>";
 echo $totcms;
+//echo $sql2;
 echo "</span>";
 echo "<span id=\"phpkeurSJ\" hidden>";
 echo $totsin;

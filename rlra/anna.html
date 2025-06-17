@@ -69,20 +69,61 @@ function aggiornaDB(myid,myfla) {
 
 };
 
-function (idp,anno,lvl,prj,ruo,ini,fin,note){
+function aggiungiResp(idp,anno){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
+		      alert(this.responseText);
+		      showSingleRichie(idp);
       }
       else {
-         if (this.readyState == 4 && this.status != 200)    document.getElementById('id03').style.display='block';
+         if (this.readyState == 4 && this.status != 200)    
+//		      document.getElementById('id03').style.display='block';
+		      alert("insert error"); 
       };
     }
-//    xmlhttp.open('GET',"annaunna.php?idp="+idp+"&anno="+anno+"&lvl="+lvl+"&prj="+prj+"&ruo="+ruo+"&ini="+ini+"&fin="+fin+"$note="+note",true);
-//    xmlhttp.send();
 
-//       $("#entra").load(annaunna.php?idp="+idp+"&anno="+anno+"&lvl="+lvl+"&prj="+prj+"&ruo="+ruo+"&ini="+ini+"&fin="+fin+"$note="+note",true);
-//       document.getElementById('id04').style.display='block';
+      let prj=document.getElementById('respprj').value;
+      let lvl=document.getElementById('resplvl').value;
+      let ruo=document.getElementById('respruo').value;
+      let coco=document.getElementById('respcoco').value;
+      let ini=document.getElementById('respini').value;
+      let fin=document.getElementById('respfin').value;
+      let note=document.getElementById('respnote').value;
+
+      let mstr= "idp="+idp+"&anno="+anno+"&prj="+prj+"&ruo="+ruo+"&lvl="+lvl+"&coco="+coco+"&ini="+ini+"&fin="+fin+"&note="+note;
+//	alert(mstr);	
+    xmlhttp.open('GET',"respentra.php?"+mstr,true);
+    xmlhttp.send();
+
+};
+
+function aggiornaAnag(idp,anno){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+                      alert(this.responseText);
+                      showSingleRichie(idp);
+      }
+      else {
+         if (this.readyState == 4 && this.status != 200)    
+//                    document.getElementById('id03').style.display='block';
+                      alert("insert error"); 
+      };
+    }
+
+      let perccms=document.getElementById('perccms').value;
+      let sin1=document.getElementById('sin1').value;
+      let percs1=document.getElementById('percs1').value;
+      let sin2=document.getElementById('sin2').value;
+      let percs2=document.getElementById('percs2').value;
+      let sin3=document.getElementById('sin3').value;
+      let percs3=document.getElementById('percs3').value;
+
+      let mstr= "idp="+idp+"&anno="+anno+"&perccms="+perccms+"&sin1="+sin1+"&percs1="+percs1+"&sin2="+sin2+"&percs2="+percs2+"&sin3="+sin3+"&percs3="+percs3;
+      alert(mstr);    
+    xmlhttp.open('GET',"percedit.php?"+mstr,true);
+    xmlhttp.send();
 
 };
 
@@ -243,10 +284,10 @@ function showRichie(str) {
 //      mfilt+= " capitolo='altroconsumo' ";
 //   }
 
-   if (RN.checked == true) {
-     if (mfilt!="") mfilt+= "AND ";
-      mfilt+= " rn is not null ";
-   }
+//   if (RN.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " rn is not null ";
+//   }
    if (agg.checked == true) {
      if (mfilt!="") mfilt+= "AND ";
       mfilt+= " aggio='1' ";
@@ -260,10 +301,10 @@ function showRichie(str) {
 
    mtoke=0;
    if (asse.checked == true) {
-      mtoke=1;
+      mtoke=10;
    }
    if (assgn.checked == true) {
-      mtoke=10+mtoke;
+      mtoke=1+mtoke;
 
    }
  
@@ -299,9 +340,15 @@ function showSingleRichie(str) {
      mfilts+= "sigla='fase2' ";
    }
 //    if ((cms.checked != true) && (fase2.checked != true)) mfilts="";
+//	alert("q="+str+" t="+richie.value+" f="+mfilts);	  
+  if (richie.value==0) {
+	 alert("Seleziona Anno");
+   }
+  else {
     xmlhttp.open("GET","anaunna.php?q="+str+"&f="+mfilts+"&t="+richie.value,true);
     xmlhttp.send();
-  }
+    }
+   }
 }
 
 function insertRichie() {
@@ -462,9 +509,6 @@ function insertRichie() {
 <td>
 <fieldset>
 <legend> Views </legend>
-<div class="chkdiv">
-<input type="checkbox" id="RN" name="RN" value="RN" onclick="showRichie(richie.value);">
-<label for="RN">RN </label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="p2024" name="p2024" value="P2024" onclick="showRichie(richie.value);">
@@ -475,12 +519,12 @@ function insertRichie() {
 <label for="asse">StringheDB </label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="assgn" name="assgn" value="assegnati" onclick="showRichie(richie.value);">
-<label for="assgn">Assegnazioni </label>
+<input type="checkbox" id="assgn" name="assgn" value="assgn" onclick="showRichie(richie.value);">
+<label for="agg">Responsabilità </label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="agg" name="agg" value="agg" onclick="showRichie(richie.value);">
-<label for="agg">aggiorn </label>
+<label for="agg">agg. </label>
 </div>
 </td>
 <td>
@@ -532,7 +576,7 @@ function insertRichie() {
 </div>
 
 <br>
-<div id="txtHint"><b>Richieste...</b></div>
+<div id="txtHint"><b>Anagrafica...</b></div>
 <div id="allafooter" class="allafooter">Persone:<span id="totrichieste"></span> Tot FTE:<span id="totcms"></span><span> Tot FTE Sin:</span><span id="totsin"></span> </div>
 </body>
 </html>

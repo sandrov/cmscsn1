@@ -54,13 +54,13 @@ while($row = mysqli_fetch_array($result)) {
   echo "<td>" . $row['Nome'] . "</td>";
   echo "<td>" . $row['Cognome'] . "</td>";
   echo "<td>" . $row['sez'] . "</td>";
-  echo "<td><input type=\"text\" width=20 id=\"percms\" name=\"percms\" value=\"".$row['Percentuale_CMS']."\"></td>";
+  echo "<td><input type=\"text\" width=20 id=\"perccms\" name=\"percms\" value=\"".$row['Percentuale_CMS']."\"></td>";
   echo "<td><input type=\"text\" id=\"sin1\" name=\"sin1\" value=\"".$row['SiglaSiner1']."\"></td>";
-  echo "<td><input type=\"text\" width=20 id=\"pers1\" name=\"pers1\" value=\"".$row['Percentuale_Sin1']."\"></td>";
+  echo "<td><input type=\"text\" width=20 id=\"percs1\" name=\"pers1\" value=\"".$row['Percentuale_Sin1']."\"></td>";
   echo "<td><input type=\"text\" id=\"sin2\" name=\"sin2\" value=\"".$row['SiglaSiner2']."\"></td>";
-  echo "<td><input type=\"text\" width=20 id=\"pers2\" name=\"pers2\" value=\"".$row['Percentuale_Sin2']."\"></td>";
-  echo "<td><input type=\"text\" id=\"sin13\" name=\"sin3\" value=\"".$row['SiglaSiner3']."\"></td>";
-  echo "<td><input type=\"text\" width=20 id=\"pers3\" name=\"pers3\" value=\"".$row['Percentuale_Sin3']."\"></td>";
+  echo "<td><input type=\"text\" width=20 id=\"percs2\" name=\"pers2\" value=\"".$row['Percentuale_Sin2']."\"></td>";
+  echo "<td><input type=\"text\" id=\"sin3\" name=\"sin3\" value=\"".$row['SiglaSiner3']."\"></td>";
+  echo "<td><input type=\"text\" width=20 id=\"percs3\" name=\"pers3\" value=\"".$row['Percentuale_Sin3']."\"></td>";
  //echo "<td></td>";
 
 //  echo "<td>";
@@ -95,7 +95,7 @@ while($row = mysqli_fetch_array($result)) {
   echo "<td>";
   if ($edib==0) {
 //     echo "<a href=\"edita.php?q=".$q."\">";
-     echo "<button id=\"edita\" onclick=\"aggiorna(".$q.");\"> aggiorna</button>"; 
+     echo "<button id=\"edita\" onclick=\"aggiornaAnag(".$q.",".$t.");\"> aggiorna</button>"; 
 //  echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.",1);\"> DB</button>"; 
 //  echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.",2);\"> RL</button>"; 
 //  echo "<button id=\"ra\" onclick=\"aggiornaDB(".$q.",3);\"> RA</button>"; 
@@ -138,34 +138,25 @@ echo "</table>";
 echo"
 <div class=\"  w3-third w3-right w3-small w3-border w3-container\">
 <label>Progetto</label>
-<input class=\"w3-input\" type=\"text\">
+<input id=\"respprj\" class=\"w3-input\" type=\"text\">
 <label>Ruolo</label>
-<input class=\"w3-input\" type=\"text\">
+<input id=\"respruo\" class=\"w3-input\" type=\"text\">
 <label>LVL</label>
-<input class=\"w3-input\" type=\"text\">
+<input id=\"resplvl\" class=\"w3-input\" type=\"text\">
 <label>CoConv</label>
-<input class=\"w3-input\" type=\"text\">
+<input id=\"respcoco\" class=\"w3-input\" type=\"text\">
 <label>Inizio</label>
-<input class=\"w3-input\" type=\"text\">
+<input id=\"respini\" class=\"w3-input\" type=\"text\">
 <label>Fine</label>
-<input class=\"w3-input\" type=\"text\">
+<input id=\"respfin\" class=\"w3-input\" type=\"text\">
 <label>Note</label>
-<input class=\"w3-input\" type=\"text\">
-<button class=\"w3-btn w3-blue\" onclick=\"(function (){
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-      }
-      else {
-         if (this.readyState == 4 && this.status != 200)    document.getElementById('id03').style.display='block';
-      };
-    }
-    xmlhttp.open('GET','annaunna.php?idp=".$idp."&anno=".$anno."&lvl=".$lvl."&prj=".$prj."&ruo=".$ruo."&ini=".$ini."&fin=".$fin."$note=".$note."',true);
-    xmlhttp.send();
-})();\">Aggiungi</button>
+<input id=\"respnote\" class=\"w3-input\" type=\"text\">
+<button class=\"w3-btn w3-blue\" onclick=\"aggiungiResp(".$q.",".$t.");\">Aggiungi</button>
 </div>
 <br>
 ";
+//<button class=\"w3-btn w3-blue\" onclick=\"alert(idp=".$q." anno=".$t.");\">Aggiungi</button>
+//    xmlhttp.open('GET','annaunna.php?idp=".$idp."&anno=".$anno."&lvl=".$lvl."&prj=".$prj."&ruo=".$ruo."&ini=".$ini."&fin=".$fin."$note=".$note."',true);
 //echo " <div class=\"w3-card-4 w3-third w3-right\">
 //</div> <br> 
 //<div class=\"w3-container w3-green\">

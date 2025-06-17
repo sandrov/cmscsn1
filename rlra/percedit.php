@@ -6,17 +6,15 @@ header("Pragma: no-cache");
 
 
 
-//$idp = intval($_GET['idp']);
-$idp = $_GET['idp'];
-echo $idp;
+$idp = intval($_GET['idp']);
 $anno = intval($_GET['anno']);
-$lvl = intval($_GET['lvl']);
-$coco = intval($_GET['coco']);
-$prj = $_GET['prj'];
-$ruo = $_GET['ruo'];
-$ini = $_GET['ini'];
-$fin = $_GET['fin'];
-$note = $_GET['note'];
+$perccms = intval($_GET['perccms']);
+$sin1 = $_GET['sin1'];
+$percs1 = intval($_GET['percs1']);
+$sin2 = $_GET['sin2'];
+$percs2 = intval($_GET['percs2']);
+$sin3 = $_GET['sin3'];
+$percs3 = intval($_GET['percs3']);
 
 
 
@@ -33,7 +31,7 @@ if (!$con) {
 }
 mysqli_select_db($con,"cmsph2");
 
-$sql="INSERT INTO Responsabilities (id_person,anno,lvl,progetto,ruolo,coconv,inizio,fine,note) values('".$idp."','".$anno."','".$lvl."','".$prj."','".$ruo."','".$coco."','".$ini."','".$fin."','".$note."')";
+$sql="Update Anagrafica set Percentuale_CMS='".$perccms."', SiglaSiner1='".$sin1."',Percentuale_Sin1='".$percs1."', SiglaSiner2='".$sin2."',Percentuale_Sin2='".$percs2."', SiglaSiner3='".$sin3."',Percentuale_Sin3='".$percs3."' WHERE id_person='".$idp."' and anno='".$anno."'";
 $result = mysqli_query($con,$sql);
 $reqid=mysqli_insert_id($con);
 
