@@ -45,11 +45,13 @@ $rescap=mysqli_query($con, $sql);
 $sql="select distinct sez from Persone,Anagrafica  where Persone.id=Anagrafica.id_person and anno='".$y."' and sigla='".$q."' order by sez";
 $ressez=mysqli_query($con, $sql);
 
+$myrates=array("BA"=>4.05, "BO"=>3.8, "CT"=> 4.05, "FI"=> 3.8, "GE"=> 3.7, "LNF"=> 3.7, "LNL"=> 3.8, "MIB"=> 3.7, "NA"=> 3.95, "PD"=> 3.8, "PV"=> 3.7, "PG"=>3.95, "PI"=> 3.8, "RM1"=> 3.7, "TO"=> 3.7, "TS"=> 3.95);
+
 if ($q=="cms") {
 echo "<h1> CMS Anagrafica ".$y." </h1><br>";
 } else echo "<h1> CMS Fase2 Richieste ".$y." </h1><br>";
 //showing property
-echo '<table class="w3-table-all w3-responsive">
+echo '<table class="w3-table-all w3-responsive w3-tiny">
         <tr class="w3-red">';  //initialize table tag
 //while ($property = mysqli_fetch_field($result)) {
 //    echo '<td>' . htmlspecialchars($property->name) . '</td>';  //get field name for header
@@ -109,42 +111,61 @@ echo "</table>";
 foreach ($thesezs as $asez) {
    echo' <div class="w3-container">';
    echo '<p> <div id='.$asez.'><h2 class="w3-text-sienna">  Sezione '.$asez.'</h2></div></p>';
-   foreach ($mycaps as $ocap) {
-                $resrich=mysqli_query($con, "select Richieste.id,richiesta,documentazione as descrizione,tag,wbs,keur,keurSJ from Richieste,docs where Richieste.id=id_richiesta and anno='".$y."' and sigla='".$q."' and capitolo='".$ocap."' and sez='".$asez."'");
+//   foreach ($mycaps as $ocap) {
+                $resrich=mysqli_query($con, "select count(Persone.id) as perso,sum(Percentuale_CMS/100) as cmsfte,sum((Percentuale_Sin1+Percentuale_Sin2+Percentuale_Sin3)/100) as sinfte from Persone,Anagrafica where Persone.id=Anagrafica.id_person and anno='".$y."' and sigla='".$q."' and sez='".$asez."'");
 
                 $rowrich = mysqli_fetch_array($resrich);
 		if ($rowrich) {
-		 echo '<h3 class="w3-text-amber">'.$ocap.'</h3>';
-	         do {
-                  echo "<div>";
-                  echo "<div><span class=\"w3-light-gray\"><a href=\"unnarefe.php?q=".$rowrich['id']."\"><strong> CMS-ID".$rowrich['id']."</strong></a></div>";
-   
-                  echo "<div><span>".$rowrich['tag']."</span>&nbsp<span>".$rowrich['wbs']."</span>&nbsp<span>".$rowrich['richiesta']."</span></div>";
-                  echo "<div>".$rowrich['keur']."kEur (".$rowrich['keurSJ']."SJ)</div>";
-                   if (ltrim($rowrich['descrizione'])!="") {
-                      echo "<div> Descrizione: <span>".$rowrich['descrizione']."</span></div>";
-                    }
-                  echo '</div>';
-		  
-		  $dirPath = 'documentazione/CMS-ID'.$rowrich['id'];
-		  //echo 'files (in '.$dirPath.'):';
-                  $files = scandir($dirPath);
-		  if (count($files)>2) {
-		    echo '<div class="w3-container">';
-		      echo '<a href="https://cernbox.cern.ch/files/spaces/eos/user/v/venturas/cmscsn1/documentazione/CMS-ID'.$rowrich['id'].'">Allegati: </a><br>';
-                      foreach ($files as $file) {
-                        $filePath = $dirPath . '/' . $file;
-                        if (is_file($filePath)) {
-                          echo $file . "<br>";
-			}
-                       }
-		    echo '</div>';
-                  }
+		 echo "<h3 class=\"w3-text-amber\">FTE</h3>";
+		 echo "<div class=\"w3-container\"><span>Persone:".$rowrich['perso']."</span></div>";
+		 echo "<div class=\"w3-container\"><span> FTE:".$rowrich['cmsfte']+$rowrich['sinfte']."</span></div>";
+                 if ($rowrich['sinfte']) echo "<div class=\"w3-container\"><span>&nbsp di cui &nbsp".$rowrich['sinfte']."&nbsp da sigle sinergiche</span></div>";
+//	         do {
 		  echo '<br>';
+                 echo "<div>";
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID</strong></a></div>";
+//                 echo "<div><span class=\"w3-light-gray\"><a href=\"unnarefe.php?q=".$rowrich['id']."\"><strong> CMS-ID".$rowrich['id']."</strong></a></div>";
+ //  
+//                  echo "<div><span>".$rowrich['tag']."</span>&nbsp<span>".$rowrich['wbs']."</span>&nbsp<span>".$rowrich['richiesta']."</span></div>";
+		 //                 26.1fte*1mp/fte*3.8KEuro/mp duty e shift
+		 $metarich=$myrates[$asez]*($rowrich['cmsfte']+$rowrich['sinfte']);
+                  echo "<div><span>CMS-META/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro/mp duty e shift</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID</strong></a></div>";
+		 $metarich=$myrates[$asez]*($rowrich['cmsfte']+$rowrich['sinfte']);
+                  echo "<div><span>CMS-ESP/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro/mp duty e shift</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
+  //                echo "<div>".$rowrich['keur']."kEur (".$rowrich['keurSJ']."SJ)</div>";
+  //                 if (ltrim($rowrich['descrizione'])!="") {
+   //                   echo "<div> Descrizione: <span>".$rowrich['descrizione']."</span></div>";
+    //                }
+//                  echo '</div>';
+		 echo "<h3 class=\"w3-text-amber\">Consumo</h3>";
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID</strong></a></div>";
+                $metarich=1.5*($rowrich['cmsfte']+$rowrich['sinfte']);
+                  echo "<div><span>CMS-META/Consumi Metabolici/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
+ 
+                $resresp=mysqli_query($con, "select count(Persone.id) as perso,sum(5-(lvl*2)) as totresp from Persone,Responsabilities where Persone.id=Responsabilities.id_person and anno='".$y."' and sez='".$asez."'") ;
+		$row = mysqli_fetch_array($resresp);
+		if ($row['perso']){
+		//while ($row = mysqli_fetch_row($resresp)){
+	         echo "<h3 class=\"w3-text-amber\">Resp.</h3>";
+                 echo "<div class=\"w3-container\"><span>Ruoli:".$row['perso']."</span></div>";
+                 echo "<div class=\"w3-container\"><span>Tot mp:".$row['totresp']."</span></div>";
+                };
+		  echo '</div>';
+		  echo '<br>';
+                $resresp=mysqli_query($con, "select lvl,coconv,ruolo from Persone,Responsabilities where Persone.id=Responsabilities.id_person and ((lvl=0) OR (lvl=1) OR (lvl=2)) and anno='".$y."' and sez='".$asez."'") ;
+		while ($rowrich = mysqli_fetch_array($resresp)){
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID</strong></a></div>";
 
-                 }
-                while ($rowrich = mysqli_fetch_array($resrich)); 
+		 $metarich=$myrates[$asez]*(5-($rowrich['lvl']*2));
+		 $metamp=(5-($rowrich['lvl']*2));
+		 //CMS-RESP L1/Trigger Coordinator 3 mp*3.8 KEuro/mp 
+                 echo "<div><span>CMS-RESP L".$rowrich['lvl']."/".$rowrich['ruolo']."/".$metamp."mp*".$myrates[$asez]."kEuro/mp </span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
 		}
+                 
+//do                 }
+//                while ($rowrich = mysqli_fetch_array($resrich)); 
+//foreach		}
 }
 echo "</div><br>";
 }
