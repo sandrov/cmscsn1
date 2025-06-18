@@ -292,23 +292,25 @@ function showRichie(str) {
      if (mfilt!="") mfilt+= "AND ";
       mfilt+= " aggio='1' ";
    }
-   if (p2024.checked == true) {
-     if (mfilt!="") mfilt+= "AND ";
-     mfilt+= " INSTR(tag,'P2024')>0 ";
-   }
+//   if (p2024.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//     mfilt+= " INSTR(tag,'P2024')>0 ";
+//   }
     lfilt="";
     if (lfilt!="") mfilt+="AND ("+lfilt+") ";
 
    mtoke=0;
-   if (asse.checked == true) {
-      mtoke=10;
-   }
    if (assgn.checked == true) {
       mtoke=1+mtoke;
 
    }
  
-    xmlhttp.open("GET","anna.php?q="+str+"&f="+mfilt+"&t="+mtoke,true);
+   if (asse.checked == true) {
+      mtoke=10;
+      xmlhttp.open("GET","anastrdb.php?q="+str+"&f="+mfilt+"&t="+mtoke,true);
+   }
+   else xmlhttp.open("GET","anna.php?q="+str+"&f="+mfilt+"&t="+mtoke,true);
+
     xmlhttp.send();
   }
 }
@@ -410,11 +412,12 @@ function insertRichie() {
     <option value="2018">2018</option>
     </select>
 </form>
-<div class="w3-right">
+<!---<div class="w3-right">
 <label for="vai">Vai a CMS-ID:</label>
 <input type="text" id="vai" onchange="showSingleRichie(this.value);">
 <span> &nbsp   </span>
 </div>
+--->
 
 <br>
 <table class="w3-table">
@@ -511,16 +514,12 @@ function insertRichie() {
 <legend> Views </legend>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="p2024" name="p2024" value="P2024" onclick="showRichie(richie.value);">
-<label for="RN">P2024 </label>
-</div>
-<div class="chkdiv">
 <input type="checkbox" id="asse" name="asse" value="Ass." onclick="showRichie(richie.value);">
 <label for="asse">StringheDB </label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="assgn" name="assgn" value="assgn" onclick="showRichie(richie.value);">
-<label for="agg">Responsabilità </label>
+<label for="agg">Responsabilita</label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="agg" name="agg" value="agg" onclick="showRichie(richie.value);">

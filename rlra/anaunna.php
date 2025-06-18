@@ -56,6 +56,21 @@ while($row = mysqli_fetch_array($result)) {
   echo "<td>" . $row['sez'] . "</td>";
   echo "<td><input type=\"text\" width=20 id=\"perccms\" name=\"percms\" value=\"".$row['Percentuale_CMS']."\"></td>";
   echo "<td><input type=\"text\" id=\"sin1\" name=\"sin1\" value=\"".$row['SiglaSiner1']."\"></td>";
+//  echo "<td>";
+//  echo "<select class=\"w3-select\" id=\"sin1\" name=\"sin1\">";
+//  echo "<option value=\"".$row['SiglaSiner1']."\">".$row['SiglaSiner1']."</option>";
+//  echo "<option value=\"1_CLOUD_ML\">1_CLOUD_ML</option>";
+//  echo "<option value=\"1_IGNITE\">1_IGNITE</option>";
+//  echo "<option value=\"5_4DSHARE\">5_4DSHARE</option>";
+//  echo "<option value=\"5_AI_INFN\">5_AI_INFN</option>";
+//  echo "<option value=\"C3SN_DATACLOUD\">C3SN_DATACLOUD</option>";
+//  echo "<option value=\"FE_4DSHARE-2022KLK4LB-PRIN\">FE_4DSHARE-2022KLK4LB-PRIN</option>";
+//  echo "<option value=\"FE_AIDAINNOVA-EU\">FE_AIDAINNOVA-EU</option>";
+//  echo "<option value=\"FE_ASIMOW-ERC\">FE_ASIMOW-ERC</option>";
+//  echo "<option value=\"\"></option>";
+//  echo "<option value=\"\"></option>";
+//  echo "</select>";
+//  echo "</td>";
   echo "<td><input type=\"text\" width=20 id=\"percs1\" name=\"pers1\" value=\"".$row['Percentuale_Sin1']."\"></td>";
   echo "<td><input type=\"text\" id=\"sin2\" name=\"sin2\" value=\"".$row['SiglaSiner2']."\"></td>";
   echo "<td><input type=\"text\" width=20 id=\"percs2\" name=\"pers2\" value=\"".$row['Percentuale_Sin2']."\"></td>";
@@ -135,26 +150,53 @@ while($row2 = mysqli_fetch_array($result2)) {
   }
 echo "</table>";
 
-echo"
-<div class=\"  w3-third w3-right w3-small w3-border w3-container\">
+echo '
+<div class="  w3-third w3-right w3-small w3-border w3-container">
 <label>Progetto</label>
-<input id=\"respprj\" class=\"w3-input\" type=\"text\">
+<select id="respprj" name="tag1" class="w3-select">
+   <option value="">TAG-PRJ</option>
+   <option value="CMS">CMS</option>
+   <option value="CALCOLO">CALCOLO</option>
+   <option value="DT">DT</option>
+   <option value="FISICA">FISICA</option>
+   <option value="ECAL">ECAL</option>
+   <option value="GEM">GEM</option>
+   <option value="L1TRIGGER">L1TRIGGER</option>
+   <option value="ME0">ME0</option>
+   <option value="MTD">MTD</option>
+   <option value="MUON">MUON</option>
+   <option value="PPS">PPS</option>
+   <option value="RPC">RPC</option>
+   <option value="BRIL">BRIL</option>
+   <option value="TRACKER">TRACKER</option>
+</select>
 <label>Ruolo</label>
-<input id=\"respruo\" class=\"w3-input\" type=\"text\">
+<input id="respruo" class="w3-input" type="text">
 <label>LVL</label>
-<input id=\"resplvl\" class=\"w3-input\" type=\"text\">
+<select id="resplvl" name="tag3" class="w3-select" >
+   <option value=""></option>
+   <option value="0">L0</option>
+   <option value="1">L1</option>
+   <option value="2">L2</option>
+   <option value="3">L3</option>
+   <option value="">nc</option>
+   <option value="1.5">L1.5</option>
+</select>
 <label>CoConv</label>
-<input id=\"respcoco\" class=\"w3-input\" type=\"text\">
+<select id="respcoco" name="tag3" class="w3-select">
+   <option value=""></option>
+   <option value="1">Co-Conv</option>
+</select>
 <label>Inizio</label>
-<input id=\"respini\" class=\"w3-input\" type=\"text\">
+<input id="respini" class="w3-input" type="text">
 <label>Fine</label>
-<input id=\"respfin\" class=\"w3-input\" type=\"text\">
+<input id="respfin" class="w3-input" type="text">
 <label>Note</label>
-<input id=\"respnote\" class=\"w3-input\" type=\"text\">
-<button class=\"w3-btn w3-blue\" onclick=\"aggiungiResp(".$q.",".$t.");\">Aggiungi</button>
+<input id="respnote" class="w3-input" type="text">
+';
+echo "<button class=\"w3-btn w3-blue\" onclick=\"aggiungiResp(".$q.",".$t.");\">Aggiungi</button>
 </div>
-<br>
-";
+<br>";
 //<button class=\"w3-btn w3-blue\" onclick=\"alert(idp=".$q." anno=".$t.");\">Aggiungi</button>
 //    xmlhttp.open('GET','annaunna.php?idp=".$idp."&anno=".$anno."&lvl=".$lvl."&prj=".$prj."&ruo=".$ruo."&ini=".$ini."&fin=".$fin."$note=".$note."',true);
 //echo " <div class=\"w3-card-4 w3-third w3-right\">
