@@ -198,21 +198,17 @@ function showRichie(str) {
     };
     mfilt="";
    mfilts="";
-   if (BA.checked == true) {
-     if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'BA')>0  ";
-   }
    if (BO.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'BO')>0  ";
    }
-   if (CT.checked == true) {
+   if (CNAF.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'CT')>0  ";
+     mfilts+= "INSTR(sez,'CNAF')>0  ";
    }
-   if (FI.checked == true) {
+   if (CS.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'FI')>0  ";
+     mfilts+= "INSTR(sez,'CS')>0  ";
    }
    if (GE.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
@@ -222,25 +218,17 @@ function showRichie(str) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'LNF')>0  ";
    }
-   if (LNL.checked == true) {
+   if (LE.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'LNL')>0  ";
+     mfilts+= "INSTR(sez,'LE')>0  ";
    }
-   if (MIB.checked == true) {
+   if (MI.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'MIB')>0  ";
+     mfilts+= "INSTR(sez,'MI')>0  ";
    }
    if (NA.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'NA')>0  ";
-   }
-   if (PD.checked == true) {
-     if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'PD')>0  ";
-   }
-   if (PG.checked == true) {
-     if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'PG')>0  ";
    }
    if (PI.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
@@ -254,13 +242,26 @@ function showRichie(str) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'RM1')>0  ";
    }
+   if (RM2.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'RM2')>0  ";
+   }
+   if (RM3.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'RM3')>0  ";
+   }
+      if (TIFP.checked == true) {
+     if (mfilts!="") mfilts+= "OR ";
+     mfilts+= "INSTR(sez,'TIFP')>0  ";
+>>>>>>> e8c2c3e (atlas sez selector)
+   }
    if (TO.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
      mfilts+= "INSTR(sez,'TO')>0  ";
    }
-   if (TS.checked == true) {
+   if (UD.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'TS')>0  ";
+     mfilts+= "INSTR(sez,'UD')>0  ";
    }
    if (mfilts!="") {
       if (mfilt!=""){ mfilt+=" AND ";}; 	   
@@ -464,25 +465,19 @@ function insertRichie() {
 <fieldset>
 <legend> Sezione </legend>
 <div class="chkdiv">
-<input type="checkbox" id="BA" name="BA" value="BA" onclick="showRichie(richie.value);">
-<label for="BA">BA</label>
-</div>
-<div class="chkdiv">
 <input type="checkbox" id="BO" name="BO" value="BO" onclick="showRichie(richie.value);">
-<label for="BOl">BO</label>
+<label for="BO">BO</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="CT" name="CT" value="CT" onclick="showRichie(richie.value);">
-<label for="CT">CT</label>
+<input type="checkbox" id="CNAF" name="CNAF" value="CNAF" onclick="showRichie(richie.value);">
+<label for="CNAF">CNAF</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="FI" name="FI" value="FI" onclick="showRichie(richie.value);">
-<label for="FI">FI</label>
+<input type="checkbox" id="CS" name="CS" value="CS" onclick="showRichie(richie.value);">
+<label for="CS">CS</label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="GE" name="GE" value="GE" onclick="showRichie(richie.value);">
-</div>
-<div class="chkdiv">
 <label for="GE">GE</label>
 </div>
 <div class="chkdiv">
@@ -490,28 +485,18 @@ function insertRichie() {
 <label for="LNF">LNF</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="LNL" name="LNL" value="LNL" onclick="showRichie(richie.value);">
-<label for="LNL">LNL</label>
+<input type="checkbox" id="LE" name="LE" value="LE" onclick="showRichie(richie.value);">
+<label for="LE">LE</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="MIB" name="MIB" value="MIB" onclick="showRichie(richie.value);">
-</div>
-<div class="chkdiv">
-<label for="MIB">MIB</label>
+<input type="checkbox" id="MI" name="MI" value="MI" onclick="showRichie(richie.value);">
+<label for="MI">MI</label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="NA" name="NA" value="NA" onclick="showRichie(richie.value);">
 <label for="NA">NA</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="PD" name="PD" value="PD" onclick="showRichie(richie.value);">
-<label for="PD">PD</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="PG" name="PG" value="PG" onclick="showRichie(richie.value);">
-</div>
-<div class="chkdiv">
-<label for="PG">PG</label>
 <input type="checkbox" id="PI" name="PI" value="PI" onclick="showRichie(richie.value);">
 <label for="PI">PI</label>
 </div>
@@ -519,17 +504,29 @@ function insertRichie() {
 <input type="checkbox" id="PV" name="PV" value="PV" onclick="showRichie(richie.value);">
 <label for="PV">PV</label>
 </div>
-<div class="chkdiv">
+i<div class="chkdiv">
 <input type="checkbox" id="RM1" name="RM1" value="RM1" onclick="showRichie(richie.value);">
 <label for="RM1">RM1</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="RM2" name="RM2" value="RM2" onclick="showRichie(richie.value);">
+<label for="RM2">RM2</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="RM3" name="RM3" value="RM3" onclick="showRichie(richie.value);">
+<label for="RM3">RM3</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="TIFP" name="TIFP" value="TIFP" onclick="showRichie(richie.value);">
+<label for="TIFP">TIFP</labeb>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="TO" name="TO" value="TO" onclick="showRichie(richie.value);">
 <label for="TO">TO</labeb>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="TS" name="TS" value="TS" onclick="showRichie(richie.value);">
-<label for="TO">TS</label>
+<input type="checkbox" id="UD" name="UD" value="UD" onclick="showRichie(richie.value);">
+<label for="UD">UD</label>
 </div>
 </fieldset>
 </td>
