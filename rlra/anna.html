@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>CMS CSN1</title>
+<title>ATLAS CSN1</title>
 <meta http-equiv="expires" content="Sun, 01 Jan 2014 00:00:00 GMT"/>
 <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="pragma" content="no-cache" />
@@ -269,7 +269,7 @@ function showRichie(str) {
    mfilts="";	  
    if (cms.checked == true) {
      if (mfilts!="") mfilts+= "AND ";
-     mfilts+= "sigla='cms' ";
+     mfilts+= "sigla='atlas' ";
    }
    if (fase2.checked == true) {
      if (mfilts!="") mfilts+= "AND ";
@@ -359,7 +359,7 @@ function showSingleRichie(str) {
    mfilts="";
    if (cms.checked == true) {
      if (mfilts!="") mfilts+= "AND ";
-     mfilts+= "sigla='cms' ";
+     mfilts+= "sigla='atlas' ";
    }
    if (fase2.checked == true) {
      if (mfilts!="") mfilts+= "AND ";
@@ -411,7 +411,7 @@ function insertRichie() {
 </head>
 <body onload="showRichie(richie.value);">
  <div class="w3-container w3-teal ">
-  <h1>Anagrafica CMS</h1>
+  <h1>Anagrafica ATLAS</h1>
 <div class="w3-display-topright">
   <a href="alla.html" class="w3-btn w3-green">Richieste</a>
   <a href="#" class="w3-btn w3-green">Anagrafica</a>
@@ -437,7 +437,7 @@ function insertRichie() {
     </select>
 </form>
 <!---<div class="w3-right">
-<label for="vai">Vai a CMS-ID:</label>
+<label for="vai">Vai a ATLAS-ID:</label>
 <input type="text" id="vai" onchange="showSingleRichie(this.value);">
 <span> &nbsp   </span>
 </div>
@@ -449,8 +449,8 @@ function insertRichie() {
 <td>
 <fieldset >
 <legend> Sigla </legend>
-<input type="radio" id="cms" name="sigla" value="cms"  onclick="showRichie(richie.value);">
-<label for="cms">CMS</label>
+<input type="radio" id="cms" name="sigla" value="atlas"  onclick="showRichie(richie.value);">
+<label for="atlas">ATLAS</label>
 <input type="radio" id="fase2" name="sigla" value="fase2"  onclick="showRichie(richie.value);">
 <label for="fase2">Fase2</label>
 </fieldset>
