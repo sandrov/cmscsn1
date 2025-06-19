@@ -48,8 +48,8 @@ $ressez=mysqli_query($con, $sql);
 $myrates=array("BA"=>4.05, "BO"=>3.8, "CT"=> 4.05, "FI"=> 3.8, "GE"=> 3.7, "LNF"=> 3.7, "LNL"=> 3.8, "MIB"=> 3.7, "NA"=> 3.95, "PD"=> 3.8, "PV"=> 3.7, "PG"=>3.95, "PI"=> 3.8, "RM1"=> 3.7, "TO"=> 3.7, "TS"=> 3.95);
 
 if ($q=="cms") {
-echo "<h1> CMS Anagrafica ".$y." </h1><br>";
-} else echo "<h1> CMS Fase2 Richieste ".$y." </h1><br>";
+echo "<h1> ATLAS Anagrafica ".$y." </h1><br>";
+} else echo "<h1> ATLAS Fase2 Richieste ".$y." </h1><br>";
 //showing property
 echo '<table class="w3-table-all w3-responsive w3-tiny">
         <tr class="w3-red">';  //initialize table tag
@@ -123,25 +123,25 @@ foreach ($thesezs as $asez) {
 //	         do {
 		  echo '<br>';
                  echo "<div>";
-                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID</strong></a></div>";
-//                 echo "<div><span class=\"w3-light-gray\"><a href=\"unnarefe.php?q=".$rowrich['id']."\"><strong> CMS-ID".$rowrich['id']."</strong></a></div>";
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> ATLAS-ID</strong></a></div>";
+//                 echo "<div><span class=\"w3-light-gray\"><a href=\"unnarefe.php?q=".$rowrich['id']."\"><strong> ATLAS-ID".$rowrich['id']."</strong></a></div>";
  //  
 //                  echo "<div><span>".$rowrich['tag']."</span>&nbsp<span>".$rowrich['wbs']."</span>&nbsp<span>".$rowrich['richiesta']."</span></div>";
 		 //                 26.1fte*1mp/fte*3.8KEuro/mp duty e shift
 		 $metarich=$myrates[$asez]*($rowrich['cmsfte']+$rowrich['sinfte']);
-                  echo "<div><span>CMS-META/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro/mp duty e shift</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
-                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID</strong></a></div>";
+                  echo "<div><span>ATLAS-META/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro/mp duty e shift</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> ATLAS-ID</strong></a></div>";
 		 $metarich=$myrates[$asez]*($rowrich['cmsfte']+$rowrich['sinfte']);
-                  echo "<div><span>CMS-ESP/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro/mp duty e shift</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
+                  echo "<div><span>ATLAS-ESP/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro/mp duty e shift</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
   //                echo "<div>".$rowrich['keur']."kEur (".$rowrich['keurSJ']."SJ)</div>";
   //                 if (ltrim($rowrich['descrizione'])!="") {
    //                   echo "<div> Descrizione: <span>".$rowrich['descrizione']."</span></div>";
     //                }
 //                  echo '</div>';
 		 echo "<h3 class=\"w3-text-amber\">Consumo</h3>";
-                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID</strong></a></div>";
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> ATLAS-ID</strong></a></div>";
                 $metarich=1.5*($rowrich['cmsfte']+$rowrich['sinfte']);
-                  echo "<div><span>CMS-META/Consumi Metabolici/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
+                  echo "<div><span>ATLAS-META/Consumi Metabolici/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
  
                 $resresp=mysqli_query($con, "select count(Persone.id) as perso,sum(5-(lvl*2)) as totresp from Persone,Responsabilities where Persone.id=Responsabilities.id_person and anno='".$y."' and sez='".$asez."'") ;
 		$row = mysqli_fetch_array($resresp);
@@ -155,13 +155,13 @@ foreach ($thesezs as $asez) {
 		  echo '<br>';
                 $resresp=mysqli_query($con, "select lvl,coconv,ruolo from Persone,Responsabilities where Persone.id=Responsabilities.id_person and ((lvl=0) OR (lvl=1) OR (lvl=2)) and anno='".$y."' and sez='".$asez."'") ;
 		while ($rowrich = mysqli_fetch_array($resresp)){
-                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID</strong></a></div>";
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> ATLAS-ID</strong></a></div>";
 
 		 $mlvl=(int)($rowrich['lvl']);
 		 $metarich=$myrates[$asez]*(5-($mlvl*2));
 		 $metamp=(5-($mlvl*2));
 		 //CMS-RESP L1/Trigger Coordinator 3 mp*3.8 KEuro/mp 
-                 echo "<div><span>CMS-RESP L".$rowrich['lvl']."/".$rowrich['ruolo']."/".$metamp."mp*".$myrates[$asez]."kEuro/mp </span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
+                 echo "<div><span>ATLAS-RESP L".$rowrich['lvl']."/".$rowrich['ruolo']."/".$metamp."mp*".$myrates[$asez]."kEuro/mp </span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
 		}
                  
 //do                 }
