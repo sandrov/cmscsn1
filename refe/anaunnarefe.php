@@ -33,7 +33,7 @@ echo "
 <th>Nome</th>
 <th>Cognome</th>
 <th>Sezione</th>
-<th>Percentuale CMS</th>
+<th>Percentuale ATLAS</th>
 <th>Sinergica 1</th>
 <th>Percentuale Sin1</th>
 <th>Sinergica 2</th>
@@ -163,7 +163,7 @@ echo "<button onclick=\"showRichie(richie.value);\">Back</button>";
 echo "<div>";
 
 //if($row3) {if ($row3['folder']!="") { 
-//echo "<iframe src=\"https://cernbox.cern.ch/files/spaces/eos/user/v/venturas/cmscsn1/documentazione/CMS-ID".$q."\" width=75% height=600 title='docs folder'></iframe>";
+//echo "<iframe src=\"https://cernbox.cern.ch/files/spaces/eos/user/v/venturas/cmscsn1/documentazione/ATLAS-ID".$q."\" width=75% height=600 title='docs folder'></iframe>";
 //};};
 echo "</div>";
 
