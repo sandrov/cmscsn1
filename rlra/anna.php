@@ -36,7 +36,7 @@ echo "<table class=\"w3-table w3-striped w3-small \">
 <th>Nome</th>
 <th>Sezione</th>
 <th>Profilo</th>
-<th>Percentuale CMS</th>
+<th>Percentuale ATLAS</th>
 <th>Sinergica 1</th>
 <th>Percentuale Sin1</th>
 <th>Sinergica 2</th>
