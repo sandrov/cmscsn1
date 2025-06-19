@@ -20,11 +20,9 @@ echo "<script>
 </script>
 ";
 
-//$q = $_GET['q'];
-//$y = $_GET['y'];
+$q = $_GET['q'];
+$y = $_GET['y'];
 
-$q='cms';
-$y='2026';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $con = mysqli_connect($server,$login,$pass,$db,$port);
 if (!$con) {
@@ -47,7 +45,7 @@ $ressez=mysqli_query($con, $sql);
 
 $myrates=array("BA"=>4.05, "BO"=>3.8, "CT"=> 4.05, "FI"=> 3.8, "GE"=> 3.7, "LNF"=> 3.7, "LNL"=> 3.8, "MIB"=> 3.7, "NA"=> 3.95, "PD"=> 3.8, "PV"=> 3.7, "PG"=>3.95, "PI"=> 3.8, "RM1"=> 3.7, "TO"=> 3.7, "TS"=> 3.95);
 
-if ($q=="cms") {
+if ($q=="atlas") {
 echo "<h1> ATLAS Anagrafica ".$y." </h1><br>";
 } else echo "<h1> ATLAS Fase2 Richieste ".$y." </h1><br>";
 //showing property
