@@ -29,7 +29,7 @@ $con = mysqli_connect($server,$login,$pass,$db,$port);
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 
 $sql="Update Anagrafica set Percentuale_CMS='".$perccms."', SiglaSiner1='".$sin1."',Percentuale_Sin1='".$percs1."', SiglaSiner2='".$sin2."',Percentuale_Sin2='".$percs2."', SiglaSiner3='".$sin3."',Percentuale_Sin3='".$percs3."' WHERE id_person='".$idp."' and anno='".$anno."'";
 $result = mysqli_query($con,$sql);
