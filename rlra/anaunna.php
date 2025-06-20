@@ -78,7 +78,7 @@ while($row = mysqli_fetch_array($result)) {
 //  echo "<option value=\"\"></option>";
 //  echo "</select>";
 //  echo "</td>";
-  echo "<td><select id=\"sin1\">";
+  echo "<td><select id=\"sin1\" class=\"\">";
   echo "<option value=\"\">sigla:</option>";	  	
   foreach ($siglesin as $thesigla) {
        $myopt =  $row['SiglaSiner1'] == $thesigla ? ' selected="selected"' : '';
@@ -86,7 +86,7 @@ while($row = mysqli_fetch_array($result)) {
   }
   echo "</select></td>";
   echo "<td><input type=\"text\" width=20 id=\"percs1\" name=\"pers1\" value=\"".$row['Percentuale_Sin1']."\"></td>";
-  echo "<td><select id=\"sin2\">";
+  echo "<td><select id=\"sin2\" class=\"\">";
   echo "<option value=\"\">sigla:</option>";	  	
   foreach ($siglesin as $thesigla) {
        $myopt =  $row['SiglaSiner2'] == $thesigla ? ' selected="selected"' : '';
@@ -94,7 +94,7 @@ while($row = mysqli_fetch_array($result)) {
   }
   echo "</select></td>";
   echo "<td><input type=\"text\" width=20 id=\"percs2\" name=\"pers2\" value=\"".$row['Percentuale_Sin2']."\"></td>";
-  echo "<td><select id=\"sin3\">";
+  echo "<td><select id=\"sin3\" class=\"\">";
   echo "<option value=\"\">sigla:</option>";	  	
   foreach ($siglesin as $thesigla) {
        $myopt =  $row['SiglaSiner3'] == $thesigla ? ' selected="selected"' : '';
