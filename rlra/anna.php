@@ -15,7 +15,7 @@ if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 if ($q==0) { $sql="SELECT * FROM Persone WHERE 1 ";}
 else {
 if	(($t&1)==0) {
