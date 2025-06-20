@@ -31,7 +31,7 @@ $con = mysqli_connect($server,$login,$pass,$db,$port);
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 
 $sql="INSERT INTO Responsabilities (id_person,anno,lvl,progetto,ruolo,coconv,inizio,fine,note) values('".$idp."','".$anno."','".$lvl."','".$prj."','".$ruo."','".$coco."','".$ini."','".$fin."','".$note."')";
 $result = mysqli_query($con,$sql);
