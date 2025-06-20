@@ -19,7 +19,7 @@ if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 if ($q>2026) {$q=2026;};
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 if ($q==0) { $sql="SELECT * FROM Richieste WHERE anno > 0 and anno<2027";}
 else $sql="SELECT * FROM Richieste WHERE anno= '".$q."' ";
 if ($f) $sql=$sql." AND (".$f.")";
