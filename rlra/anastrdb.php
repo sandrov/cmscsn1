@@ -60,7 +60,7 @@ echo '<table class="w3-table-all w3-responsive w3-small">
 //$mycaps[];
 echo '<td> sezione </td>';
 echo '<td> persone </td>';
-echo '<td> cms_fte </td>';
+echo '<td> atlas_fte </td>';
 echo '<td> sin_fte </td>';
 echo '<td> ruoli_resp </td>';
 echo '<td> mp_resp </td>';
@@ -127,7 +127,7 @@ foreach ($thesezs as $asez) {
 //	         do {
 		  echo '<br>';
                  echo "<div>";
-		 $mtag="CMS-META";
+		 $mtag="ATLAS-META";
 
 		 $metarich=$myrates[$asez]*($rowrich['cmsfte']+$rowrich['sinfte'])+0.25;
                  $a=(int)$metarich;
@@ -140,13 +140,13 @@ foreach ($thesezs as $asez) {
 		 if ($rowana2['id_rich']) {$myid=$rowana2['id_rich'];} else {$myid=0;};
 		 if ($q>=2025) { 
 			 if ($myid==0){
-			 $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','missioni','".$mtag."','','/Missioni metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
+			 $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','missioni','".$mtag."','','/Missioni metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'atlas')"; 
 		         $resana3=mysqli_query($con, $sqlana3);
 		         $myid=mysqli_insert_id($con);
 			 $sqlana4="insert into an2rich (anno,sez,tag,id_rich) values(".$q.",'".$asez."','".$mtag."MI',".$myid.")";
 		         $resana4=mysqli_query($con, $sqlana4);
 		 } else {
-			 $sqlana5="replace into Richieste (id,anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$myid.",".$q.",'".$asez."','missioni','".$mtag."','','Missioni metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
+			 $sqlana5="replace into Richieste (id,anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$myid.",".$q.",'".$asez."','missioni','".$mtag."','','Missioni metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'atlas')"; 
 		         $resana5=mysqli_query($con, $sqlana5);
 		 }
 		 }
@@ -154,10 +154,10 @@ foreach ($thesezs as $asez) {
 //			 echo  $sqlana3.'\n';
 //			 echo  $sqlana4.'\n';
 //			 echo  $sqlana5.'\n';
-		 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID ".$rowana2['id_rich'],"</strong></a></div>";
+		 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> ATLAS-ID ".$rowana2['id_rich'],"</strong></a></div>";
                   echo "<div><span>".$mtag."/Missioni metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
 
-		 $mtag="CMS-ESP";
+		 $mtag="ATLAS-ESP";
 
 		 $sqlana2="select id_rich from an2rich where sez=\"".$asez."\" and anno=\"".$q."\" and tag=\"".$mtag."\""; 
 		 $resana2=mysqli_query($con, $sqlana2);
@@ -169,13 +169,13 @@ foreach ($thesezs as $asez) {
                  else $metarich=$a+0.5;
 		 if ($q>=2025) { 
 		 if ($myid==0){
-			 $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','missioni','".$mtag."','','/Missioni duties and shifts/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
+			 $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','missioni','".$mtag."','','/Missioni duties and shifts/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'atlas')"; 
 		         $resana3=mysqli_query($con, $sqlana3);
 		         $myid=mysqli_insert_id($con);
 			 $sqlana4="insert into an2rich (anno,sez,tag,id_rich) values(".$q.",'".$asez."','".$mtag."',".$myid.")";
 		         $resana4=mysqli_query($con, $sqlana4);
 		 } else {
-			 $sqlana5="replace into Richieste (id,anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$myid.",".$q.",'".$asez."','missioni','".$mtag."','','Missioni duties and shifts/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
+			 $sqlana5="replace into Richieste (id,anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$myid.",".$q.",'".$asez."','missioni','".$mtag."','','Missioni duties and shifts/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'atlas')"; 
 		         $resana5=mysqli_query($con, $sqlana5);
 		 }
 		 }
@@ -183,7 +183,7 @@ foreach ($thesezs as $asez) {
 //			 echo  $sqlana3.'\n';
 //			 echo  $sqlana4.'\n';
 //			 echo  $sqlana5.'\n';
-                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID ".$rowana2['id_rich'],"</strong></a></div>";
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> ATLAS-ID ".$rowana2['id_rich'],"</strong></a></div>";
 		 $metarich=$myrates[$asez]*($rowrich['cmsfte']+$rowrich['sinfte']);
                  $a=(int)$metarich;
                  if (($metarich-$a)<0.5) {$metarich=$a;}
@@ -194,7 +194,7 @@ foreach ($thesezs as $asez) {
    //                   echo "<div> Descrizione: <span>".$rowrich['descrizione']."</span></div>";
     //                }
 //                  echo '</div>';
-                 $mtag="CMS-META";
+                 $mtag="ATLAS-META";
                  $sqlana2="select id_rich from an2rich where sez=\"".$asez."\" and anno=\"".$q."\" and tag=\"".$mtag."CO\"";
                  $resana2=mysqli_query($con, $sqlana2);
                  $rowana2 = mysqli_fetch_array($resana2);
@@ -205,19 +205,19 @@ foreach ($thesezs as $asez) {
                  if ($rowana2['id_rich']) {$myid=$rowana2['id_rich'];} else {$myid=0;};
 		 if ($q>=2025) { 
                  if ($myid==0){
-		         $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','consumo','".$mtag."','','/Consumi metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte',".$metarich.",'cms')";
+		         $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','consumo','".$mtag."','','/Consumi metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte',".$metarich.",'atlas')";
                          $resana3=mysqli_query($con, $sqlana3);
                          $myid=mysqli_insert_id($con);
                          $sqlana4="insert into an2rich (anno,sez,tag,id_rich) values(".$q.",'".$asez."','".$mtag."CO',".$myid.")";
                          $resana4=mysqli_query($con, $sqlana4);
                  } else {
-		         $sqlana5="replace into Richieste (id,anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$myid.",".$q.",'".$asez."','consumo','".$mtag."','','Consumi metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte',".$metarich.",'cms')";
+		         $sqlana5="replace into Richieste (id,anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$myid.",".$q.",'".$asez."','consumo','".$mtag."','','Consumi metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte',".$metarich.",'atlas')";
                          $resana5=mysqli_query($con, $sqlana5);
                  }
 		 }
 
 		 echo "<h3 class=\"w3-text-light-green\">consumo</h3>";
-                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID ".$rowana2['id_rich'],"</strong></a></div>";
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> ATLAS-ID ".$rowana2['id_rich'],"</strong></a></div>";
 
                   echo "<div><span>".$mtag."/Consumi Metabolici/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
  
@@ -234,7 +234,8 @@ foreach ($thesezs as $asez) {
                 //$resresp=mysqli_query($con, "select lvl,coconv,Progetto,ruolo,Cognome,Nome,id_richiesta from Persone,Responsabilities where Persone.id=Responsabilities.id_person and ((lvl=0) OR (lvl=1) OR (lvl=2)) and anno='".$q."' and sez='".$asez."'") ;
                 $resresp=mysqli_query($con, "select lvl,coconv,Progetto,ruolo,Cognome,Nome,id_richiesta from Persone,Responsabilities where Persone.id=Responsabilities.id_person and anno='".$q."' and sez='".$asez."'") ;
 		while ($rowrich = mysqli_fetch_array($resresp)){
-                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID ".$rowrich['id_richiesta']."</strong></a></div>";
+<<<<<<< HEAD
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> ATLAS-ID ".$rowrich['id_richiesta']."</strong></a></div>";
                  $mlvl=(int)($rowrich['lvl']);
                  $mlvl=5-($mlvl*2);
 		 $metarich=$myrates[$asez]*$mlvl;
@@ -244,7 +245,7 @@ foreach ($thesezs as $asez) {
                  else $metarich=$a+0.5;
 		 $mcoco="";
 		 if ($rowrich['coconv']) $mcoco="coconv/";
-		 //CMS-RESP L1/Trigger Coordinator 3 mp*3.8 KEuro/mp 
+		 //ATLAS-RESP L1/Trigger Coordinator 3 mp*3.8 KEuro/mp 
 		 if (($mlvl>0) && ($mlvl<5)) {
                  echo "<div><span>".$rowrich['Progetto']." L".$rowrich['lvl']."/".$rowrich['ruolo']."/".$mcoco.$metamp."mp*".$myrates[$asez]."kEuro/mp </span>&nbsp&nbsp<span>".$metarich."kEur</span>&nbsp&nbsp<span>".$rowrich['Nome']." ".$rowrich['Cognome']."</span></div>";
 		 } else {

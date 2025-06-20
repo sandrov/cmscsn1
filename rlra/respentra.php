@@ -35,7 +35,7 @@ $con = mysqli_connect($server,$login,$pass,$db,$port);
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 if (($lvl>0) && ($lvl<3)){
     $metamp=(5-($lvl*2));
   }
@@ -62,7 +62,7 @@ echo $respstr;;
 echo "<br>";
 $myid=0;
 if (($lvl>0) && ($lvl<3)) {
-	$sql2="INSERT into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$anno.",'".$sez."','missioni','".$prj."-RESP','','".$respstr."','".$metarich."','cms')"; 
+	$sql2="INSERT into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$anno.",'".$sez."','missioni','".$prj."-RESP','','".$respstr."','".$metarich."','atlas')"; 
         $result2 = mysqli_query($con,$sql2);
         $myid=mysqli_insert_id($con);
 }
