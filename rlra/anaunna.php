@@ -18,7 +18,7 @@ if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 
-mysqli_select_db($con,"atlasph2");
+mysqli_select_db($con,"cmsph2");
 $sql="SELECT * FROM Persone,Anagrafica WHERE Persone.id = '".$q."' and Persone.id=Anagrafica.id_person and anno=".$t." and ".$f;
 $result = mysqli_query($con,$sql);
 $sql2="SELECT Responsabilities.id as rid,Progetto,lvl,ruolo,coconv,inizio,fine,note FROM Persone,Responsabilities WHERE Persone.id=Responsabilities.id_person and Persone.id='".$q."' and anno=".$t;
@@ -189,7 +189,7 @@ echo '
 <label>Progetto</label>
 <select id="respprj" name="tag1" class="w3-select">
    <option value="">TAG-PRJ</option>
-   <option value="ATLAS">ATLAS</option>
+   <option value="ATLAS">CMS</option>
    <option value="CALCOLO">CALCOLO</option>
    <option value="DT">DT</option>
    <option value="FISICA">FISICA</option>
