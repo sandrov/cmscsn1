@@ -157,8 +157,9 @@ foreach ($thesezs as $asez) {
 		while ($rowrich = mysqli_fetch_array($resresp)){
                  echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID</strong></a></div>";
 
-		 $metarich=$myrates[$asez]*(5-($rowrich['lvl']*2));
-		 $metamp=(5-($rowrich['lvl']*2));
+		 $mlvl=(int)($rowrich['lvl']);
+		 $metarich=$myrates[$asez]*(5-($mlvl*2));
+		 $metamp=(5-($mlvl*2));
 		 //CMS-RESP L1/Trigger Coordinator 3 mp*3.8 KEuro/mp 
                  echo "<div><span>CMS-RESP L".$rowrich['lvl']."/".$rowrich['ruolo']."/".$metamp."mp*".$myrates[$asez]."kEuro/mp </span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
 		}

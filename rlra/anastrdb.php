@@ -223,18 +223,29 @@ foreach ($thesezs as $asez) {
 		//while ($row = mysqli_fetch_row($resresp)){
 	         echo "<h3 class=\"w3-text-light-green\">resp.</h3>";
                  echo "<div class=\"w3-container\"><span>Ruoli:".$row['perso']."</span></div>";
-                 echo "<div class=\"w3-container\"><span>Tot mp:".$row['totresp']."</span></div>";
+//                 echo "<div class=\"w3-container\"><span>Tot mp:".$row['totresp']."</span></div>";
                 };
 		  echo '</div>';
 		  echo '<br>';
-                $resresp=mysqli_query($con, "select lvl,coconv,Progetto,ruolo,Cognome,Nome from Persone,Responsabilities where Persone.id=Responsabilities.id_person and ((lvl=0) OR (lvl=1) OR (lvl=2)) and anno='".$q."' and sez='".$asez."'") ;
+                //$resresp=mysqli_query($con, "select lvl,coconv,Progetto,ruolo,Cognome,Nome,id_richiesta from Persone,Responsabilities where Persone.id=Responsabilities.id_person and ((lvl=0) OR (lvl=1) OR (lvl=2)) and anno='".$q."' and sez='".$asez."'") ;
+                $resresp=mysqli_query($con, "select lvl,coconv,Progetto,ruolo,Cognome,Nome,id_richiesta from Persone,Responsabilities where Persone.id=Responsabilities.id_person and anno='".$q."' and sez='".$asez."'") ;
 		while ($rowrich = mysqli_fetch_array($resresp)){
-                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID</strong></a></div>";
-
-		 $metarich=$myrates[$asez]*(5-($rowrich['lvl']*2));
-		 $metamp=(5-($rowrich['lvl']*2));
+                 echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID ".$rowrich['id_richiesta']."</strong></a></div>";
+                 $mlvl=(int)($rowrich['lvl']);
+                 $mlvl=5-($mlvl*2);
+		 $metarich=$myrates[$asez]*$mlvl;
+		 $metamp=$mlvl;
+		 $a=(int)$metarich;
+                 if (($metarich-$a)<0.5) {$metarich=$a;}
+                 else $metarich=$a+0.5;
+		 $mcoco="";
+		 if ($rowrich['coconv']) $mcoco="coconv/";
 		 //CMS-RESP L1/Trigger Coordinator 3 mp*3.8 KEuro/mp 
-                 echo "<div><span>".$rowrich['Progetto']." L".$rowrich['lvl']."/".$rowrich['ruolo']."/".$metamp."mp*".$myrates[$asez]."kEuro/mp </span>&nbsp&nbsp<span>".$metarich."kEur</span>&nbsp&nbsp<span>".$rowrich['Nome']." ".$rowrich['Cognome']."</span></div>";
+		 if (($mlvl>0) && ($mlvl<5)) {
+                 echo "<div><span>".$rowrich['Progetto']." L".$rowrich['lvl']."/".$rowrich['ruolo']."/".$mcoco.$metamp."mp*".$myrates[$asez]."kEuro/mp </span>&nbsp&nbsp<span>".$metarich."kEur</span>&nbsp&nbsp<span>".$rowrich['Nome']." ".$rowrich['Cognome']."</span></div>";
+		 } else {
+                 echo "<div><span>".$rowrich['Progetto']."/".$rowrich['ruolo']."/".$mcoco." </span>&nbsp&nbsp<span>".$rowrich['Nome']." ".$rowrich['Cognome']."</span></div>";
+		 }
 		}
                  
 //do                 }

@@ -24,7 +24,6 @@ echo $idp, $ruo,$ini,$fin,$sez, $nome, $cognome;
 
 $myrates=array("BA"=>4.05, "BO"=>3.8, "CT"=> 4.05, "FI"=> 3.8, "GE"=> 3.7, "LNF"=> 3.7, "LNL"=> 3.8, "MIB"=> 3.7, "NA"=> 3.95, "PD"=> 3.8, "PV"=> 3.7, "PG"=>3.95, "PI"=> 3.8, "RM1"=> 3.7, "TO"=> 3.7, "TS"=> 3.95);
 
-
 $prj=addslashes($prj);
 $ruo=addslashes($ruo);
 $ini=addslashes($ini);
@@ -37,22 +36,29 @@ if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 mysqli_select_db($con,"cmsph2");
-if ($lvl<3){
+if (($lvl>0) && ($lvl<3)){
     $metamp=(5-($lvl*2));
   }
 else $metamp=0;
-$metamp=(5-($lvl*2));
-$metarich=$myrates[$sez]*$metaamp+0.25;
+$metarich=$myrates[$sez];
+$metarich*=$metamp;
 $a=(int)$metarich;
 if (($metarich-$a)<0.5) {$metarich=$a;}
 else $metarich=$a+0.5;
 if (($lvl>0) && ($lvl<3)) {
-$respstr=$prj." L".$lvl."/".$ruo."/".$metamp."mp*".$myrates[$asez]."kEuro/mp ".$metarich."kEur ".$nome." ".$cognome;
+  if ($coco>0) {	
+        $respstr=$prj." L".$lvl."/coconv/".$ruo."/".$metamp."mp*".$myrates[$sez]."kEuro/mp ".$nome." ".$cognome;
+    } else {
+	$respstr=$prj." L".$lvl."/".$ruo."/".$metamp."mp*".$myrates[$sez]."kEuro/mp ".$nome." ".$cognome;
+//	$respstr=$prj." L".$lvl."/".$ruo."/".$metamp."mp*".$myrates[$sez]."kEuro/mp ".$metarich."kEur ".$nome." ".$cognome;
+  }
 } else {
 $metarich=0;
 if ($lvl>2) {$respstr=$prj." L".$lvl."/".$ruo."/ ".$nome." ".$cognome;}
 else { $respstr=$prj."/".$ruo."/ ".$nome." ".$cognome;}
 }
+echo $respstr;;
+echo "<br>";
 $sql2="INSERT into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$anno.",'".$sez."','missioni','".$prj."-RESP','','".$respstr."','".$metarich."','cms')"; 
 echo $sql2;
 echo "\n";
