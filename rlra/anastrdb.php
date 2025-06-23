@@ -137,7 +137,8 @@ foreach ($thesezs as $asez) {
 		 $resana2=mysqli_query($con, $sqlana2);
 		 $rowana2 = mysqli_fetch_array($resana2);
 		 if ($rowana2['id_rich']) {$myid=$rowana2['id_rich'];} else {$myid=0;};
-		 if ($myid==0){
+		 if ($q>=2025) { 
+			 if ($myid==0){
 			 $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','missioni','".$mtag."','','/Missioni metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
 		         $resana3=mysqli_query($con, $sqlana3);
 		         $myid=mysqli_insert_id($con);
@@ -146,6 +147,7 @@ foreach ($thesezs as $asez) {
 		 } else {
 			 $sqlana5="replace into Richieste (id,anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$myid.",".$q.",'".$asez."','missioni','".$mtag."','','Missioni metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
 		         $resana5=mysqli_query($con, $sqlana5);
+		 }
 		 }
 //			 echo  $sqlana2.'\n';
 //			 echo  $sqlana3.'\n';
@@ -164,6 +166,7 @@ foreach ($thesezs as $asez) {
                  $a=(int)$metarich;
                  if (($metarich-$a)<0.5) {$metarich=$a;}
                  else $metarich=$a+0.5;
+		 if ($q>=2025) { 
 		 if ($myid==0){
 			 $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','missioni','".$mtag."','','/Missioni duties and shifts/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
 		         $resana3=mysqli_query($con, $sqlana3);
@@ -173,6 +176,7 @@ foreach ($thesezs as $asez) {
 		 } else {
 			 $sqlana5="replace into Richieste (id,anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$myid.",".$q.",'".$asez."','missioni','".$mtag."','','Missioni duties and shifts/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
 		         $resana5=mysqli_query($con, $sqlana5);
+		 }
 		 }
 //			 echo  $sqlana2.'\n';
 //			 echo  $sqlana3.'\n';
@@ -195,6 +199,7 @@ foreach ($thesezs as $asez) {
                  if (($metarich-$a)<0.5) {$metarich=$a;}
                  else $metarich=$a+0.5;
                  if ($rowana2['id_rich']) {$myid=$rowana2['id_rich'];} else {$myid=0;};
+		 if ($q>=2025) { 
                  if ($myid==0){
 		         $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','consumo','".$mtag."','','/Consumi metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte',".$metarich.",'cms')";
                          $resana3=mysqli_query($con, $sqlana3);
@@ -205,6 +210,7 @@ foreach ($thesezs as $asez) {
 		         $sqlana5="replace into Richieste (id,anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$myid.",".$q.",'".$asez."','consumo','".$mtag."','','Consumi metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte',".$metarich.",'cms')";
                          $resana5=mysqli_query($con, $sqlana5);
                  }
+		 }
 
 		 echo "<h3 class=\"w3-text-light-green\">consumo</h3>";
                  echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID ".$rowana2['id_rich'],"</strong></a></div>";
@@ -221,14 +227,14 @@ foreach ($thesezs as $asez) {
                 };
 		  echo '</div>';
 		  echo '<br>';
-                $resresp=mysqli_query($con, "select lvl,coconv,ruolo,Cognome,Nome from Persone,Responsabilities where Persone.id=Responsabilities.id_person and ((lvl=0) OR (lvl=1) OR (lvl=2)) and anno='".$q."' and sez='".$asez."'") ;
+                $resresp=mysqli_query($con, "select lvl,coconv,Progetto,ruolo,Cognome,Nome from Persone,Responsabilities where Persone.id=Responsabilities.id_person and ((lvl=0) OR (lvl=1) OR (lvl=2)) and anno='".$q."' and sez='".$asez."'") ;
 		while ($rowrich = mysqli_fetch_array($resresp)){
                  echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID</strong></a></div>";
 
 		 $metarich=$myrates[$asez]*(5-($rowrich['lvl']*2));
 		 $metamp=(5-($rowrich['lvl']*2));
 		 //CMS-RESP L1/Trigger Coordinator 3 mp*3.8 KEuro/mp 
-                 echo "<div><span>CMS-RESP L".$rowrich['lvl']."/".$rowrich['ruolo']."/".$metamp."mp*".$myrates[$asez]."kEuro/mp </span>&nbsp&nbsp<span>".$metarich."kEur</span>&nbsp&nbsp<span>".$rowrich['Nome']." ".$rowrich['Cognome']."</span></div>";
+                 echo "<div><span>".$rowrich['Progetto']." L".$rowrich['lvl']."/".$rowrich['ruolo']."/".$metamp."mp*".$myrates[$asez]."kEuro/mp </span>&nbsp&nbsp<span>".$metarich."kEur</span>&nbsp&nbsp<span>".$rowrich['Nome']." ".$rowrich['Cognome']."</span></div>";
 		}
                  
 //do                 }

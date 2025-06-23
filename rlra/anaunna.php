@@ -57,6 +57,9 @@ while($row = mysqli_fetch_array($result)) {
   $totsin+=$row['Percentuale_Sin1']/100;
   $totsin+=$row['Percentuale_Sin2']/100;
   $totsin+=$row['Percentuale_Sin3']/100;
+  $respsez=$row['sez'];
+  $respnome=$row['Nome'];
+  $respcognome=$row['Cognome'];
   echo "<tr>";
   echo "<td>" . $row['Nome'] . "</td>";
   echo "<td>" . $row['Cognome'] . "</td>";
@@ -220,7 +223,7 @@ echo '
 <label>Note</label>
 <input id="respnote" class="w3-input" type="text">
 ';
-echo "<button class=\"w3-btn w3-blue\" onclick=\"aggiungiResp(".$q.",".$t.");\">Aggiungi</button>
+echo "<button class=\"w3-btn w3-blue\" onclick=\"aggiungiResp(".$q.",".$t.",'".$respsez."','".$respnome."','".$respcognome."');\">Aggiungi</button>
 </div>
 <br>";
 //<button class=\"w3-btn w3-blue\" onclick=\"alert(idp=".$q." anno=".$t.");\">Aggiungi</button>
