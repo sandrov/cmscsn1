@@ -23,6 +23,7 @@ echo "<script>
 $q = $_GET['q'];
 $y = $_GET['y'];
 
+
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $con = mysqli_connect($server,$login,$pass,$db,$port);
 if (!$con) {

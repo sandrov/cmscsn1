@@ -21,7 +21,7 @@ if (!$con) {
 mysqli_select_db($con,"cmsph2");
 $sql="SELECT * FROM Persone,Anagrafica WHERE Persone.id = '".$q."' and Persone.id=Anagrafica.id_person and anno=".$t." and ".$f;
 $result = mysqli_query($con,$sql);
-$sql2="SELECT Progetto,lvl,ruolo,inizio,fine,note FROM Persone,Responsabilities WHERE Persone.id=Responsabilities.id_person and Persone.id='".$q."' and anno=".$t;
+$sql2="SELECT Progetto,lvl,ruolo,coconv,inizio,fine,note FROM Persone,Responsabilities WHERE Persone.id=Responsabilities.id_person and Persone.id='".$q."' and anno=".$t;
 $result2= mysqli_query($con,$sql2);
 //$sql3="SELECT documentazione,folder FROM Richieste,docs WHERE Richieste.id=docs.id_richiesta and Richieste.id='".$q."'";
 //$result3= mysqli_query($con,$sql3);
@@ -167,11 +167,15 @@ echo "<table class=\" w3-half w3-small\">
 ";
 while($row2 = mysqli_fetch_array($result2)) {
   echo "<tr>";
+
+  $mcoco='';
+  if ($row2['coconv']) $mcoco='Y';
+  
 //  echo "<td>" . $row['Anno'] . "</td>";
   echo "<td>" . $row2['Progetto'] . "</td>";
   echo "<td>" . $row2['ruolo'] . "</td>";
   echo "<td>" . $row2['lvl'] . "</td>";
-  echo "<td>" . $row2['coconv'] . "</td>";
+  echo "<td>" . $mcoco . "</td>";
   echo "<td>" . $row2['inizio'] . "</td>";
   echo "<td>" . $row2['fine'] . "</td>";
   echo "<td>" . $row2['note'] . "</td>";

@@ -60,11 +60,12 @@ else { $respstr=$prj."/".$ruo."/ ".$nome." ".$cognome;}
 echo $respstr;;
 echo "<br>";
 $sql2="INSERT into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$anno.",'".$sez."','missioni','".$prj."-RESP','','".$respstr."','".$metarich."','cms')"; 
-echo $sql2;
-echo "\n";
 $result2 = mysqli_query($con,$sql2);
 $myid=mysqli_insert_id($con);
-echo $myid;
+$ruo=addslashes($ruo);
+$ini=addslashes($ini);
+$fin=addslashes($fin);
+$note=addslashes($note);
 $sql="INSERT INTO Responsabilities (id_person,anno,lvl,progetto,ruolo,coconv,inizio,fine,note,id_richiesta) values('".$idp."','".$anno."','".$lvl."','".$prj."','".$ruo."','".$coco."','".$ini."','".$fin."','".$note."','".$myid."')";
 $result = mysqli_query($con,$sql);
 $reqid=mysqli_insert_id($con);
