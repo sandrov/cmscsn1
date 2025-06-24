@@ -39,7 +39,11 @@ CREATE TABLE `Anagrafica` (
   PRIMARY KEY (`id`),
   KEY `id_person` (`id_person`),
   CONSTRAINT `Anagrafica_ibfk_1` FOREIGN KEY (`id_person`) REFERENCES `Persone` (`id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=1883 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=1871 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+>>>>>>> 85bbe6d (updated sql table script)
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +82,11 @@ CREATE TABLE `Persone` (
   `Profilo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UC_Person` (`Cognome`,`Nome`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=607 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=594 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+>>>>>>> 85bbe6d (updated sql table script)
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +110,11 @@ CREATE TABLE `Responsabilities` (
   `id_richiesta` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_person` (`id_person`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+>>>>>>> 85bbe6d (updated sql table script)
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +143,11 @@ CREATE TABLE `Richieste` (
   `ra` tinyint(1) DEFAULT NULL,
   `aggio` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=1039 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=772 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+>>>>>>> 85bbe6d (updated sql table script)
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +180,11 @@ CREATE TABLE `docs` (
   `documentazione` mediumtext COLLATE utf8mb4_general_ci,
   `folder` varchar(1024) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=727 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=585 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+>>>>>>> 85bbe6d (updated sql table script)
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +200,11 @@ CREATE TABLE `siglesin` (
   `csn` int DEFAULT NULL,
   `note` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+>>>>>>> 85bbe6d (updated sql table script)
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -192,4 +216,8 @@ CREATE TABLE `siglesin` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD
 -- Dump completed on 2025-06-27  0:14:05
+=======
+-- Dump completed on 2025-06-24 19:25:17
+>>>>>>> 85bbe6d (updated sql table script)
