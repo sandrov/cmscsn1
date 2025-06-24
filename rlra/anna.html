@@ -113,7 +113,7 @@ function rimuoviResp(idp,rid){
       };
     }
 
-      let mstr= "rid="+rid;
+      let mstr= "idp="+idp+"&rid="+rid;
 //      alert(mstr);
     xmlhttp.open('GET',"resprimo.php?"+mstr,true);
     xmlhttp.send();
