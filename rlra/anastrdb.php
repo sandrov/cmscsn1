@@ -184,6 +184,9 @@ foreach ($thesezs as $asez) {
 //			 echo  $sqlana5.'\n';
                  echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> CMS-ID ".$rowana2['id_rich'],"</strong></a></div>";
 		 $metarich=$myrates[$asez]*($rowrich['cmsfte']+$rowrich['sinfte']);
+                 $a=(int)$metarich;
+                 if (($metarich-$a)<0.5) {$metarich=$a;}
+                 else $metarich=$a+0.5;
                   echo "<div><span>".$mtag."/Missioni duties and shift/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro</span>&nbsp&nbsp<span>".$metarich."kEur</span></div>";
   //                echo "<div>".$rowrich['keur']."kEur (".$rowrich['keurSJ']."SJ)</div>";
   //                 if (ltrim($rowrich['descrizione'])!="") {
