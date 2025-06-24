@@ -69,6 +69,7 @@ function aggiornaDB(myid,myfla) {
 
 };
 
+
 function aggiungiResp(idp,anno,sez,nome,cognome){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
@@ -97,6 +98,28 @@ function aggiungiResp(idp,anno,sez,nome,cognome){
     xmlhttp.send();
 
 };
+
+function rimuoviResp(idp,rid){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+                      //alert(this.responseText);
+                      showSingleRichie(idp);
+      }
+      else {
+         if (this.readyState == 4 && this.status != 200)
+//                    document.getElementById('id03').style.display='block';
+                      alert("insert error");
+      };
+    }
+
+      let mstr= "rid="+rid;
+      alert(mstr);
+    xmlhttp.open('GET',"resprimo.php?"+mstr,true);
+    xmlhttp.send();
+
+};
+
 
 function aggiornaAnag(idp,anno){
     var xmlhttp = new XMLHttpRequest();
