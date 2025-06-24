@@ -15,7 +15,7 @@ $con = mysqli_connect($server,$login,$pass,$db,$port);
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
-mysqli_select_db($con,"cmsph2");
+mysqli_select_db($con,"atlasph2");
 //echo "<br>";
 $sql2="select id_richiesta from Responsabilities where id=".$rid; 
 $result2 = mysqli_query($con,$sql2);
