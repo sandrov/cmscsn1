@@ -7,9 +7,8 @@ header("Pragma: no-cache");
 
 
 $idp = intval($_GET['idp']);
-$rid = $_GET['rid'];
+$rid = intval($_GET['rid']);
 //echo $rid."<br>";
-
 
 //$con = mysqli_connect('localhost','cms','');
 $con = mysqli_connect($server,$login,$pass,$db,$port);
@@ -24,9 +23,9 @@ $result2 = mysqli_query($con,$sql2);
 
 $row=mysqli_fetch_array($result2);
 if ($row['id_richiesta']>0){
-  $sql3="delete from Richieste where id=".$row['id_richiesta'];
-  echo $sql3."<br>";
-$result = mysqli_query($con,$sql);
+  $sql="delete from Richieste where id=".$row['id_richiesta'];
+  //echo $sql."<br>";
+  $result = mysqli_query($con,$sql);
 }
 
 $sql="delete from Responsabilities where id=".$rid;
