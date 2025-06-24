@@ -234,7 +234,6 @@ foreach ($thesezs as $asez) {
                 //$resresp=mysqli_query($con, "select lvl,coconv,Progetto,ruolo,Cognome,Nome,id_richiesta from Persone,Responsabilities where Persone.id=Responsabilities.id_person and ((lvl=0) OR (lvl=1) OR (lvl=2)) and anno='".$q."' and sez='".$asez."'") ;
                 $resresp=mysqli_query($con, "select lvl,coconv,Progetto,ruolo,Cognome,Nome,id_richiesta from Persone,Responsabilities where Persone.id=Responsabilities.id_person and anno='".$q."' and sez='".$asez."'") ;
 		while ($rowrich = mysqli_fetch_array($resresp)){
-<<<<<<< HEAD
                  echo "<div><span class=\"w3-light-gray\"><a href=\"#\"><strong> ATLAS-ID ".$rowrich['id_richiesta']."</strong></a></div>";
                  $mlvl=(int)($rowrich['lvl']);
                  $mlvl=5-($mlvl*2);
