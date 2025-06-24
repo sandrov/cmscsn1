@@ -6,9 +6,9 @@ header("Pragma: no-cache");
 
 
 
-//$idp = intval($_GET['idp']);
+$idp = intval($_GET['idp']);
 $rid = $_GET['rid'];
-echo $rid."<br>";
+//echo $rid."<br>";
 
 
 //$con = mysqli_connect('localhost','cms','');
@@ -17,10 +17,10 @@ if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 mysqli_select_db($con,"cmsph2");
-echo "<br>";
+//echo "<br>";
 $sql2="select id_richiesta from Responsabilities where id=".$rid; 
 $result2 = mysqli_query($con,$sql2);
-echo $sql2."<br>";
+//echo $sql2."<br>";
 
 $row=mysqli_fetch_array($result2);
 if ($row['id_richiesta']>0){
@@ -31,7 +31,7 @@ $result = mysqli_query($con,$sql);
 
 $sql="delete from Responsabilities where id=".$rid;
 $result = mysqli_query($con,$sql);
-echo $sql;
+//echo $sql;
 
 mysqli_close($con);
 ?>
