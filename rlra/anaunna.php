@@ -25,7 +25,7 @@ $sql2="SELECT Responsabilities.id as rid,Progetto,lvl,ruolo,coconv,inizio,fine,n
 $result2= mysqli_query($con,$sql2);
 //$sql3="SELECT documentazione,folder FROM Richieste,docs WHERE Richieste.id=docs.id_richiesta and Richieste.id='".$q."'";
 //$result3= mysqli_query($con,$sql3);
-$sql3="SELECT sigla FROM siglesin";
+$sql3="SELECT sigla FROM siglesin ORDER BY sigla";
 $result3 = mysqli_query($con,$sql3);
 
 $siglesin=array();

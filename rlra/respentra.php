@@ -59,9 +59,12 @@ else { $respstr=$prj."/".$ruo."/ ".$nome." ".$cognome;}
 }
 echo $respstr;;
 echo "<br>";
-$sql2="INSERT into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$anno.",'".$sez."','missioni','".$prj."-RESP','','".$respstr."','".$metarich."','cms')"; 
-$result2 = mysqli_query($con,$sql2);
-$myid=mysqli_insert_id($con);
+$myid=0;
+if (($lvl>0) && ($lvl<3)) {
+	$sql2="INSERT into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$anno.",'".$sez."','missioni','".$prj."-RESP','','".$respstr."','".$metarich."','cms')"; 
+        $result2 = mysqli_query($con,$sql2);
+        $myid=mysqli_insert_id($con);
+}
 $ruo=addslashes($ruo);
 $ini=addslashes($ini);
 $fin=addslashes($fin);
