@@ -58,8 +58,8 @@ while($row = mysqli_fetch_array($result)) {
   $totsin+=$row['Percentuale_Sin2']/100;
   $totsin+=$row['Percentuale_Sin3']/100;
   $respsez=$row['sez'];
-  $respnome=$row['Nome'];
-  $respcognome=$row['Cognome'];
+  $respnome=addslashes($row['Nome']);
+  $respcognome=addslashes($row['Cognome']);
   echo "<tr>";
   echo "<td>" . $row['Nome'] . "</td>";
   echo "<td>" . $row['Cognome'] . "</td>";

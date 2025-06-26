@@ -5,6 +5,7 @@
 <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="pragma" content="no-cache" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <head>
 
@@ -311,10 +312,10 @@ function showRichie(str) {
 //     if (mfilt!="") mfilt+= "AND ";
 //      mfilt+= " rn is not null ";
 //   }
-   if (agg.checked == true) {
-     if (mfilt!="") mfilt+= "AND ";
-      mfilt+= " aggio='1' ";
-   }
+//   if (agg.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " aggio='1' ";
+//   }
 //   if (p2024.checked == true) {
 //     if (mfilt!="") mfilt+= "AND ";
 //     mfilt+= " INSTR(tag,'P2024')>0 ";
@@ -542,11 +543,7 @@ function insertRichie() {
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="assgn" name="assgn" value="assgn" onclick="showRichie(richie.value);">
-<label for="agg">Responsabilita</label>
-</div>
-<div class="chkdiv">
-<input type="checkbox" id="agg" name="agg" value="agg" onclick="showRichie(richie.value);">
-<label for="agg">agg. </label>
+<label for="assgn">Responsabilita</label>
 </div>
 </td>
 <td>
