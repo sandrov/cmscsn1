@@ -57,6 +57,7 @@ $metarich=0;
 if ($lvl>2) {$respstr=$prj." L".$lvl."/".$ruo."/ ".$nome." ".$cognome;}
 else { $respstr=$prj."/".$ruo."/ ".$nome." ".$cognome;}
 }
+$respstr=addslashes($respstr);
 echo $respstr;;
 echo "<br>";
 $myid=0;

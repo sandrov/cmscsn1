@@ -83,7 +83,8 @@ while ($row = mysqli_fetch_array($ressez)) {
 		echo '<td><span>'.$rowreq['Persone'].'</span></td>';
 		echo '<td><span>'.$rowreq['CMS'].'</span></td>';
 		echo '<td><span>'.$rowreq['Sinergiche'].'</span></td>';
-	$resreq2 = mysqli_query($con, "select count(Responsabilities.id) as resprole,sum(5-(lvl*2)) as mpresp from Persone,Anagrafica,Responsabilities where Persone.id=Anagrafica.id_person and Persone.id=Responsabilities.id_person and ".$f." and Anagrafica.anno='".$q."' and Responsabilities.anno='".$q."' and sez='".$mysez."' group by sez order by sez;");
+	$resreq2 = mysqli_query($con, "select count(Responsabilities.id) as resprole,sum(case when lvl=1 then 3 when lvl=2 then 1 else 0 end) as mpresp from Persone,Anagrafica,Responsabilities where Persone.id=Anagrafica.id_person and Persone.id=Responsabilities.id_person and ".$f." and Anagrafica.anno='".$q."' and Responsabilities.anno='".$q."' and sez='".$mysez."' group by sez order by sez;");
+//	$resreq2 = mysqli_query($con, "select count(Responsabilities.id) as resprole,sum(5-(lvl*2)) as mpresp from Persone,Anagrafica,Responsabilities where Persone.id=Anagrafica.id_person and Persone.id=Responsabilities.id_person and ".$f." and Anagrafica.anno='".$q."' and Responsabilities.anno='".$q."' and sez='".$mysez."' group by sez order by sez;");
         while ($rowreq2 = mysqli_fetch_array($resreq2)) {
 		echo '<td><span>'.$rowreq2['resprole'].'</span></td>';
 		echo '<td><span>'.$rowreq2['mpresp'].'</span></td>';
