@@ -139,13 +139,24 @@ while($row = mysqli_fetch_array($result)) {
   echo "<td>";
   if ($edib==0) {
 //     echo "<a href=\"edita.php?q=".$q."\">";
-     echo "<button id=\"edita\" onclick=\"aggiornaAnag(".$q.",".$t.");\"> aggiorna</button>"; 
+//2026     echo "<button id=\"edita\" onclick=\"aggiornaAnag(".$q.",".$t.");\"> aggiorna</button>"; 
 //  echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.",1);\"> DB</button>"; 
 //  echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.",2);\"> RL</button>"; 
 //  echo "<button id=\"ra\" onclick=\"aggiornaDB(".$q.",3);\"> RA</button>"; 
 //  echo "<button id=\"rn\" onclick=\"aggiornaDB(".$q.",4);\"> RN</button>"; 
 //  echo "<button id=\"agg\" onclick=\"aggiornaDB(".$q.",5);\"> Agg</button>"; 
   }
+  echo "</td>";
+  echo "</tr><tr>";
+  $strnote='';
+  if ($row['SiglaSiner1']) {
+	  $strnote="Attività in ".$row['SiglaSiner1'];
+          if ($row['SiglaSiner2'])  $strnote=$strnote.", ".$row['SiglaSiner2'];
+          if ($row['SiglaSiner3'])  $strnote=$strnote.", ".$row['SiglaSiner3'];
+	  $strnote=$strnote." sinergica con CMS";
+  }
+  echo "<td  colspan=\"9\">";
+  echo "Note: <input type=\"text\" size=200 id=\"ananote\" name=\"ananote\" value=\"".$strnote."\">";
   echo "</td>";
 }
 echo "</tr></table>";

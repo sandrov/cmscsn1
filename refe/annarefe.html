@@ -155,6 +155,29 @@ function nuova() {
 
 };
 
+function showSinergie(str) {
+   if (str == "") {
+     document.getElementById("txtHint").innerHTML = "";
+     return;
+   } else {
+     var xmlhttp = new XMLHttpRequest();
+     xmlhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+         document.getElementById("txtHint").innerHTML = this.responseText;
+         document.getElementById("totrichieste").innerHTML = document.getElementById("phprich").innerHTML;
+         document.getElementById("totcms").innerHTML = document.getElementById("phpkeur").innerHTML;
+         document.getElementById("totsin").innerHTML = document.getElementById("phpkeurSJ").innerHTML;
+       }
+       else {
+          if (this.readyState == 4 && this.status != 200)   document.getElementById('id03').style.display='block';
+       };
+     };
+     xmlhttp.open("GET","anasiner.php?q="+str,true);
+     xmlhttp.send();
+   }
+};
+
+
 function showRichie(str) {
   if (str == "") {
     document.getElementById("txtHint").innerHTML = "";
@@ -228,7 +251,7 @@ function showRichie(str) {
    }
    if (RM1.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
-     mfilts+= "INSTR(sez,'ROMA1')>0  ";
+     mfilts+= "INSTR(sez,'RM1')>0  ";
    }
    if (TO.checked == true) {
      if (mfilts!="") mfilts+= "OR ";
@@ -288,10 +311,10 @@ function showRichie(str) {
 //     if (mfilt!="") mfilt+= "AND ";
 //      mfilt+= " rn is not null ";
 //   }
-   if (agg.checked == true) {
-     if (mfilt!="") mfilt+= "AND ";
-      mfilt+= " aggio='1' ";
-   }
+//   if (agg.checked == true) {
+//     if (mfilt!="") mfilt+= "AND ";
+//      mfilt+= " aggio='1' ";
+//   }
 //   if (p2024.checked == true) {
 //     if (mfilt!="") mfilt+= "AND ";
 //     mfilt+= " INSTR(tag,'P2024')>0 ";
@@ -515,15 +538,15 @@ function insertRichie() {
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="asse" name="asse" value="Ass." onclick="showRichie(richie.value);">
-<label for="asse">StringheDB </label>
+<label for="asse">Sommario </label>
 </div>
 <div class="chkdiv">
 <input type="checkbox" id="assgn" name="assgn" value="assgn" onclick="showRichie(richie.value);">
-<label for="agg">Responsabilita</label>
+<label for="assgn">Responsabilita</label>
 </div>
 <div class="chkdiv">
-<input type="checkbox" id="agg" name="agg" value="agg" onclick="showRichie(richie.value);">
-<label for="agg">agg. </label>
+<input type="checkbox" id="siner" name="siner" value="siner" onclick="showSinergie(richie.value);">
+<label for="siner">Sinergie</label>
 </div>
 </td>
 <td>

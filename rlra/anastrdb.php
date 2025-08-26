@@ -24,8 +24,10 @@ $q = $_GET['q'];
 $f = $_GET['f'];
 
 //$q='2026';
-//$f="(sigla='cms')";
-
+//$f="(sez='PG')";
+$totcms=0;
+$totsin=0;
+$totrichieste=0;
 
 echo "<h2> Anagrafica Anno ".$q."</h2>";
 
@@ -74,16 +76,19 @@ while ($row = mysqli_fetch_array($ressez)) {
 	$thesezs[]=$row['sez'];
 	unset($sezkeur);
 	unset($sezsj);
-	$resreq = mysqli_query($con, "select sez,count(Persone.id) as Persone,sum(Percentuale_CMS/100) as CMS,sum((Percentuale_Sin1+Percentuale_Sin2+Percentuale_Sin3)/100) as Sinergiche from Persone,Anagrafica where Persone.id=Anagrafica.id_person and ".$f." and Anagrafica.anno='".$q."' and sez='".$mysez."' group by sez order by sez;");
+	$resreq = mysqli_query($con, "select sez,count(Persone.id) as Persone,sum(Percentuale_CMS/100) as CMS,sum((Percentuale_Sin1+Percentuale_Sin2+Percentuale_Sin3)/100) as Sinergiche from Persone,Anagrafica where Persone.id=Anagrafica.id_person and ".$f." and Anagrafica.anno='".$q."' and sez='".$mysez."' and (modulo='G1' or modulo='G2') group by sez order by sez;");
         while ($rowreq = mysqli_fetch_array($resreq)) {
 		$sezkeur[$rowreq['Persone']]=$rowreq['CMS'];
 		$sezsj[$rowreq['Persone']]=$rowreq['Sinergiche'];
+		$totcms+=$rowreq['CMS'];
+		$totsin+=$rowreq['Sinergiche'];
+		$totrichieste+=$rowreq['Persone'];
 	echo '<tr>';
 	echo '<td><a href="#'.$mysez.'">'.$mysez.'</a></td>';
 		echo '<td><span>'.$rowreq['Persone'].'</span></td>';
 		echo '<td><span>'.$rowreq['CMS'].'</span></td>';
 		echo '<td><span>'.$rowreq['Sinergiche'].'</span></td>';
-	$resreq2 = mysqli_query($con, "select count(Responsabilities.id) as resprole,sum(case when lvl=1 then 3 when lvl=2 then 1 else 0 end) as mpresp from Persone,Anagrafica,Responsabilities where Persone.id=Anagrafica.id_person and Persone.id=Responsabilities.id_person and ".$f." and Anagrafica.anno='".$q."' and Responsabilities.anno='".$q."' and sez='".$mysez."' group by sez order by sez;");
+	$resreq2 = mysqli_query($con, "select count(Responsabilities.id) as resprole,sum(case when lvl=1 then 3 when lvl=2 then 1 else 0 end) as mpresp from Persone,Anagrafica,Responsabilities where Persone.id=Anagrafica.id_person and Persone.id=Responsabilities.id_person and ".$f." and Anagrafica.anno='".$q."' and Responsabilities.anno='".$q."' and sez='".$mysez."' and (modulo='G1' or modulo='G2') group by sez order by sez;");
 //	$resreq2 = mysqli_query($con, "select count(Responsabilities.id) as resprole,sum(5-(lvl*2)) as mpresp from Persone,Anagrafica,Responsabilities where Persone.id=Anagrafica.id_person and Persone.id=Responsabilities.id_person and ".$f." and Anagrafica.anno='".$q."' and Responsabilities.anno='".$q."' and sez='".$mysez."' group by sez order by sez;");
         while ($rowreq2 = mysqli_fetch_array($resreq2)) {
 		echo '<td><span>'.$rowreq2['resprole'].'</span></td>';
@@ -116,7 +121,7 @@ foreach ($thesezs as $asez) {
    echo' <div class="w3-container">';
    echo '<p> <div id='.$asez.'><h2 class="w3-text-sienna">  Sezione '.$asez.'</h2></div></p>';
 //   foreach ($mycaps as $ocap) {
-                $resrich=mysqli_query($con, "select count(Persone.id) as perso,sum(Percentuale_CMS/100) as cmsfte,sum((Percentuale_Sin1+Percentuale_Sin2+Percentuale_Sin3)/100) as sinfte from Persone,Anagrafica where Persone.id=Anagrafica.id_person and anno='".$q."' and ".$f." and sez='".$asez."'");
+                $resrich=mysqli_query($con, "select count(Persone.id) as perso,sum(Percentuale_CMS/100) as cmsfte,sum((Percentuale_Sin1+Percentuale_Sin2+Percentuale_Sin3)/100) as sinfte from Persone,Anagrafica where Persone.id=Anagrafica.id_person and anno='".$q."' and ".$f." and sez='".$asez."' and (modulo='G1' or modulo='G2')");
 
                 $rowrich = mysqli_fetch_array($resrich);
 		if ($rowrich) {
@@ -138,7 +143,7 @@ foreach ($thesezs as $asez) {
 		 $resana2=mysqli_query($con, $sqlana2);
 		 $rowana2 = mysqli_fetch_array($resana2);
 		 if ($rowana2['id_rich']) {$myid=$rowana2['id_rich'];} else {$myid=0;};
-		 if ($q>=2025) { 
+		 if ($q>2026) { 
 			 if ($myid==0){
 			 $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','missioni','".$mtag."','','/Missioni metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
 		         $resana3=mysqli_query($con, $sqlana3);
@@ -167,7 +172,7 @@ foreach ($thesezs as $asez) {
                  $a=(int)$metarich;
                  if (($metarich-$a)<0.5) {$metarich=$a;}
                  else $metarich=$a+0.5;
-		 if ($q>=2025) { 
+		 if ($q>2026) { 
 		 if ($myid==0){
 			 $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','missioni','".$mtag."','','/Missioni duties and shifts/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
 		         $resana3=mysqli_query($con, $sqlana3);
@@ -203,7 +208,7 @@ foreach ($thesezs as $asez) {
                  if (($metarich-$a)<0.5) {$metarich=$a;}
                  else $metarich=$a+0.5;
                  if ($rowana2['id_rich']) {$myid=$rowana2['id_rich'];} else {$myid=0;};
-		 if ($q>=2025) { 
+		 if ($q>2026) { 
                  if ($myid==0){
 		         $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','consumo','".$mtag."','','/Consumi metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte',".$metarich.",'cms')";
                          $resana3=mysqli_query($con, $sqlana3);
@@ -256,7 +261,30 @@ foreach ($thesezs as $asez) {
 //                while ($rowrich = mysqli_fetch_array($resrich)); 
 //foreach		}
 }
+                echo "<h3 class=\"w3-text-light-green\">sinergie</h3>";
+                $resresp=mysqli_query($con, "select Persone.Cognome,Persone.Nome,SiglaSiner1,SiglaSiner2,SiglaSiner3 from Persone,Anagrafica where Persone.id=Anagrafica.id_person and anno='".$q."' and sez='".$asez."' order by Persone.Cognome,Persone.Nome") ;
+		while ($row = mysqli_fetch_array($resresp)){
+		$strnote='';
+                if ($row['SiglaSiner1']) {
+                      $strnote="Attivita' in ".$row['SiglaSiner1'];
+                      if ($row['SiglaSiner2'])  $strnote=$strnote.", ".$row['SiglaSiner2'];
+                      if ($row['SiglaSiner3'])  $strnote=$strnote.", ".$row['SiglaSiner3'];
+                      $strnote=$strnote." sinergica con CMS";
+			}
+		if ($strnote) echo $row['Cognome']." ".$row['Nome'].": ".$strnote."<br>";
+		}
+
 echo "</div><br>";
 }
+
+echo "<span id=\"phpkeur\" hidden>";
+echo $totcms;
+echo "</span>";
+echo "<span id=\"phpkeurSJ\" hidden>";
+echo $totsin;
+echo "</span>";
+echo "<span id=\"phprich\" hidden>";
+echo $totrichieste;
+echo "</span>";
 
 ?>

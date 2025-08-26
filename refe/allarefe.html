@@ -308,6 +308,11 @@ function showRichie(str) {
      if (lfilt!="") lfilt+= "OR ";
      lfilt+= " INSTR(tag,'PREPROTO')>0 ";
    }
+   if (extra.checked == true) {
+     if (lfilt!="") lfilt+= "OR ";
+     lfilt+= " INSTR(tag,'EXTRA')>0 ";
+   }
+
    if (infra.checked == true) {
      if (lfilt!="") lfilt+= "OR ";
      lfilt+= " INSTR(tag,'INFRA')>0 ";
@@ -705,6 +710,10 @@ function exportRichie(str) {
    <div class="chkdiv">
      <input type="checkbox" id="preproto" name="preproto" value="preproto" onclick="showRichie(richie.value);">
      <label for="preproto">PreProto</label>
+   </div>
+   <div class="chkdiv">
+     <input type="checkbox" id="extra" name="extra" value="extra" onclick="showRichie(richie.value);">
+     <label for="extra">Extracosto</label>
    </div>
    <div class="chkdiv">
      <input type="checkbox" id="infra" name="infra" value="infra" onclick="showRichie(richie.value);">

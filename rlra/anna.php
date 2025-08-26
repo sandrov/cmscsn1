@@ -36,6 +36,7 @@ echo "<table class=\"w3-table w3-striped w3-small \">
 <th>Nome</th>
 <th>Sezione</th>
 <th>Profilo</th>
+<th>Modulo</th>
 <th>Percentuale CMS</th>
 <th>Sinergica 1</th>
 <th>Percentuale Sin1</th>
@@ -59,6 +60,7 @@ while($row = mysqli_fetch_array($result)) {
   echo "<td>" . $row['Nome'] . "</td>";
   echo "<td>" . $row['sez'] . "</td>";
   echo "<td>" . $row['Profilo'] . "</td>";
+  echo "<td>" . $row['modulo'] . "</td>";
   if ($q!=0) {
   echo "<td>" . number_format($row['Percentuale_CMS'],0) . "%</td>";
   echo "<td>" . $row['SiglaSiner1'] . "</td>";
@@ -67,11 +69,13 @@ while($row = mysqli_fetch_array($result)) {
   echo "<td>" . number_format($row['Percentuale_Sin2'],0) . "%</td>";
   echo "<td>" . $row['SiglaSiner3'] . "</td>";
   echo "<td>" . number_format($row['Percentuale_Sin3'],0) . "%</td>";
+  if (($row['modulo']=='G1') || ($row['modulo']=='G2')) {
   $totrichieste+=1;
   $totcms+= $row['Percentuale_CMS']/100;
   $totsin+= $row['Percentuale_Sin1']/100;
   $totsin+= $row['Percentuale_Sin2']/100;
   $totsin+= $row['Percentuale_Sin3']/100;
+  }
 
   $row2=mysqli_fetch_array($result2);
   if ($row2['id']) { echo "<td><button class=\"w3-btn w3-small w3-amber\">Resp</button></td>";};

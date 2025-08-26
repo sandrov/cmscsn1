@@ -178,6 +178,27 @@ function nuova() {
 //    showRichie(richie.value);
 
 };
+function showSinergie(str) {
+  if (str == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+        document.getElementById("totrichieste").innerHTML = document.getElementById("phprich").innerHTML;
+        document.getElementById("totcms").innerHTML = document.getElementById("phpkeur").innerHTML;
+        document.getElementById("totsin").innerHTML = document.getElementById("phpkeurSJ").innerHTML;
+      }
+      else {
+         if (this.readyState == 4 && this.status != 200)   document.getElementById('id03').style.display='block';
+      };
+    };
+    xmlhttp.open("GET","anasiner.php?q="+str,true);
+    xmlhttp.send();
+  }
+}
 
 function showRichie(str) {
   if (str == "") {
@@ -544,6 +565,10 @@ function insertRichie() {
 <div class="chkdiv">
 <input type="checkbox" id="assgn" name="assgn" value="assgn" onclick="showRichie(richie.value);">
 <label for="assgn">Responsabilita</label>
+</div>
+<div class="chkdiv">
+<input type="checkbox" id="siner" name="siner" value="siner" onclick="showSinergie(richie.value);">
+<label for="assgn">Sinergie</label>
 </div>
 </td>
 <td>
