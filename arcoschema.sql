@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.41, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.46, for Linux (x86_64)
 --
 -- Host: dbod-csn1cmsdb.cern.ch    Database: cmsph2
 -- ------------------------------------------------------
--- Server version	8.4.2
+-- Server version	8.4.8
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,10 +36,12 @@ CREATE TABLE `Anagrafica` (
   `sigla` varchar(64) DEFAULT NULL,
   `anno` int DEFAULT NULL,
   `id_person` int DEFAULT NULL,
+  `authorship` tinyint(1) DEFAULT NULL,
+  `mof_a` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_person` (`id_person`),
   CONSTRAINT `Anagrafica_ibfk_1` FOREIGN KEY (`id_person`) REFERENCES `Persone` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1883 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2446 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,7 +62,28 @@ CREATE TABLE `Assegnazioni` (
   PRIMARY KEY (`id`),
   KEY `id_richiesta` (`id_richiesta`),
   CONSTRAINT `Assegnazioni_ibfk_1` FOREIGN KEY (`id_richiesta`) REFERENCES `Richieste` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Oggetti`
+--
+
+DROP TABLE IF EXISTS `Oggetti`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Oggetti` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `inventario` int NOT NULL,
+  `Valore` decimal(11,1) DEFAULT NULL,
+  `Descrizione` text,
+  `nota` int NOT NULL,
+  `fornitore` varchar(255) DEFAULT NULL,
+  `classe` varchar(255) DEFAULT NULL,
+  `anno_nota` int NOT NULL,
+  `sez` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,9 +99,10 @@ CREATE TABLE `Persone` (
   `Nome` varchar(255) DEFAULT NULL,
   `sez` varchar(32) DEFAULT NULL,
   `Profilo` varchar(255) DEFAULT NULL,
+  `modulo` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UC_Person` (`Cognome`,`Nome`)
-) ENGINE=InnoDB AUTO_INCREMENT=607 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=656 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +126,7 @@ CREATE TABLE `Responsabilities` (
   `id_richiesta` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_person` (`id_person`)
-) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=694 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +155,26 @@ CREATE TABLE `Richieste` (
   `ra` tinyint(1) DEFAULT NULL,
   `aggio` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1039 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1460 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Ubicazioni`
+--
+
+DROP TABLE IF EXISTS `Ubicazioni`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Ubicazioni` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_oggetto` int NOT NULL,
+  `ubicazione` varchar(255) DEFAULT NULL,
+  `note` text,
+  `data_ins` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_person` int DEFAULT NULL,
+  `gruppo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +191,7 @@ CREATE TABLE `an2rich` (
   `anno` int NOT NULL,
   `id_rich` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +207,7 @@ CREATE TABLE `docs` (
   `documentazione` mediumtext COLLATE utf8mb4_general_ci,
   `folder` varchar(1024) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=727 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=998 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,9 +221,9 @@ CREATE TABLE `siglesin` (
   `id` int NOT NULL AUTO_INCREMENT,
   `sigla` varchar(64) DEFAULT NULL,
   `csn` int DEFAULT NULL,
-  `note` varchar(1024) DEFAULT NULL,
+  `note` varchar(8192) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -192,4 +235,4 @@ CREATE TABLE `siglesin` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-27  0:14:05
+-- Dump completed on 2026-07-14  0:39:40
