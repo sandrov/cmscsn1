@@ -4,18 +4,19 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
-$q = intval($_GET['q']);
+$q = intval($_POST['q']);
 
+$f = base64_decode($_POST['f']);
+$t = $_POST['t'];
 
-$f = $_GET['f'];
-$t = $_GET['t'];
+//print $f;
 
 
 $con = mysqli_connect($server,$login,$pass,$db,$port);
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
-if ($q>2026) {$q=2026;};
+if ($q>2027) {$q=2027;};
 mysqli_select_db($con,"cmsph2");
 if ($q==0) { $sql="SELECT * FROM Richieste WHERE anno > 0 and anno<2027";}
 else $sql="SELECT * FROM Richieste WHERE anno= '".$q."' ";

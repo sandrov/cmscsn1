@@ -142,6 +142,7 @@ html {
    <option value="MTD" <?=$tag1== 'MTD' ? ' selected="selected"' : '';?>>MTD</option>
    <option value="MUON" <?=$tag1== 'MUON' ? ' selected="selected"' : '';?>>MUON</option>
    <option value="PPS" <?=$tag1== 'PPS' ? ' selected="selected"' : '';?>>PPS</option>
+   <option value="PPS2" <?=$tag1== 'PPS2' ? ' selected="selected"' : '';?>>PPS2</option>
    <option value="RPC" <?=$tag1== 'RPC' ? ' selected="selected"' : '';?>>RPC</option>
    <option value="BRIL" <?=$tag1== 'BRIL' ? ' selected="selected"' : '';?>>BRIL</option>
    <option value="TRACKER" <?=$tag1== 'TRACKER' ? ' selected="selected"' : '';?>>TRACKER</option>

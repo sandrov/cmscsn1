@@ -139,7 +139,10 @@ while($row = mysqli_fetch_array($result)) {
   echo "<td>";
   if ($edib==0) {
 //     echo "<a href=\"edita.php?q=".$q."\">";
-//2026     echo "<button id=\"edita\" onclick=\"aggiornaAnag(".$q.",".$t.");\"> aggiorna</button>"; 
+
+//to be disabled once INFN DB closes
+    echo "<button id=\"edita\" onclick=\"aggiornaAnag(".$q.",".$t.");\"> aggiorna</button>"; 
+
 //  echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.",1);\"> DB</button>"; 
 //  echo "<button id=\"toDB\" onclick=\"aggiornaDB(".$q.",2);\"> RL</button>"; 
 //  echo "<button id=\"ra\" onclick=\"aggiornaDB(".$q.",3);\"> RA</button>"; 
@@ -162,7 +165,22 @@ while($row = mysqli_fetch_array($result)) {
 echo "</tr></table>";
 echo "</div>";
 echo "<br>";
-echo "<div class=\"w3-conatiner\">";
+
+echo "<div>";
+  if ($row['autorship']==1) {echo "<button class=\"w3-btn-small w3-amber\">Authorship</button>";}
+//  else {echo "<button class=\"w3-btn-small w3-gray\">Authorship</button>";};
+  if ($row['mof_a']==1) {echo "<button class=\"w3-btn-small w3-amber\">Mof-a</button>";}
+//  else {echo "<button class=\"w3-btn-small w3-gray\">Mof-a</button>";};
+//  if ($edib==0) {
+////     echo "<a href=\"edita.php?q=".$q."\">";
+//  echo "<button id=\"mof_a\" onclick=\"aggiornaDB(".$q.",7);\"> toggle Mof-a</button>"; 
+//  echo "<button id=\"authorship\" onclick=\"aggiornaDB(".$q.",6);\"> toggle Author</button>"; 
+//  }
+echo "</div>";
+echo "<br>";
+echo "<br>";
+
+echo "<div class=\"w3-container\">";
 echo "<b>Responsabilità:</b>";
 echo "<br>";
 echo "<table class=\" w3-half w3-small\">
@@ -211,6 +229,7 @@ echo '
    <option value="MTD">MTD</option>
    <option value="MUON">MUON</option>
    <option value="PPS">PPS</option>
+   <option value="PPS2">PPS2</option>
    <option value="RPC">RPC</option>
    <option value="BRIL">BRIL</option>
    <option value="TRACKER">TRACKER</option>

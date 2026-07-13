@@ -20,8 +20,11 @@ echo "<script>
 </script>
 ";
 
-$q = $_GET['q'];
-$f = $_GET['f'];
+$q = intval($_POST['q']);
+
+$f = base64_decode($_POST['f']);
+
+
 
 //$q='2026';
 //$f="(sez='PG')";
@@ -143,7 +146,8 @@ foreach ($thesezs as $asez) {
 		 $resana2=mysqli_query($con, $sqlana2);
 		 $rowana2 = mysqli_fetch_array($resana2);
 		 if ($rowana2['id_rich']) {$myid=$rowana2['id_rich'];} else {$myid=0;};
-		 if ($q>2026) { 
+//the following updates automatic requests from anagrafic related data
+		 if ($q>2027) { 
 			 if ($myid==0){
 			 $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','missioni','".$mtag."','','/Missioni metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
 		         $resana3=mysqli_query($con, $sqlana3);
@@ -172,7 +176,8 @@ foreach ($thesezs as $asez) {
                  $a=(int)$metarich;
                  if (($metarich-$a)<0.5) {$metarich=$a;}
                  else $metarich=$a+0.5;
-		 if ($q>2026) { 
+//the following updates automatic requests from anagrafic related data
+		 if ($q>2027) { 
 		 if ($myid==0){
 			 $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','missioni','".$mtag."','','/Missioni duties and shifts/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1mp/fte*".$myrates[$asez]."kEuro',".$metarich.",'cms')"; 
 		         $resana3=mysqli_query($con, $sqlana3);
@@ -208,7 +213,8 @@ foreach ($thesezs as $asez) {
                  if (($metarich-$a)<0.5) {$metarich=$a;}
                  else $metarich=$a+0.5;
                  if ($rowana2['id_rich']) {$myid=$rowana2['id_rich'];} else {$myid=0;};
-		 if ($q>2026) { 
+//the following updates automatic requests from anagrafic related data
+		 if ($q>2027) { 
                  if ($myid==0){
 		         $sqlana3="insert into Richieste (anno,sez,capitolo,tag,wbs,richiesta,keur,sigla) values (".$q.",'".$asez."','consumo','".$mtag."','','/Consumi metabolismo/".$rowrich['cmsfte']+$rowrich['sinfte']."fte*1.5kEur/fte',".$metarich.",'cms')";
                          $resana3=mysqli_query($con, $sqlana3);

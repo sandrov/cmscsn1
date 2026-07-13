@@ -352,11 +352,22 @@ function showRichie(str) {
  
    if (asse.checked == true) {
       mtoke=10;
-      xmlhttp.open("GET","anastrdb.php?q="+str+"&f="+mfilt+"&t="+mtoke,true);
-   }
-   else xmlhttp.open("GET","anna.php?q="+str+"&f="+mfilt+"&t="+mtoke,true);
+    xmlhttp.open("POST", "anastrdb.php", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+     console.log(`q=${str} &f=${mfilt} &t=${mtoke}`);
+     xmlhttp.send("q=" + str + "&f=" + encodeURIComponent(btoa(mfilt)) + "&t=" + mtoke);
 
-    xmlhttp.send();
+   }
+   
+   else 
+   {
+    xmlhttp.open("POST", "anna.php", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+     console.log(`q=${str} &f=${mfilt} &t=${mtoke}`);
+     xmlhttp.send("q=" + str + "&f=" + encodeURIComponent(btoa(mfilt)) + "&t=" + mtoke);
+    }
   }
 }
 function showSingleRichie(str) {
@@ -446,6 +457,7 @@ function insertRichie() {
 <div>  <br> </div>
 <select class="w3-select, w3-quarter" id="richie" onchange="showRichie(this.value);" >
   <option value="0">Anno:</option>
+  <option value="2027">2027</option>
   <option value="2026">2026</option>
   <option value="2025">2025</option>
   <option value="2024">2024</option>

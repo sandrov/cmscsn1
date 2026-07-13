@@ -4,12 +4,11 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
-$q = intval($_GET['q']);
 
+$q = intval($_POST['q']);
 
-$f = $_GET['f'];
-$t = $_GET['t'];
-
+$f = base64_decode($_POST['f']);
+$t = $_POST['t'];
 
 $con = mysqli_connect($server,$login,$pass,$db,$port);
 if (!$con) {
@@ -23,6 +22,9 @@ if ($f) $sql=$sql." AND (".$f.")";
 $sql=$sql." ORDER BY anno DESC,capitolo,id DESC";
 //print $sql;
 $result = mysqli_query($con,$sql);
+if (!$result) {
+    die('Query error: ' . mysqli_error($con));
+}
 
 echo "<table class=\"w3-table w3-striped\">
 <tr>

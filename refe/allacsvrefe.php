@@ -10,8 +10,8 @@ header("Expires: 0");
 $q = intval($_GET['q']);
 
 
-$f = $_GET['f'];
-$t = $_GET['t'];
+$f = base64_decode($_GET['f']);
+$t = base64_decode($_GET['t']);
 
 
 $con = mysqli_connect($server,$login,$pass,$db,$port);
